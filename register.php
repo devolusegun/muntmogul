@@ -1,19 +1,23 @@
 <?php
+session_start();
+require 'config/config.php';
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+// Including PHPMailer
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
+require 'src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-session_start();
-require 'config/config.php';
 // Fetch countries from the database
 $stmt = $pdo->prepare("SELECT name FROM countries ORDER BY name ASC");
 $stmt->execute();
 $countries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$config = require 'config/config.php'; // Load config with .env values
-$mail = new PHPMailer(true);
 $error = "";
 $success = "";
 
@@ -40,23 +44,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute([$referral_name, $first_name, $last_name, $username, $password, $transaction_pin, $email, $country, $verification_code])) {
             
             // ✅ Send verification email
+            $mail = new PHPMailer(true);
             try {
                 $mail->isSMTP();
-                $mail->Host       = $config['smtp_host'];
+                $mail->Host       = $_ENV['smtp_host'];
                 $mail->SMTPAuth   = true;
-                $mail->Username   = $config['smtp_user'];
-                $mail->Password   = $config['smtp_pass'];
+                $mail->Username   = $_ENV['smtp_user'];
+                $mail->Password   = $_ENV['smtp_pass'];
                 $mail->SMTPSecure = 'tls';
-                $mail->Port       = $config['smtp_port'];
+                $mail->Port       = $_ENV['smtp_port'];
             
-                $mail->setFrom($config['smtp_user'], 'MuntMogul');
+                $mail->setFrom($_ENV['smtp_user'], 'MuntMogul');
                 $mail->addAddress($email, $first_name);
             
                 $mail->isHTML(true);
                 $mail->Subject = "Email Verification";
                 $mail->Body    = "Hello $first_name, <br><br> Please verify your email by clicking the link below:<br>
                                   <a href='https://cryptic.donatewater.ng/verify.php?code=$verification_code'>Verify Now</a>";
-            
+                
                 $mail->send();
                 $success = "Registration successful! Please check your email to verify your account.";
             } catch (Exception $e) {
