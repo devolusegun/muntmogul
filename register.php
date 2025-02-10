@@ -109,6 +109,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- jQuery (Required for Select2) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+
 </head>
 
 <body>
@@ -447,7 +455,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="login_top_box float_left">
                         <div class="login_banner_wrapper register_banner_wrapper">
-                            <img src="images/logo2.png" alt="logo">
+                            <!--<img src="images/logo2.png" alt="logo">-->
                             <div class="about_btn  facebook_wrap float_left">
 
                                 <a href="#">login with facebook <i class="fab fa-facebook-f"></i></a>
@@ -498,14 +506,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="form-group icon_form comments_form register_contact">
                                     <input type="text" class="form-control require" name="email" required placeholder="Email Address*">
                                 </div>
-                                <div class="select_box register_contact">                             
-                                    <select name="country" required>
+                                <div class="select_box register_contact">
+                                    <select name="country" id="country-select" class="select2" required>
                                         <option value="" selected>Select Country</option>
                                         <?php foreach ($countries as $country): ?>
                                             <option value="<?php echo $country['name']; ?>"><?php echo $country['name']; ?></option>
-                                        <?php endforeach; ?>
+                                        <?php endforeach; ?>    
                                     </select>
-                                </div>							
+                                </div>
+                                							
                                 <div class="login_remember_box">
                                     <label class="control control--checkbox">I agreed to the Terms and Conditions. 
                                         <input type="checkbox" required>
@@ -677,8 +686,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <ul>
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                
 
                             </ul>
                         </div>
@@ -690,7 +698,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <!-- footer section end-->
     <!--custom js files-->
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            console.log("jQuery Version:", jQuery.fn.jquery); // Should show 3.6.0
+            //console.log("Select2 Loaded:", typeof $.fn.select2 !== "undefined");
+
+            $('#country-select').select2({
+                width: '100%',   // Ensures it fits the parent container
+                placeholder: "Select Country", // Placeholder text
+                allowClear: true, // Clear selection
+                maximumInputLength: 10,  // Limits search text length
+                dropdownAutoWidth: true  // Makes dropdown fit properly
+            });
+        });
+    </script>
+
+    <!--<script src="js/jquery-3.3.1.min.js"></script>-->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="js/jquery.menu-aim.js"></script>
@@ -706,6 +729,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="js/custom.js"></script>
     <!-- custom js-->
 
-	
 </body>
 </html>
