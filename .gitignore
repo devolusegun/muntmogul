@@ -27,5 +27,6 @@ storage/*.key
 .phpactor.json
 auth.json
 
-/config/
+config/config.php
 mailtest.php
+*.txt
