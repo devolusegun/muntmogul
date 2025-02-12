@@ -225,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </ul>
             </li>  --> 
             <li><a href=""> contact us </a></li>
-            <li><a href="login.php"> login </a></li>
+            <li><a href="login"> login </a></li>
             <!--<li><a href="register.html"> register </a></li>-->
         </ul>
         <!-- .cd-dropdown-content -->
@@ -279,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!--<li>
                             <a href="register.html"> register </a> </li>-->
                         <li>
-                            <a href="login.php"> login </a> </li>
+                            <a href="login"> login </a> </li>
                     </ul>
 
                 </div>

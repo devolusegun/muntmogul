@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </li>-->   
             <li><a href="contact_us.html"> contact us </a></li>
             <!--<li><a href="login.html"> login </a></li>-->
-            <li><a href="register.php"> register </a></li>
+            <li><a href="register"> register </a></li>
         </ul>
         <!-- .cd-dropdown-content -->
     </nav>
