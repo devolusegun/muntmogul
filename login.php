@@ -229,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header_btn">
                     <ul>
                         <li>
-                            <a href="register.php"> register </a> </li>
+                            <a href="register"> register </a> </li>
                         <!--<li>
                             <a href="login.html"> login </a> </li>-->
                     </ul>
@@ -454,7 +454,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </form>
 
                             <div class="dont_have_account float_left">
-                                <p>Don’t have an account? <a href="register.php">Sign up</a></p>
+                                <p>Don’t have an account? <a href="register">Sign up</a></p>
                             </div>
                         </div>
                     </div>
