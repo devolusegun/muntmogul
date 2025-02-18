@@ -30,3 +30,4 @@ auth.json
 config/config.php
 mailtest.php
 *.txt
+/secure/

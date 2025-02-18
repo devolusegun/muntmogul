@@ -20,7 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } elseif ($user && password_verify($password, $user["password"])) {
                 $_SESSION["user"] = $user["name"];
                 $_SESSION["email"] = $user["email"];
-                header("Location: dashboard.php"); // Redirect to dashboard after login
+
+                //record user's latest login time and IP
+                $update = $pdo->prepare("UPDATE crypticusers SET last_login = NOW(), last_ip = ? WHERE id = ?");
+                $update->execute([$_SERVER["REMOTE_ADDR"], $user["id"]]);
+
+                header("Location: dashboard"); // Redirect to dashboard after login
                 exit();
             } else {
                 $error = "Invalid email or password!";

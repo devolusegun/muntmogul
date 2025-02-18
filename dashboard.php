@@ -1,9 +1,20 @@
 <?php
 session_start();
+require 'config/config.php';
+
 if (!isset($_SESSION["user"])) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
+
+$stmt = $pdo->prepare("SELECT first_name, last_name, email, country, created_at, last_login, last_ip, btc_balance FROM crypticusers WHERE id = ?");
+$stmt->execute([$_SESSION["user"]["id"]]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("User not found.");
+}
+
 ?>
 
 
@@ -16,7 +27,7 @@ if (!isset($_SESSION["user"])) {
 
 <head>
     <meta charset="utf-8" />
-    <title>MuntMogul</title>
+    <title>Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="MuntMogul" />
     <meta name="keywords" content="MuntMogul" />
@@ -55,7 +66,7 @@ if (!isset($_SESSION["user"])) {
     <!-- Top Scroll End -->
     <!-- cp navi wrapper Start -->
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
-        <h2><a href="index.html"> savehyip </a></h2>
+        <h2><a href="index.html"> welcome </a></h2>
         <a href="#0" class="cd-close">Close</a>
         <ul class="cd-dropdown-content">
             <li>
@@ -72,7 +83,7 @@ if (!isset($_SESSION["user"])) {
                     <li><a href="index3.html">index III</a></li>
                 </ul>
             </li>-->
-            <li><h1>Welcome, <?php echo $_SESSION["user"]; ?>!</h1></li>
+            <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</h1></li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
 			<!--<li><a href="faq.html"> FAQ </a></li>-->
 			<li class="has-children">
@@ -80,8 +91,8 @@ if (!isset($_SESSION["user"])) {
                 <ul class="cd-secondary-dropdown icon_menu is-hidden">
                     <li class="go-back"><a href="#0">Menu</a></li>
                       <li>
-                      <a href="all_transactions.html">all transactions</a>
-					</li> 
+                      <a href="#"></a>
+					</li>
 				   <li>
                       <a href="change_password.html">change password</a>
 					</li>
@@ -91,19 +102,19 @@ if (!isset($_SESSION["user"])) {
 					<li>
                       <a href="deposit_history.html">deposit history</a>
                   </li>
-					<li>
+					<!--<li>
                       <a href="deposit_list.html">deposit list</a>
-                  </li>
+                  </li>-->
 					<li>
                       <a href="earnings_history.html">earnings history</a>
                   </li>
 					<!--<li>
                       <a href="email_notification.html">email notification</a>
-                  </li>   -->
+                  </li>   
 					<li>
                       <a href="exchange_history.html">exchange history</a>
-                  </li>  
-					<!--<li>
+                  </li> 
+					<li>
 						<a href="exchange_money.html">exchange money</a>
                   </li> -->
 					<li>
@@ -112,13 +123,13 @@ if (!isset($_SESSION["user"])) {
 					<li>
                       <a href="my_account.html">my account</a>
                   </li> 	
-					<li>
+					<!--<li>
                       <a href="payment_request.html">payment request</a>
                   </li> 	
 					<li>
                       <a href="pending_history.html">pending history</a>
                   </li> 	
-					<!--<li>
+					<li>
                       <a href="referral_earnings.html">referral earnings</a>
                   </li> 	
 					<li>
@@ -127,9 +138,9 @@ if (!isset($_SESSION["user"])) {
 					<li>
                       <a href="tickets.html">tickets</a>
                   </li> 	
-					<li>
+					<!--<li>
                       <a href="transfer_fund.html">transfer fund</a>
-                  </li>
+                  </li>-->
 				<li>
                       <a href="view_profile.html">view profile</a>
                   </li> 									
@@ -331,7 +342,7 @@ if (!isset($_SESSION["user"])) {
                                 </li>
                                 <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a>-->
                                 </li>
-                                <li><a href="logout.php"><i class="flaticon-turn-off"></i>Logout</a>
+                                <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -354,7 +365,7 @@ if (!isset($_SESSION["user"])) {
                                 </li> 								
                             </ul>
                         </li>-->   
-                        <li><h1>Welcome, <?php echo $_SESSION["user"]; ?>!</li>
+                        <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</li>
                         <!--<li><a href="investment.html" class="gc_main_navigation">investment plan</a></li> -->
 						<!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
@@ -369,7 +380,8 @@ if (!isset($_SESSION["user"])) {
                                 </li>   								
                             </ul>
                         </li>-->
-						<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">dashboard <i class="fas fa-caret-down"></i></a>
+						<li class="has-mega gc_main_navigation"><a class=""> <i class=""></i></a>
+                            <!--
                             <ul class="navi_2_dropdown">
                               
                                 <li class="parent">
@@ -399,7 +411,7 @@ if (!isset($_SESSION["user"])) {
 									</span></a>
                                     <ul class="dropdown-menu-right">
                                          <li>
-                                            <a href="make_deposit.html"> <i class="fas fa-caret-right"></i>make deposit</a>
+                                            <a href="make_deposit.html"> <i class="fas fa-caret-right"></i>Withdraw</a>
                                         </li>
                                         <li>
                                             <a href="deposit_list.html"> <i class="fas fa-caret-right"></i> deposit lists</a>
@@ -411,23 +423,23 @@ if (!isset($_SESSION["user"])) {
                                             <a href="exchange_money.html"><i class="fas fa-caret-right"></i>exchange money</a>
                                         </li>
                                         <li>
-                                            <a href="transfer_fund.html"><i class="fas fa-caret-right"></i>fund transfer</a>
+                                            <a href="transfer_fund.html"><i class="fas fa-caret-right"></i>Deposit</a>
                                         </li>
                                      
                                     </ul>
                                 </li>
 								<li class="parent">
-                                    <a href="#"> <i class="fas fa-caret-right"></i>reports<span> <i class="fas fa-caret-right"></i>
+                                    <a href="#"> <i class="fas fa-caret-right"></i>Transactions<span> <i class="fas fa-caret-right"></i>
 									</span></a>
                                     <ul class="dropdown-menu-right">
                                          <li>
                                             <a href="all_transactions.html"> <i class="fas fa-caret-right"></i>all transactions</a>
                                         </li>
                                         <li>
-                                            <a href="deposit_history.html"> <i class="fas fa-caret-right"></i> deposit history</a>
+                                            <a href="deposit_history.html"> <i class="fas fa-caret-right"></i>deposit history</a>
                                         </li>
                                         <li>
-                                            <a href="pending_history.html"><i class="fas fa-caret-right"></i>pending history</a>
+                                            <a href="pending_history.html"><i class="fas fa-caret-right"></i>withdrawal history</a>
                                         </li>
                                         <li>
                                             <a href="exchange_history.html"><i class="fas fa-caret-right"></i>exchange history</a>
@@ -438,7 +450,7 @@ if (!isset($_SESSION["user"])) {
                                      
                                     </ul>
                                 </li>
-								<!--<li class="parent">
+								<li class="parent">
                                     <a href="#"> <i class="fas fa-caret-right"></i>referrals<span> <i class="fas fa-caret-right"></i>
 									</span></a>
                                     <ul class="dropdown-menu-right">
@@ -453,10 +465,11 @@ if (!isset($_SESSION["user"])) {
                                         </li>
                                       
                                     </ul>
-                                </li>-->
+                                </li>
 								<li class="parent">
                                     <a href="tickets.html"><i class="fas fa-caret-right"></i>view tickets</a></li>
                             </ul>
+                            -->
                         </li>						
 						    						
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">blog <i class="fas fa-caret-down"></i></a>
@@ -507,13 +520,13 @@ if (!isset($_SESSION["user"])) {
                 <nav class="c-menu js-menu" id="mynavi">
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="my_account.html"><i class="flaticon-four-grid-layout-design-interface-symbol"></i></a>
+                            <div class="c-menu__item__inner"><a href="my_account.html"><i class="flaticon-profile"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
-                                    </li>
+                                    <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
+                                    </li>-->
                                     <li><a href="view_profile.html"><i class="fa fa-circle"></i> my profile</a>
                                     </li>                      
-                                    <li><a href="email_notification.html"><i class="fa fa-circle"></i>email notification</a>
+                                    <li><a href="email_notification.html"><i class="fa fa-circle"></i>withdraw</a>
                                     </li>
                                     <li><a href="change_password.html"><i class="fa fa-circle"></i>change password</a>
                                     </li>
@@ -528,11 +541,11 @@ if (!isset($_SESSION["user"])) {
                                 </div>
                             </a>
                             <ul>
-                                 <li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
-                                 </li>
+                                 <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
+                                 </li>-->
                                  <li><a href="view_profile.html"><i class="fa fa-circle"></i> my profile</a>
                                  </li>                      
-                                 <li><a href="email_notification.html"><i class="fa fa-circle"></i>email notification</a>
+                                 <li><a href="email_notification.html"><i class="fa fa-circle"></i>withdraw</a>
                                  </li>
                                  <li><a href="change_password.html"><i class="fa fa-circle"></i>change password</a>
                                  </li>
@@ -541,96 +554,99 @@ if (!isset($_SESSION["user"])) {
                             </ul>
                         </li>
                     </ul>
-                    <ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-movie-tickets"></i></a>
-                                <ul class="crm_hover_menu">
-                                    <li>
-                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>make deposit</a>
-                                    </li>
-                                    <li>
-                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit lists</a>
-                                    </li>
-                                    <li>
-                                        <a href="payment_request.html"> <i class="fa fa-circle"></i> payment request</a>
-                                    </li>
-                                    <li>
-                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>exchange money</a>
-                                    </li>
-                                    <li>
-                                        <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="make_deposit.html">
-                                <div class="c-menu-item__title"><span>finance</span><i class="no_badge">5</i>
-                                </div>
-                            </a>
-                            <ul>
-                                 <li>
-                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>make deposit</a>
-                                    </li>
-                                    <li>
-                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit lists</a>
-                                    </li>
-                                    <li>
-                                        <a href="payment_request.html"> <i class="fa fa-circle"></i> payment request</a>
-                                    </li>
-                                    <li>
-                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>exchange money</a>
-                                    </li>
-                                    <li>
-                                        <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
-                                    </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
                             <div class="c-menu__item__inner"><a href="transfer_fund.html"><i class="flaticon-progress-report"></i></a>
                             </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="transfer_fund.html">
-                                <div class="c-menu-item__title">fund transfer</div>
+                            <a href="javascript:void(0);" onclick="openDepositModal()">
+                                <div class="c-menu-item__title">Deposit Funds</div>
                             </a>
                         </li>
-                    </ul>         
+                    </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="all_transactions.html"><i class="flaticon-help"></i></a>
+                            <div class="c-menu__item__inner"><a href="referrals.html"><i class="flaticon-settings"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="all_transactions.html"><i class="fa fa-circle"></i> all transactions</a>
+                                    <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a>
                                     </li>
-                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>deposit history</a>
+                                    <li>
+                                        <a href="banners.html"> <i class="fa fa-circle"></i>silver</a>
                                     </li>
-									 <li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
+									 <li>
+                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>copper</a>
                                     </li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
-                                    </li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
+                                    <li>
+                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="all_transactions.html">
-                                <div class="c-menu-item__title"><span>reports</span><i class="no_badge purple">5</i>
+                            <a href="#">
+                                <div class="c-menu-item__title"><span>saving plans</span><i class="no_badge purple">2</i>
                                 </div>
                             </a>
                             <ul>
-                              <li><a href="all_transactions.html"><i class="fa fa-circle"></i> all transactions</a>
+                                <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a>
+                                </li>
+                                <li>
+                                  <a href="banners.html"> <i class="fa fa-circle"></i>silver</a>
+                                </li>
+								<li>
+                                  <a href="referral_earnings.html"> <i class="fa fa-circle"></i>copper</a>
+                                 </li>
+                                 <li>
+                                    <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a>
+                                   </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="u-list crm_drop_second_ul">
+                        <li class="crm_navi_icon">
+                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-movie-tickets"></i></a>
+                                <ul class="crm_hover_menu">
+                                    <li>
+                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
                                     </li>
-                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>deposit history</a>
+                                    <!--<li>
+                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
+                                    </li>-->
+                                    <li>
+                                        <a href="payment_request.html"> <i class="fa fa-circle"></i> earning history</a>
                                     </li>
-									 <li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
+                                    <!--<li>
+                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>all transactions</a>
                                     </li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
+                                    <li>
+                                        <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
+                                    </li>-->
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
+                            <a href="make_deposit.html">
+                                <div class="c-menu-item__title"><span>finances</span><i class="no_badge">5</i>
+                                </div>
+                            </a>
+                            <ul>
+                                 <li>
+                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
                                     </li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
+                                    <!--<li>
+                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
+                                    </li>-->
+                                    <li>
+                                        <a href="payment_request.html"> <i class="fa fa-circle"></i>earning history</a>
                                     </li>
+                                    <!--<li>
+                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                    </li>
+                                    <li>
+                                        <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
+                                    </li>-->
                             </ul>
                         </li>
                     </ul>
@@ -645,39 +661,43 @@ if (!isset($_SESSION["user"])) {
                             </a>
                         </li>
                     </ul>
-                    <!--<ul class="u-list crm_drop_second_ul">
+                    <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="referrals.html"><i class="flaticon-settings"></i></a>
+                            <div class="c-menu__item__inner"><a href="all_transactions.html"><i class="flaticon-help"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="referrals.html"><i class="fa fa-circle"></i> my referrals </a>
+                                    <li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
                                     </li>
-                                    <li>
-                                        <a href="banners.html"> <i class="fa fa-circle"></i>promotionals banners</a>
+                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>support</a>
                                     </li>
-									 <li>
-                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>referral earnings</a>
+									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
                                     </li>
+									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
+                                    </li>
+									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
+                                    </li>-->
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="#">
-                                <div class="c-menu-item__title"><span>referrals</span><i class="no_badge purple">2</i>
+                            <a href="all_transactions.html">
+                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">5</i>
                                 </div>
                             </a>
                             <ul>
-                                <li><a href="referrals.html"><i class="fa fa-circle"></i> my referrals </a>
-                                </li>
-                                <li>
-                                  <a href="banners.html"> <i class="fa fa-circle"></i>promotionals banners</a>
-                                </li>
-								<li>
-                                  <a href="referral_earnings.html"> <i class="fa fa-circle"></i>referral earnings</a>
-                                 </li>
+                              <li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
+                                    </li>
+                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>support</a>
+                                    </li>
+									 <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
+                                    </li>
+									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
+                                    </li>
+									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
+                                    </li>-->
                             </ul>
                         </li>
-                    </ul>-->
-					  <ul class="u-list crm_drop_second_ul">
+                    </ul>
+					  <!--<ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
                             <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-profile"></i></a>
                             </div>
@@ -687,7 +707,7 @@ if (!isset($_SESSION["user"])) {
                                 <div class="c-menu-item__title">deposit</div>
                             </a>
                         </li>
-                    </ul>   
+                    </ul>-->   
                 </nav>
             </div>
         </div>
@@ -698,19 +718,19 @@ if (!isset($_SESSION["user"])) {
                 <div class="account_overlay"></div>
                 <div class="useriimg"><img src="images/user.png" alt="users"></div>
                 <div class="userdet uderid">
-                    <h3>Benmathew</h3>
+                    <h3><?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?></h3>
 
                     <dl class="userdescc">
                         <dt>Registration Date</dt>
-                        <dd>: &nbsp; Sep-10-2014 11:20:37</dd>
+                        <dd>: &nbsp; <?php echo $user["created_at"]; ?></dd>
                         <dt>Last Login</dt>
-                        <dd>: &nbsp; Jul-05-2019 07:06:36</dd>
-                        <dt>Current Login</dt>
-                        <dd>: &nbsp; Jul-06-2019 02:47:23</dd>
+                        <dd>: &nbsp; <?php echo $user["last_login"]; ?></dd>
+                        <!--<dt>Current Login</dt>
+                        <dd>: &nbsp; Jul-06-2019 02:47:23</dd>-->
                         <dt>Last Access IP</dt>
-                        <dd>: &nbsp; 27.57.18.1 </dd>
-                        <dt>Current Access IP</dt>
-                        <dd>: &nbsp; 122.175.131.51 </dd>
+                        <dd>: &nbsp; <?php echo $user["last_ip"]; ?> </dd>
+                        <dt>Current IP</dt>
+                        <dd>: &nbsp; <?php echo $_SERVER["REMOTE_ADDR"]; ?> </dd>
 
                     </dl>
 
@@ -719,20 +739,17 @@ if (!isset($_SESSION["user"])) {
                 <div class="userdet user_transcation">
                     <h3>Available Balance</h3>
                     <dl class="userdescc">
-                        <dt>Paypal</dt>
-                        <dd>:&nbsp;&nbsp;$ 392.79</dd>
-                        <dt>Pexpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 498.61</dd>
-                        <dt>PerfectMoney</dt>
-                        <dd>:&nbsp;&nbsp;$ 60.18</dd>
-                        <dt>Payza</dt>
-                        <dd>:&nbsp;&nbsp;$ 435</dd>
-                        <dt>HDMoney</dt>
-                        <dd>:&nbsp;&nbsp;$ 0.08</dd>
-
+                        <dt>Bitcoin</dt>
+                        <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
+                        <dt>Ethereum</dt>
+                        <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
+                        <dt>Litecoin</dt>
+                        <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
+                        <dt>Dogecoin</dt>
+                        <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
                     </dl>
                 </div>
-                <div class="userdet user_transcation">
+                <!--<div class="userdet user_transcation">
                     <h3 class="none_headung"> &nbsp;</h3>
                     <dl class="userdescc">
                         <dt>EGOpay</dt>
@@ -750,7 +767,7 @@ if (!isset($_SESSION["user"])) {
 
                     </dl>
 
-                </div>
+                </div>-->
 
             </div>
             <!--  my account wrapper end -->    
@@ -790,14 +807,6 @@ if (!isset($_SESSION["user"])) {
                                             </tr>
                                             <tr>
                                                 <td class="invest_td1">New Deposit</td>
-                                                <td class="invest_td1">: $0.00 USD</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="invest_td1">Matured Deposit</td>
-                                                <td class="invest_td1">: $0.00 USD</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="invest_td1">Released Deposit</td>
                                                 <td class="invest_td1">: $0.00 USD</td>
                                             </tr>
                                         </tbody>
@@ -851,14 +860,6 @@ if (!isset($_SESSION["user"])) {
                                                 <td class="invest_td1">interest this week</td>
                                                 <td class="invest_td1">: $0.00 USD</td>
                                             </tr>
-                                            <tr>
-                                                <td class="invest_td1">interest this month</td>
-                                                <td class="invest_td1">: $0.00 USD</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="invest_td1">interest earnings</td>
-                                                <td class="invest_td1">: $0.00 USD</td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -866,7 +867,7 @@ if (!isset($_SESSION["user"])) {
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <div class="investment_box_wrapper color_4 float_left">
+                        <!--<div class="investment_box_wrapper color_4 float_left">
                             <a href="#">
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
@@ -896,7 +897,7 @@ if (!isset($_SESSION["user"])) {
                                     </table>
                                 </div>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
                         <div class="investment_box_wrapper color_5 float_left">
@@ -925,7 +926,7 @@ if (!isset($_SESSION["user"])) {
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <div class="investment_box_wrapper color_6 float_left">
+                        <!--<div class="investment_box_wrapper color_6 float_left">
                             <a href="#">
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
@@ -948,7 +949,7 @@ if (!isset($_SESSION["user"])) {
                                     </table>
                                 </div>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -1844,6 +1845,111 @@ if (!isset($_SESSION["user"])) {
          </div>
        <!--  footer  wrapper end -->      
     <!-- main box wrapper End-->
+
+    <!-- Deposit Modal (Place this right before closing body tag) -->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDepositModal()">&times;</span>
+            <h3>Deposit Crypto</h3>
+            
+            <label>Select Cryptocurrency:</label>
+            <select id="cryptoType" onchange="updateNetworks()">
+                <option value="BTC">Bitcoin (BTC)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="LTC">Litecoin (LTC)</option>
+                <option value="DOGE">Dogecoin (DOGE)</option>
+            </select>
+
+            <label>Select Network:</label>
+            <select id="networkType" onchange="fetchDepositDetails()">
+                <!-- Options will be dynamically populated -->
+            </select>
+
+            <h4>Deposit Address:</h4>
+            <input type="text" id="depositAddress" readonly>
+            <button onclick="copyAddress()">Copy</button>
+
+            <h4>QR Code:</h4>
+            <img id="qrCodeImage" src="" alt="QR Code">
+
+            <p><strong>Note:</strong> Send only selected crypto to this address.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+
+        let cryptoData = {};  // Stores JSON data globally
+
+        // ✅ Load JSON Data on Page Load
+        fetch("assets/crypto_addresses.json")
+            .then(response => response.json())
+            .then(data => {
+                cryptoData = data;
+                updateNetworks();  // Update networks when page loads
+            });
+            .catch(error => console.error("Error loading JSON:", error)); // Debugging
+        
+        function openDepositModal() {
+            document.getElementById("depositModal").style.display = "block";
+        }
+
+        function closeDepositModal() {
+            document.getElementById("depositModal").style.display = "none";
+        }
+        
+        // ✅ Close modal when clicking outside
+        window.onclick = function(event) {
+            var modal = document.getElementById("depositModal");
+            if (event.target === modal) {
+                closeDepositModal();
+            }
+        }
+
+        // ✅ Update Networks Based on Selected Crypto
+        function updateNetworks() {
+            let cryptoType = document.getElementById("cryptoType").value;
+            let networkDropdown = document.getElementById("networkType");
+
+            // Clear existing options
+            networkDropdown.innerHTML = "";
+
+            if (cryptoData[cryptoType]) {
+                // Populate networks from JSON
+                cryptoData[cryptoType]["networks"].forEach(network => {
+                    let option = document.createElement("option");
+                    option.value = network;
+                    option.text = network;
+                    networkDropdown.appendChild(option);
+                });
+
+                // Auto-select first network and fetch deposit details
+                fetchDepositDetails();
+            }
+        }
+
+        function fetchDepositDetails() {
+            let cryptoType = document.getElementById("cryptoType").value;
+            let networkType = document.getElementById("networkType").value;
+
+            if (cryptoData[cryptoType] && cryptoData[cryptoType]["addresses"][networkType]) {
+                let depositInfo = cryptoData[cryptoType]["addresses"][networkType];
+                document.getElementById("depositAddress").value = depositInfo["address"];
+                document.getElementById("qrCodeImage").src = depositInfo["qr_code"];
+            } else {
+                document.getElementById("depositAddress").value = "Invalid Selection";
+                document.getElementById("qrCodeImage").src = "";
+            }
+        }
+
+        function copyAddress() {
+            let copyText = document.getElementById("depositAddress");
+            navigator.clipboard.writeText(copyText.value);
+            alert("Address copied to clipboard!");
+        }
+    </script>
+
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>

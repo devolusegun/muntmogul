@@ -1,0 +1,50 @@
+{
+    "BTC": {
+        "networks": ["BSC", "ERC20", "TRC20"],
+        "addresses": {
+            "BSC": {
+                "address": "bc1qeq5npxvtztzn6x48mljlr980449vn9vv7nekfp",
+                "qr_code": "qr_codes/btc_bsc.png"
+            },
+            "ERC20": {
+                "address": "bc1qeq5npxvtztzn6x48mljlr980449vn9vv7nekfp",
+                "qr_code": "qr_codes/btc_erc20.png"
+            },
+            "TRC20": {
+                "address": "bc1qeq5npxvtztzn6x48mljlr980449vn9vv7nekfp",
+                "qr_code": "qr_codes/btc_trc20.png"
+            }
+        }
+    },
+    "ETH": {
+        "networks": ["ERC20", "BSC"],
+        "addresses": {
+            "ERC20": {
+                "address": "0x314C8E50fdcF0c55aB2B676a288EC2f8D405257f",
+                "qr_code": "qr_codes/eth_erc20.png"
+            },
+            "BSC": {
+                "address": "0x314C8E50fdcF0c55aB2B676a288EC2f8D405257f",
+                "qr_code": "qr_codes/eth_bsc.png"
+            }
+        }
+    },
+    "LTC": {
+        "networks": ["LTC Native"],
+        "addresses": {
+            "LTC Native": {
+                "address": "ltc1qgvpacxy2vatghx3edmclm0545c4vm902wxj5d3",
+                "qr_code": "qr_codes/ltc_native.png"
+            }
+        }
+    },
+    "DOGE": {
+        "networks": ["DOGE Native"],
+        "addresses": {
+            "DOGE Native": {
+                "address": "D755NrMwiUkZmX2eJc7qcTTyL5MFiNwCgR",
+                "qr_code": "qr_codes/doge_native.png"
+            }
+        }
+    }
+}
