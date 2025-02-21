@@ -332,16 +332,16 @@ if (!$user) {
                                 </li>
                                <!--<li><a href="#"><i class="flaticon-file"></i> My Task</a>
                                 </li>
-                                <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a>-->
+                                <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a>
                                 </li>
                                 <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a>
                                 </li>
-                                <!--<li><a href="#"><i class="flaticon-settings"></i> Setting</a>-->
+                                li><a href="#"><i class="flaticon-settings"></i> Setting</a>-->
                                 </li>
                                 <li><a href="#"><i class="flaticon-help"></i> Support</a>
                                 </li>
-                                <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a>-->
-                                </li>
+                                <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a>
+                                </li>-->
                                 <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a>
                                 </li>
                             </ul>
@@ -365,7 +365,7 @@ if (!$user) {
                                 </li> 								
                             </ul>
                         </li>-->   
-                        <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</li>
+                        <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</h1></li>
                         <!--<li><a href="investment.html" class="gc_main_navigation">investment plan</a></li> -->
 						<!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
@@ -515,7 +515,9 @@ if (!$user) {
         </div>
     </div>
     <!-- inner header wrapper end -->
-	<div class="l-sidebar">
+
+	    <!-- side menus start -->
+        <div class="l-sidebar">
             <div class="l-sidebar__content">
                 <nav class="c-menu js-menu" id="mynavi">
                     <ul class="u-list crm_drop_second_ul">
@@ -611,9 +613,9 @@ if (!$user) {
                                     <li>
                                         <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
                                     </li>
-                                    <!--<li>
+                                    <li>
                                         <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                    </li>-->
+                                    </li>
                                     <li>
                                         <a href="payment_request.html"> <i class="fa fa-circle"></i> earning history</a>
                                     </li>
@@ -635,9 +637,9 @@ if (!$user) {
                                  <li>
                                         <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
                                     </li>
-                                    <!--<li>
+                                    <li>
                                         <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                    </li>-->
+                                    </li>
                                     <li>
                                         <a href="payment_request.html"> <i class="fa fa-circle"></i>earning history</a>
                                     </li>
@@ -711,6 +713,8 @@ if (!$user) {
                 </nav>
             </div>
         </div>
+        <!-- side menus end -->
+
         <!-- Main section Start -->
          <div class="l-main">         
           <!--  my account wrapper start -->
@@ -749,28 +753,9 @@ if (!$user) {
                         <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
                     </dl>
                 </div>
-                <!--<div class="userdet user_transcation">
-                    <h3 class="none_headung"> &nbsp;</h3>
-                    <dl class="userdescc">
-                        <dt>EGOpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>OKpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>Solidtrustpay </dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>Webmoney</dt>
-                        <dd>:&nbsp;&nbsp;$ 450</dd>
-                        <dt>Bankwire</dt>
-                        <dd>:&nbsp;&nbsp;$ 799</dd>
-                        <dt>Bitcoin</dt>
-                        <dd>:&nbsp;&nbsp;$ 33584</dd>
-
-                    </dl>
-
-                </div>-->
-
             </div>
-            <!--  my account wrapper end -->    
+            <!--  my account wrapper end -->
+
             <!--  account wrapper start -->
             <div class="account_wrapper float_left">
 
@@ -1887,8 +1872,7 @@ if (!$user) {
             .then(data => {
                 cryptoData = data;
                 updateNetworks();  // Update networks when page loads
-            });
-            .catch(error => console.error("Error loading JSON:", error)); // Debugging
+            }) .catch(error => console.error("Error loading JSON:", error)); // Debugging
         
         function openDepositModal() {
             document.getElementById("depositModal").style.display = "block";
