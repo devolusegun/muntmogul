@@ -559,7 +559,7 @@ if (!$user) {
                     
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="transfer_fund.html"><i class="flaticon-progress-report"></i></a>
+                            <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a>
                             </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
@@ -570,8 +570,8 @@ if (!$user) {
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="referrals.html"><i class="flaticon-settings"></i></a>
-                                <ul class="crm_hover_menu">
+                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a>
+                                <!--<ul class="crm_hover_menu">
                                     <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a>
                                     </li>
                                     <li>
@@ -583,15 +583,14 @@ if (!$user) {
                                     <li>
                                         <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a>
                                     </li>
-                                </ul>
+                                </ul>-->
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="#">
-                                <div class="c-menu-item__title"><span>saving plans</span><i class="no_badge purple">2</i>
-                                </div>
+                            <a href="make_deposit.html">
+                                <div class="c-menu-item__title">choose a plan </div>
                             </a>
-                            <ul>
+                            <!--<ul>
                                 <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a>
                                 </li>
                                 <li>
@@ -603,26 +602,26 @@ if (!$user) {
                                  <li>
                                     <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a>
                                    </li>
-                            </ul>
+                            </ul>-->
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-movie-tickets"></i></a>
+                            <div class="c-menu__item__inner"><a href="deposit_upload.php"><i class="flaticon-movie-tickets"></i></a>
                                 <ul class="crm_hover_menu">
                                     <li>
-                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                        <a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a>
                                     </li>
                                     <li>
-                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                    </li>
-                                    <li>
-                                        <a href="payment_request.html"> <i class="fa fa-circle"></i> earning history</a>
+                                        <a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a>
                                     </li>
                                     <!--<li>
-                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>all transactions</a>
-                                    </li>
+                                        <a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a>
+                                    </li>-->
                                     <li>
+                                        <a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                    </li>
+                                    <!--<li>
                                         <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
                                     </li>-->
                                 </ul>
@@ -634,21 +633,21 @@ if (!$user) {
                                 </div>
                             </a>
                             <ul>
-                                 <li>
-                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
-                                    </li>
-                                    <li>
-                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                    </li>
-                                    <li>
-                                        <a href="payment_request.html"> <i class="fa fa-circle"></i>earning history</a>
-                                    </li>
-                                    <!--<li>
-                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>all transactions</a>
-                                    </li>
-                                    <li>
-                                        <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
-                                    </li>-->
+                                <li>
+                                    <a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a>
+                                </li>
+                                <li>
+                                    <a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a>
+                                </li>
+                                <!--<li>
+                                    <a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a>
+                                </li>-->
+                                <li>
+                                    <a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                </li>
+                                <!--<li>
+                                    <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
+                                </li>-->
                             </ul>
                         </li>
                     </ul>
@@ -658,25 +657,20 @@ if (!$user) {
                             </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="tickets.html">
-                                <div class="c-menu-item__title">view tickets</div>
+                            <a href="investment.html">
+                                <div class="c-menu-item__title">view plans</div>
                             </a>
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="all_transactions.html"><i class="flaticon-help"></i></a>
+                            <div class="c-menu__item__inner"><a href="tickets.html"><i class="flaticon-help"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
-                                    </li>
-                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>support</a>
-                                    </li>
-									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
-                                    </li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
-                                    </li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
-                                    </li>-->
+                                    <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
+                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
+									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                                 </ul>
                             </div>
                         </li>
@@ -686,10 +680,9 @@ if (!$user) {
                                 </div>
                             </a>
                             <ul>
-                              <li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
-                                    </li>
-                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>support</a>
-                                    </li>
+                              <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
+                                    </li>-->
+                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
 									 <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
                                     </li>
 									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
@@ -717,7 +710,7 @@ if (!$user) {
 
         <!-- Main section Start -->
          <div class="l-main">         
-          <!--  my account wrapper start -->
+            <!--  my account wrapper start -->
             <div class="account_top_information">
                 <div class="account_overlay"></div>
                 <div class="useriimg"><img src="images/user.png" alt="users"></div>
@@ -1831,7 +1824,7 @@ if (!$user) {
        <!--  footer  wrapper end -->      
     <!-- main box wrapper End-->
 
-    <!-- Deposit Modal (Place this right before closing body tag) -->
+    <!-- Deposit Modal -->
     <div id="depositModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeDepositModal()">&times;</span>

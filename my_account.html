@@ -1,3 +1,23 @@
+<?php
+session_start();
+require 'config/config.php';
+
+if (!isset($_SESSION["user"])) {
+    header("Location: login");
+    exit();
+}
+
+$stmt = $pdo->prepare("SELECT first_name, last_name, email, country, created_at, last_login, last_ip, btc_balance FROM crypticusers WHERE id = ?");
+$stmt->execute([$_SESSION["user"]["id"]]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("User not found.");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -312,16 +332,16 @@
                                 </li>
                                <!--<li><a href="#"><i class="flaticon-file"></i> My Task</a>
                                 </li>
-                                <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a>-->
+                                <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a>
                                 </li>
                                 <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a>
                                 </li>
-                                <!--<li><a href="#"><i class="flaticon-settings"></i> Setting</a>-->
+                                li><a href="#"><i class="flaticon-settings"></i> Setting</a>-->
                                 </li>
                                 <li><a href="#"><i class="flaticon-help"></i> Support</a>
                                 </li>
-                                <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a>-->
-                                </li>
+                                <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a>
+                                </li>-->
                                 <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a>
                                 </li>
                             </ul>
@@ -345,7 +365,7 @@
                                 </li> 								
                             </ul>
                         </li>-->   
-                        <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</li>
+                        <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</h1></li>
                         <!--<li><a href="investment.html" class="gc_main_navigation">investment plan</a></li> -->
 						<!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
@@ -495,7 +515,9 @@
         </div>
     </div>
     <!-- inner header wrapper end -->
-	<div class="l-sidebar">
+
+	    <!-- side menus start -->
+        <div class="l-sidebar">
             <div class="l-sidebar__content">
                 <nav class="c-menu js-menu" id="mynavi">
                     <ul class="u-list crm_drop_second_ul">
@@ -541,8 +563,8 @@
                             </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="transfer_fund.html">
-                                <div class="c-menu-item__title">funds deposit</div>
+                            <a href="javascript:void(0);" onclick="openDepositModal()">
+                                <div class="c-menu-item__title">Deposit Funds</div>
                             </a>
                         </li>
                     </ul>
@@ -566,7 +588,7 @@
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                             <a href="#">
-                                <div class="c-menu-item__title"><span>saving plans</span><i class="no_badge purple">2</i>
+                                <div class="c-menu-item__title"><span>Investment plans</span><i class="no_badge purple">2</i>
                                 </div>
                             </a>
                             <ul>
@@ -586,21 +608,21 @@
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-movie-tickets"></i></a>
+                            <div class="c-menu__item__inner"><a href="deposit_upload.php"><i class="flaticon-movie-tickets"></i></a>
                                 <ul class="crm_hover_menu">
                                     <li>
-                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                        <a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a>
                                     </li>
                                     <li>
-                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                    </li>
-                                    <li>
-                                        <a href="payment_request.html"> <i class="fa fa-circle"></i> earning history</a>
+                                        <a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a>
                                     </li>
                                     <!--<li>
-                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>all transactions</a>
-                                    </li>
+                                        <a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a>
+                                    </li>-->
                                     <li>
+                                        <a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                    </li>
+                                    <!--<li>
                                         <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
                                     </li>-->
                                 </ul>
@@ -612,19 +634,19 @@
                                 </div>
                             </a>
                             <ul>
-                                 <li>
-                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                    <li>
+                                        <a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a>
                                     </li>
                                     <li>
-                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                    </li>
-                                    <li>
-                                        <a href="payment_request.html"> <i class="fa fa-circle"></i>earning history</a>
+                                        <a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a>
                                     </li>
                                     <!--<li>
-                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>all transactions</a>
-                                    </li>
+                                        <a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a>
+                                    </li>-->
                                     <li>
+                                        <a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a>
+                                    </li>
+                                    <!--<li>
                                         <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
                                     </li>-->
                             </ul>
@@ -636,25 +658,20 @@
                             </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="tickets.html">
-                                <div class="c-menu-item__title">view tickets</div>
+                            <a href="make_deposit.html">
+                                <div class="c-menu-item__title">Savings Plan</div>
                             </a>
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="all_transactions.html"><i class="flaticon-help"></i></a>
+                            <div class="c-menu__item__inner"><a href="tickets.html"><i class="flaticon-help"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
-                                    </li>
-                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>support</a>
-                                    </li>
-									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
-                                    </li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
-                                    </li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
-                                    </li>-->
+                                    <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
+                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
+									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                                 </ul>
                             </div>
                         </li>
@@ -664,10 +681,9 @@
                                 </div>
                             </a>
                             <ul>
-                              <li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
-                                    </li>
-                                    <li><a href="deposit_history.html"><i class="fa fa-circle"></i>support</a>
-                                    </li>
+                              <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
+                                    </li>-->
+                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
 									 <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
                                     </li>
 									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
@@ -691,9 +707,11 @@
                 </nav>
             </div>
         </div>
+        <!-- side menus end -->
+
         <!-- Main section Start -->
          <div class="l-main">         
-          <!--  my account wrapper start -->
+            <!--  my account wrapper start -->
             <div class="account_top_information">
                 <div class="account_overlay"></div>
                 <div class="useriimg"><img src="images/user.png" alt="users"></div>
@@ -729,28 +747,9 @@
                         <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
                     </dl>
                 </div>
-                <!--<div class="userdet user_transcation">
-                    <h3 class="none_headung"> &nbsp;</h3>
-                    <dl class="userdescc">
-                        <dt>EGOpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>OKpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>Solidtrustpay </dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>Webmoney</dt>
-                        <dd>:&nbsp;&nbsp;$ 450</dd>
-                        <dt>Bankwire</dt>
-                        <dd>:&nbsp;&nbsp;$ 799</dd>
-                        <dt>Bitcoin</dt>
-                        <dd>:&nbsp;&nbsp;$ 33584</dd>
-
-                    </dl>
-
-                </div>-->
-
             </div>
-            <!--  my account wrapper end -->    
+            <!--  my account wrapper end -->
+
             <!--  account wrapper start -->
             <div class="account_wrapper float_left">
 
@@ -1825,6 +1824,110 @@
          </div>
        <!--  footer  wrapper end -->      
     <!-- main box wrapper End-->
+
+    <!-- Deposit Modal (Place this right before closing body tag) -->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDepositModal()">&times;</span>
+            <h3>Deposit Crypto</h3>
+            
+            <label>Select Cryptocurrency:</label>
+            <select id="cryptoType" onchange="updateNetworks()">
+                <option value="BTC">Bitcoin (BTC)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="LTC">Litecoin (LTC)</option>
+                <option value="DOGE">Dogecoin (DOGE)</option>
+            </select>
+
+            <label>Select Network:</label>
+            <select id="networkType" onchange="fetchDepositDetails()">
+                <!-- Options will be dynamically populated -->
+            </select>
+
+            <h4>Deposit Address:</h4>
+            <input type="text" id="depositAddress" readonly>
+            <button onclick="copyAddress()">Copy</button>
+
+            <h4>QR Code:</h4>
+            <img id="qrCodeImage" src="" alt="QR Code">
+
+            <p><strong>Note:</strong> Send only selected crypto to this address.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+
+        let cryptoData = {};  // Stores JSON data globally
+
+        // ✅ Load JSON Data on Page Load
+        fetch("assets/crypto_addresses.json")
+            .then(response => response.json())
+            .then(data => {
+                cryptoData = data;
+                updateNetworks();  // Update networks when page loads
+            }) .catch(error => console.error("Error loading JSON:", error)); // Debugging
+        
+        function openDepositModal() {
+            document.getElementById("depositModal").style.display = "block";
+        }
+
+        function closeDepositModal() {
+            document.getElementById("depositModal").style.display = "none";
+        }
+        
+        // ✅ Close modal when clicking outside
+        window.onclick = function(event) {
+            var modal = document.getElementById("depositModal");
+            if (event.target === modal) {
+                closeDepositModal();
+            }
+        }
+
+        // ✅ Update Networks Based on Selected Crypto
+        function updateNetworks() {
+            let cryptoType = document.getElementById("cryptoType").value;
+            let networkDropdown = document.getElementById("networkType");
+
+            // Clear existing options
+            networkDropdown.innerHTML = "";
+
+            if (cryptoData[cryptoType]) {
+                // Populate networks from JSON
+                cryptoData[cryptoType]["networks"].forEach(network => {
+                    let option = document.createElement("option");
+                    option.value = network;
+                    option.text = network;
+                    networkDropdown.appendChild(option);
+                });
+
+                // Auto-select first network and fetch deposit details
+                fetchDepositDetails();
+            }
+        }
+
+        function fetchDepositDetails() {
+            let cryptoType = document.getElementById("cryptoType").value;
+            let networkType = document.getElementById("networkType").value;
+
+            if (cryptoData[cryptoType] && cryptoData[cryptoType]["addresses"][networkType]) {
+                let depositInfo = cryptoData[cryptoType]["addresses"][networkType];
+                document.getElementById("depositAddress").value = depositInfo["address"];
+                document.getElementById("qrCodeImage").src = depositInfo["qr_code"];
+            } else {
+                document.getElementById("depositAddress").value = "Invalid Selection";
+                document.getElementById("qrCodeImage").src = "";
+            }
+        }
+
+        function copyAddress() {
+            let copyText = document.getElementById("depositAddress");
+            navigator.clipboard.writeText(copyText.value);
+            alert("Address copied to clipboard!");
+        }
+    </script>
+
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>

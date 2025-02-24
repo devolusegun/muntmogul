@@ -7827,12 +7827,12 @@ dl.userdescc dd{
     font-size: 24px;
     cursor: pointer;
 }
-.status-rejected {
+/**.status-rejected {
     color: red;
     font-weight: bold;
     cursor: help;
     position: relative;
-}
+}**/
 
 .status-rejected:hover::after {
     content: attr(title);
@@ -7847,4 +7847,16 @@ dl.userdescc dd{
     transform: translateX(-50%);
     bottom: 20px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.status-rejected {
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.view-more {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 5px;
 }

@@ -1,3 +1,42 @@
+<?php
+session_start();
+require 'config/config.php';
+
+if (!isset($_SESSION["user"])) {
+    header("Location: login");
+    exit();
+}
+
+// ✅ Fetch User Balance for the Selected Crypto Type
+function getUserCryptoBalance($pdo, $user_id, $crypto_type) {
+    $stmt = $pdo->prepare("
+        SELECT 
+            COALESCE(SUM(CASE WHEN transaction_type = 'deposit' AND status = 'approved' THEN amount ELSE 0 END), 0) 
+            - 
+            COALESCE(SUM(CASE WHEN transaction_type = 'withdrawal' AND status = 'approved' THEN amount ELSE 0 END), 0) 
+        AS balance
+        FROM crypto_transactions
+        WHERE user_id = ? AND crypto_type = ?
+    ");
+    $stmt->execute([$user_id, $crypto_type]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['balance'] ?? 0;
+}
+
+// ✅ Get Current User ID
+$user_id = $_SESSION["user"]["id"];
+
+// ✅ Default Crypto Type (BTC)
+$selected_crypto = $_POST['crypto_type'] ?? 'BTC';
+
+// ✅ Fetch the Correct Balance for Selected Crypto
+$crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
+
+if (!$user) {
+    die("User not found.");
+}
+?>
+
 <!DOCTYPE html>
 <!-- 
 Template Name: Savehyip
@@ -13,7 +52,7 @@ Author: WebstrotSavehyip
 
 <head>
     <meta charset="utf-8" />
-    <title>Savehyip Dashboard HTML Template</title>
+    <title>Munumogul Investment Withdrawal</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="Savehyip" />
     <meta name="keywords" content="Savehyip" />
@@ -52,7 +91,7 @@ Author: WebstrotSavehyip
     <!-- Top Scroll End -->
     <!-- cp navi wrapper Start -->
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
-        <h2><a href="index.html"> savehyip </a></h2>
+        <h2><a href="index.html"> muntmogul </a></h2>
         <a href="#0" class="cd-close">Close</a>
          <ul class="cd-dropdown-content">
             <li>
@@ -571,20 +610,20 @@ Author: WebstrotSavehyip
                             </a>
                             <ul>
                                  <li>
-                                        <a href="make_deposit.html"> <i class="fa fa-circle"></i>make deposit</a>
-                                    </li>
-                                    <li>
-                                        <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit lists</a>
-                                    </li>
-                                    <li>
-                                        <a href="payment_request.html"> <i class="fa fa-circle"></i> payment request</a>
-                                    </li>
-                                    <li>
-                                        <a href="exchange_money.html"> <i class="fa fa-circle"></i>exchange money</a>
-                                    </li>
-                                    <li>
-                                        <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
-                                    </li>
+                                    <a href="make_deposit.html"> <i class="fa fa-circle"></i>make deposit</a>
+                                </li>
+                                <li>
+                                    <a href="deposit_list.html"> <i class="fa fa-circle"></i> deposit lists</a>
+                                </li>
+                                <li>
+                                    <a href="payment_request.html"> <i class="fa fa-circle"></i> payment request</a>
+                                </li>
+                                <li>
+                                    <a href="exchange_money.html"> <i class="fa fa-circle"></i>exchange money</a>
+                                </li>
+                                <li>
+                                    <a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -648,37 +687,35 @@ Author: WebstrotSavehyip
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="referrals.html"><i class="flaticon-settings"></i></a>
+                            <div class="c-menu__item__inner"><a href="tickets.html"><i class="flaticon-help"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="referrals.html"><i class="fa fa-circle"></i> my referrals </a>
-                                    </li>
-                                    <li>
-                                        <a href="banners.html"> <i class="fa fa-circle"></i>promotionals banners</a>
-                                    </li>
-									 <li>
-                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>referral earnings</a>
-                                    </li>
+                                    <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
+                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
+									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="#">
-                                <div class="c-menu-item__title"><span>referrals</span><i class="no_badge purple">2</i>
+                            <a href="all_transactions.html">
+                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">5</i>
                                 </div>
                             </a>
                             <ul>
-                                <li><a href="referrals.html"><i class="fa fa-circle"></i> my referrals </a>
-                                </li>
-                                <li>
-                                  <a href="banners.html"> <i class="fa fa-circle"></i>promotionals banners</a>
-                                </li>
-								<li>
-                                  <a href="referral_earnings.html"> <i class="fa fa-circle"></i>referral earnings</a>
-                                 </li>
+                              <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
+                                    </li>-->
+                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+									 <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
+                                    </li>
+									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
+                                    </li>
+									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
+                                    </li>-->
                             </ul>
                         </li>
                     </ul>
-					  <ul class="u-list crm_drop_second_ul">
+					  <!--<ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
                             <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-profile"></i></a>
                             </div>
@@ -688,31 +725,30 @@ Author: WebstrotSavehyip
                                 <div class="c-menu-item__title">deposit</div>
                             </a>
                         </li>
-                    </ul>   
+                    </ul>-->   
                 </nav>
             </div>
         </div>
         <!-- Main section Start -->
          <div class="l-main">         
-          <!--  my account wrapper start -->
+            <!--  my account wrapper start -->
             <div class="account_top_information">
                 <div class="account_overlay"></div>
                 <div class="useriimg"><img src="images/user.png" alt="users"></div>
                 <div class="userdet uderid">
-                    <h3>Benmathew</h3>
+                    <h3><?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?></h3>
 
                     <dl class="userdescc">
                         <dt>Registration Date</dt>
-                        <dd>: &nbsp; Sep-10-2014 11:20:37</dd>
+                        <dd>: &nbsp; <?php echo $user["created_at"]; ?></dd>
                         <dt>Last Login</dt>
-                        <dd>: &nbsp; Jul-05-2019 07:06:36</dd>
-                        <dt>Current Login</dt>
-                        <dd>: &nbsp; Jul-06-2019 02:47:23</dd>
+                        <dd>: &nbsp; <?php echo $user["last_login"]; ?></dd>
+                        <!--<dt>Current Login</dt>
+                        <dd>: &nbsp; Jul-06-2019 02:47:23</dd>-->
                         <dt>Last Access IP</dt>
-                        <dd>: &nbsp; 27.57.18.1 </dd>
-                        <dt>Current Access IP</dt>
-                        <dd>: &nbsp; 122.175.131.51 </dd>
-
+                        <dd>: &nbsp; <?php echo $user["last_ip"]; ?> </dd>
+                        <dt>Current IP</dt>
+                        <dd>: &nbsp; <?php echo $_SERVER["REMOTE_ADDR"]; ?> </dd>
                     </dl>
 
                 </div>
@@ -720,43 +756,20 @@ Author: WebstrotSavehyip
                 <div class="userdet user_transcation">
                     <h3>Available Balance</h3>
                     <dl class="userdescc">
-                        <dt>Paypal</dt>
-                        <dd>:&nbsp;&nbsp;$ 392.79</dd>
-                        <dt>Pexpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 498.61</dd>
-                        <dt>PerfectMoney</dt>
-                        <dd>:&nbsp;&nbsp;$ 60.18</dd>
-                        <dt>Payza</dt>
-                        <dd>:&nbsp;&nbsp;$ 435</dd>
-                        <dt>HDMoney</dt>
-                        <dd>:&nbsp;&nbsp;$ 0.08</dd>
-
-                    </dl>
-                </div>
-                <div class="userdet user_transcation">
-                    <h3 class="none_headung"> &nbsp;</h3>
-                    <dl class="userdescc">
-                        <dt>EGOpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>OKpay</dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>Solidtrustpay </dt>
-                        <dd>:&nbsp;&nbsp;$ 0</dd>
-                        <dt>Webmoney</dt>
-                        <dd>:&nbsp;&nbsp;$ 450</dd>
-                        <dt>Bankwire</dt>
-                        <dd>:&nbsp;&nbsp;$ 799</dd>
                         <dt>Bitcoin</dt>
-                        <dd>:&nbsp;&nbsp;$ 33584</dd>
-
+                        <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
+                        <dt>Ethereum</dt>
+                        <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
+                        <dt>Litecoin</dt>
+                        <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
+                        <dt>Dogecoin</dt>
+                        <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
                     </dl>
-
                 </div>
-
             </div>
             <!--  my account wrapper end -->    
-            <!--  profile wrapper start -->
-             <div class="payment_transfer_Wrapper float_left">
+            <!--  payout section wrapper start -->
+            <div class="payment_transfer_Wrapper float_left">
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper heading_center">
@@ -767,7 +780,7 @@ Author: WebstrotSavehyip
                 <div class="row">
                     <div class="col-md-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-sm-12 col-12">
                         <div class="change_password_wrapper float_left">
-                            <form action="process_withdrawal.php" method="POST">
+                            <form action="processwithdraw.php" method="POST">
                                 <div class="change_pass_field float_left">
                                     
                                     <!-- Payment Mode Dropdown -->
@@ -782,10 +795,10 @@ Author: WebstrotSavehyip
                                         </select>
                                     </div>
 
-                                    <!-- Available Balance (Readonly) -->
+                                    <!-- Available Balance (Readonly) - Updates Based on Selected Crypto -->
                                     <div class="change_field">
                                         <label>Available Balance:</label>
-                                        <input type="text" id="availableBalance" readonly>
+                                        <input type="text" id="available_balance" value="<?= number_format($crypto_balance, 8); ?> <?= htmlspecialchars($selected_crypto); ?>" readonly>
                                     </div>
 
                                     <!-- Hidden Fields to Store User Balances -->
@@ -794,7 +807,7 @@ Author: WebstrotSavehyip
                                     <input type="hidden" id="ltcBalance" value="<?= number_format($user['ltc_balance'], 8); ?>">
                                     <input type="hidden" id="dogeBalance" value="<?= number_format($user['doge_balance'], 8); ?>">
 
-                                    <!-- Account ID / Wallet Address -->
+                                    <!-- Wallet Address -->
                                     <div class="change_field">
                                         <label>Wallet Address:</label>
                                         <input type="text" name="account_id" placeholder="Enter Wallet Address" required>
@@ -821,14 +834,14 @@ Author: WebstrotSavehyip
                     </div>
                 </div>
             </div>
-            <!--  profile wrapper end -->
+            <!--  payout section wrapper end -->
             <!--  footer  wrapper start -->
             <div class="copy_footer_wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="crm_left_footer_cont">
-                                <p>2019 Copyright © <a href="#"> savehyip </a> . All Rights Reserved.</p>
+                                <p>2019 Copyright © <a href="#"> muntmogul </a> . All Rights Reserved.</p>
                             </div>
                         </div>
 
@@ -838,6 +851,27 @@ Author: WebstrotSavehyip
          </div>
        <!--  footer  wrapper end -->      
     <!-- main box wrapper End-->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const cryptoSelect = document.querySelector("select[name='crypto_type']");
+        const balanceField = document.getElementById("available_balance");
+
+        cryptoSelect.addEventListener("change", function () {
+            const selectedCrypto = this.value;
+
+            // Fetch new balance from PHP dynamically
+            fetch("fetchbalance.php?crypto_type=" + selectedCrypto)
+                .then(response => response.json())
+                .then(data => {
+                    balanceField.value = data.balance + " " + selectedCrypto;
+                })
+                .catch(error => console.error("Error fetching balance:", error));
+            });
+        });
+    </script>
+
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
