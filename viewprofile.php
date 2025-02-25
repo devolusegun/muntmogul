@@ -1,4 +1,21 @@
+<?php
+session_start();
+require 'config/config.php';
 
+if (!isset($_SESSION["user"])) {
+    header("Location: login");
+    exit();
+}
+
+// ✅ Fetch User Data
+$stmt = $pdo->prepare("SELECT first_name, last_name, email, address, city, state, country, profile_picture FROM crypticusers WHERE id = ?");
+$stmt->execute([$_SESSION["user"]["id"]]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("User not found.");
+}
+?>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -415,7 +432,7 @@
 
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
 
-                        <h1>Profile</h1>
+                        <h1> Profile</h1>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
@@ -483,11 +500,12 @@
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a></div>
+                        <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a>
+                        </div>
                     </li>
                     <li class="c-menu__item crm_navi_icon_cont">
                         <a href="make_deposit.html">
-                            <div class="c-menu-item__title">choose a plan</div>
+                            <div class="c-menu-item__title">choose a plan </div>
                         </a>
                     </li>
                 </ul>
@@ -626,7 +644,6 @@
                                     <h4>JPEG or PNG (500x500px)</h4>
                                     <form id="profilePicForm" enctype="multipart/form-data">
                                         <input type="file" id="profilePicInput" name="profile_picture" accept="image/jpeg, image/png" required>
-                                        <!--<button type="button" onclick="uploadProfilePicture()">Upload</button>-->
                                         <a href="#" class="upload-btn" onclick="uploadProfilePicture()">Upload</a>
                                     </form>
                                 </div>

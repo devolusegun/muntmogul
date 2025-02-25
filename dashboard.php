@@ -69,11 +69,11 @@ if (!$user) {
         <h2><a href="index.html"> welcome </a></h2>
         <a href="#0" class="cd-close">Close</a>
         <ul class="cd-dropdown-content">
-            <li>
+            <!--<li>
                 <form class="cd-search">
                     <input type="search" placeholder="Search...">
                 </form>
-            </li> 
+            </li>--> 
             <!--<li class="has-children">
                 <a href="#">index</a>
                 <ul class="cd-secondary-dropdown icon_menu is-hidden">
@@ -160,13 +160,16 @@ if (!$user) {
         </ul>
         <!-- .cd-dropdown-content -->
     </nav>
-	 <div class="cp_navi_main_wrapper inner_header_wrapper dashboard_header_middle float_left">
+    <!-- nav end-->
+
+	<div class="cp_navi_main_wrapper inner_header_wrapper dashboard_header_middle float_left">
         <div class="container-fluid">
               <div class="cp_logo_wrapper">
                 <a href="index.html">
                     <img src="images/logo2.png" alt="logo">
                 </a>
             </div>
+
             <!-- mobile menu area start -->
             <header class="mobail_menu d-block d-sm-block d-md-block d-lg-none d-xl-none">
                 <div class="container-fluid">
@@ -195,161 +198,90 @@ if (!$user) {
                                     </svg>
                                 </a>
                                 <!-- .cd-dropdown -->
-
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- .cd-dropdown-wrapper -->
             </header>
+
             <div class="top_header_right_wrapper dashboard_right_Wrapper">
-                    <!--<div class="crm_message_dropbox_wrapper">
-                        <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-envelope"></i></span>
-                            <div class="budge_noti">4</div>
-                            <ul class="list">
-                                <li><a href="#">2 New Messages</a>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.ajay <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
+				<div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
+                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
+                        <div class="budge_noti"></div>
+                        <ul class="list">
+                            <li><a href="#">2 New Messages</a></li>
+                            <li>
+                                <div class="crm_mess_main_box_wrapper">
+                                    <div class="crm_mess_img_wrapper">
+                                        <img src="images/mess1.jpg" alt="img">
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.ajay <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
+                                    <div class="crm_mess_img_cont_wrapper">
+                                        <h4>Mr.Farhan <span>01:30PM</span></h4>
+                                        <p>I'm Leaving early</p>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.akshay <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="crm_mess_main_box_wrapper">
+                                    <div class="crm_mess_img_wrapper">
+                                        <img src="images/mess1.jpg" alt="img">
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.john <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
+                                    <div class="crm_mess_img_cont_wrapper">
+                                        <h4>Mr.ajay <span>01:30PM</span></h4>
+                                        <p>I'm Leaving early</p>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_all_main_box_wrapper">
-                                        <p><a href="#">See All</a>
-                                        </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="crm_mess_main_box_wrapper">
+                                    <div class="crm_mess_img_wrapper">
+                                        <img src="images/mess1.jpg" alt="img">
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>-->
-					<div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
-                        <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
-                            <div class="budge_noti">4</div>
-                            <ul class="list">
-                                <li><a href="#">2 New Messages</a>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.Farhan <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
+                                    <div class="crm_mess_img_cont_wrapper">
+                                        <h4>Mr.akshay <span>01:30PM</span></h4>
+                                        <p>I'm Leaving early</p>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.ajay <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="crm_mess_main_box_wrapper">
+                                    <div class="crm_mess_img_wrapper">
+                                        <img src="images/mess1.jpg" alt="img">
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.akshay <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
+                                    <div class="crm_mess_img_cont_wrapper">
+                                        <h4>Mr.john <span>01:30PM</span></h4>
+                                        <p>I'm Leaving early</p>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_main_box_wrapper">
-                                        <div class="crm_mess_img_wrapper">
-                                            <img src="images/mess1.jpg" alt="img">
-                                        </div>
-                                        <div class="crm_mess_img_cont_wrapper">
-                                            <h4>Mr.john <span>01:30PM</span></h4>
-                                            <p>I'm Leaving early</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="crm_mess_all_main_box_wrapper">
-                                        <p><a href="#">See All</a>
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="crm_mess_all_main_box_wrapper">
+                                    <p><a href="#">See All</a></p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-
-                    <div class="crm_profile_dropbox_wrapper">
-                        <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img"><?php echo $_SESSION["user"]; ?> <span class="hidden_xs_content"></span></span>
-                            <ul class="list">
-
-                                <li><a href="#"><i class="flaticon-profile"></i> Profile</a>
-                                </li>
-                                <li><a href="#"><i class="flaticon-purse"></i>Account Balance</a>
-                                </li>
-                               <!--<li><a href="#"><i class="flaticon-file"></i> My Task</a>
-                                </li>
-                                <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a>
-                                </li>
-                                <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a>
-                                </li>
-                                li><a href="#"><i class="flaticon-settings"></i> Setting</a>-->
-                                </li>
-                                <li><a href="#"><i class="flaticon-help"></i> Support</a>
-                                </li>
-                                <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a>
-                                </li>-->
-                                <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a>
-                                </li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="crm_profile_dropbox_wrapper">
+                    <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img"><?php echo $_SESSION["user"]; ?> <span class="hidden_xs_content"></span></span>
+                        <ul class="list">
+                            <li><a href="#"><i class="flaticon-profile"></i> Profile</a></li>
+                            <li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
+                            <!--<li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
+                            <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a></li>
+                            <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a></li>
+                            <li><a href="#"><i class="flaticon-settings"></i> Setting</a>--></li>
+                            <li><a href="#"><i class="flaticon-help"></i> Support</a></li>
+                            <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a></li>-->
+                            <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a></li>
+                        </ul>
                     </div>
+                </div>
             </div>
 
             <div class="cp_navigation_wrapper main_top_wrapper dashboard_header">
+                <!-- mainmenu start -->
                 <div class="mainmenu d-xl-block d-lg-block d-md-none d-sm-none d-none">
                      <ul class="main_nav_ul">             
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation active_class">index <i class="fas fa-caret-down"></i></a>
@@ -539,7 +471,7 @@ if (!$user) {
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                             <a href="view_profile.html">
-                                <div class="c-menu-item__title"><span>my account</span><i class="no_badge">5</i>
+                                <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i>
                                 </div>
                             </a>
                             <ul>
@@ -570,39 +502,12 @@ if (!$user) {
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a>
-                                <!--<ul class="crm_hover_menu">
-                                    <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a>
-                                    </li>
-                                    <li>
-                                        <a href="banners.html"> <i class="fa fa-circle"></i>silver</a>
-                                    </li>
-									 <li>
-                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>copper</a>
-                                    </li>
-                                    <li>
-                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a>
-                                    </li>
-                                </ul>-->
-                            </div>
+                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a></div>
                         </li>
-                        <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
+                        <li class="c-menu__item crm_navi_icon_cont">
                             <a href="make_deposit.html">
                                 <div class="c-menu-item__title">choose a plan </div>
                             </a>
-                            <!--<ul>
-                                <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a>
-                                </li>
-                                <li>
-                                  <a href="banners.html"> <i class="fa fa-circle"></i>silver</a>
-                                </li>
-								<li>
-                                  <a href="referral_earnings.html"> <i class="fa fa-circle"></i>copper</a>
-                                 </li>
-                                 <li>
-                                    <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a>
-                                   </li>
-                            </ul>-->
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
@@ -666,7 +571,7 @@ if (!$user) {
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                             <a href="tickets.html">
-                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">5</i>
+                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i>
                                 </div>
                             </a>
                             <ul>
@@ -750,13 +655,13 @@ if (!$user) {
                             <h3>my account</h3>
 
                         </div>
-                        <div class="payment_gateway_wrapper">
+                        <!--<div class="payment_gateway_wrapper">
                             <select>
                                 <option selected>choose payment gateway</option>
                                 <option value="1">paypal</option>
                                 <option value="2">bitcoin</option>
                             </select>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
                         <div class="investment_box_wrapper color_1 float_left">
@@ -868,7 +773,7 @@ if (!$user) {
                         </div>-->
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <div class="investment_box_wrapper color_5 float_left">
+                        <!--<div class="investment_box_wrapper color_5 float_left">
                             <a href="#">
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
@@ -891,7 +796,7 @@ if (!$user) {
                                     </table>
                                 </div>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
                         <!--<div class="investment_box_wrapper color_6 float_left">

@@ -23,13 +23,13 @@ function getUserCryptoBalance($pdo, $user_id, $crypto_type) {
     return $result['balance'] ?? 0;
 }
 
-// ✅ Get Current User ID
+// Get Current User ID
 $user_id = $_SESSION["user"]["id"];
 
-// ✅ Default Crypto Type (BTC)
+// Default Crypto Type (BTC)
 $selected_crypto = $_POST['crypto_type'] ?? 'BTC';
 
-// ✅ Fetch the Correct Balance for Selected Crypto
+// Fetch the Correct Balance for Selected Crypto
 $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
 
 if (!$user) {
