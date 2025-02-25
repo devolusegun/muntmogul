@@ -6,15 +6,6 @@ if (!isset($_SESSION["user"])) {
     header("Location: login");
     exit();
 }
-
-// ✅ Fetch User Data
-$stmt = $pdo->prepare("SELECT first_name, last_name, email, address, city, state, country, profile_picture FROM crypticusers WHERE id = ?");
-$stmt->execute([$_SESSION["user"]["id"]]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$user) {
-    die("User not found.");
-}
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +17,10 @@ if (!$user) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Profile Details</title>
+    <title>Change Password</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="description" content="Savehyip" />
-    <meta name="keywords" content="Savehyip" />
+    <meta name="description" content="MuntMogul" />
+    <meta name="keywords" content="MuntMogul" />
     <meta name="author" content="" />
     <meta name="MobileOptimized" content="320" />
     <!--Template style -->
@@ -432,13 +423,13 @@ if (!$user) {
 
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
 
-                        <h1> Profile</h1>
+                        <h1> Edit Profile</h1>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
                                 <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
-                                <li>View Profile</li>
+                                <li>change password</li>
                             </ul>
                         </div>
                     </div>
@@ -621,88 +612,47 @@ if (!$user) {
             </div>
         </div>
         <!--  my account wrapper end -->    
-            
-        <!-- Profile Section Start -->
-        <div class="view_profile_wrapper_top float_left">
+        
+        <!--  change password div start -->
+        <div class="password_notify_wrapper float_left">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="sv_heading_wraper">
-                        <h3>Profile</h3>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                    <div class="sv_heading_wraper heading_center">
+                        <h3>Change Password</h3>
                     </div>
                 </div>
-
-                <div class="col-md-12">
-                    <div class="view_profile_wrapper float_left">
-                        <div class="row">
-                            <!-- Profile Image Upload Section -->
-                            <div class="col-md-12">
-                                <div class="profile_view_img">
-                                    <!--<img id="profileImage" src="<//?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/user.png'; ?>" alt="Profile Picture">-->
-                                    <img id="profileImage" src="uploads/profile_pictures/<?= $user['profile_picture'] ?: 'default.png'; ?>" alt="Profile Picture">
+            </div>              
+            <div class="row">
+                <div class="col-md-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-sm-12 col-12">
+                    <div class="change_password_wrapper float_left">
+                        <form id="changePasswordForm">
+                            <div class="change_pass_field float_left">
+                                <div class="change_field">
+                                    <label>Current Password:</label>
+                                    <input type="password" name="current_password" id="current_password" placeholder="**********" required>
                                 </div>
-                                <div class="profile_width_cntnt">
-                                    <h4>JPEG or PNG (500x500px)</h4>
-                                    <form id="profilePicForm" enctype="multipart/form-data">
-                                        <input type="file" id="profilePicInput" name="profile_picture" accept="image/jpeg, image/png" required>
-                                        <a href="#" class="upload-btn" onclick="uploadProfilePicture()">Upload</a>
-                                    </form>
+                                <div class="change_field">
+                                    <label>New Password:</label>
+                                    <input type="password" name="new_password" id="new_password" placeholder="**********" required>
                                 </div>
-                            </div>
-
-                            <!-- Editable Profile Info Section -->
-                            <div class="col-md-6">
-                                <form id="profileForm">
-                                    <ul class="profile_list">
-                                        <li><span class="detail_left_part">First Name</span> <span class="detail_right_part"><?= htmlspecialchars($user["first_name"]); ?></span></li>
-                                        <li><span class="detail_left_part">Last Name</span> <span class="detail_right_part"><?= htmlspecialchars($user["last_name"]); ?></span></li>
-                                        <li><span class="detail_left_part">Email Address</span> <span class="detail_right_part"><?= htmlspecialchars($user["email"]); ?></span></li>
-                                        <li><span class="detail_left_part">Address</span> <input type="text" id="address" value="<?= htmlspecialchars($user["address"]); ?>" required></li>
-                                        <li><span class="detail_left_part">City</span> <input type="text" id="city" value="<?= htmlspecialchars($user["city"]); ?>" required></li>
-                                        <li><span class="detail_left_part">State</span> <input type="text" id="state" value="<?= htmlspecialchars($user["state"]); ?>" required></li>
-                                        <li><span class="detail_left_part">Country</span> <input type="text" id="country" value="<?= htmlspecialchars($user["country"]); ?>" required></li>
+                                <div class="change_field">
+                                    <label>Confirm New Password:</label>
+                                    <input type="password" name="confirm_password" id="confirm_password" placeholder="**********" required>
+                                </div>
+                                <div class="about_btn float_left">
+                                    <ul>
+                                        <li>
+                                            <a href="#" onclick="changePassword()">Submit</a>
+                                        </li>
                                     </ul>
-                                </form>
-                            </div>
-
-                            <!-- Save Changes Button -->
-                            <div class="about_btn float_left">
-                                <ul>
-                                    <li><a href="#" onclick="showTransactionPinModal()">Save Changes</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Transaction PIN Modal -->
-                        <div class="modal fade" id="transactionPinModal" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <div class="sv_question_pop float_left">
-                                        <h1>User Security</h1>
-                                        <p>Enter your Transaction PIN to confirm changes</p>
-                                        <div class="change_field">
-                                            <input type="password" id="transactionPin" placeholder="Enter Transaction PIN" required>
-                                        </div>
-                                        <div class="question_sec float_left">
-                                            <div class="about_btn ques_Btn">
-                                                <ul>
-                                                    <li><a href="#" onclick="saveProfileChanges()">Confirm</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cancel_wrapper">
-                                                <a href="#" data-dismiss="modal">Cancel</a>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                         </div>
-
-                    </div> <!-- view_profile_wrapper -->
-                </div> <!-- col-md-12 -->
-            </div> <!-- row -->
-        </div> <!-- view_profile_wrapper_top -->
-        <!--  profile wrapper end -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  change password div end -->
         <!--  footer  wrapper start -->
         <div class="copy_footer_wrapper">
             <div class="container-fluid">
@@ -721,70 +671,29 @@ if (!$user) {
     <!-- main box wrapper End-->
 
     <script>
-        function showTransactionPinModal() {
-            document.getElementById('transactionPinModal').style.display = 'block';
-        }
-
-        function saveProfileChanges() {
-            var formData = new FormData();
-            formData.append("transaction_pin", document.getElementById("transactionPin").value);
-            formData.append("address", document.getElementById("address").value);
-            formData.append("city", document.getElementById("city").value);
-            formData.append("state", document.getElementById("state").value);
-            formData.append("country", document.getElementById("country").value);
-
-            // Check if a new profile picture is selected
-            var profileImage = document.getElementById("profileImageInput").files[0];
-            if (profileImage) {
-                formData.append("profile_picture", profileImage);
-            }
-
-            fetch("update_profile.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-
-                if (data.success) {
-                    // Close Transaction PIN Modal on success
-                    document.getElementById("transactionPinModal").style.display = "none";
-
-                    // Update profile image if changed
-                    if (data.image_path) {
-                        document.getElementById("profileImagePreview").src = data.image_path;
-                    }
-                }
-            })
-            .catch(error => console.error("Error:", error));
-        }
-
-        function uploadProfilePicture() {
-            var fileInput = document.getElementById("profilePicInput");
-            if (!fileInput.files.length) {
-                alert("Please select an image to upload.");
-                return;
-            }
-
-            var formData = new FormData();
-            formData.append("profile_picture", fileInput.files[0]);
-
-            fetch("upload_profile_picture.php", {
-                method: "POST",
-                body: formData
+        function changePassword() {
+            var currentPassword = document.getElementById("current_password").value;
+            var newPassword = document.getElementById("new_password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+        
+            fetch('changepassword.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword,
+                    confirm_password: confirmPassword
+                })
             })
             .then(response => response.json())
             .then(data => {
                 alert(data.message);
                 if (data.success) {
-                    document.getElementById("profileImage").src = data.image_path;
+                    document.getElementById("changePasswordForm").reset();
                 }
-            })
-            .catch(error => console.error("Error:", error));
+            });
         }
     </script>
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
