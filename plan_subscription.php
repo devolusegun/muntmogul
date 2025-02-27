@@ -1,4 +1,76 @@
+<?php
+session_start();
+require 'config/config.php';
 
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+    exit();
+}
+
+$userId = $_SESSION["user"]["id"];
+
+//  Fetch user balances from `crypticusers` table
+$stmt = $pdo->prepare("SELECT btc_balance, ltc_balance, eth_balance, doge_balance, subscribed_plan FROM crypticusers WHERE id = ?");
+$stmt->execute([$userId]);
+$userData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//  Set a default if balances are NULL
+$userBalances = [
+    "BTC" => isset($userData["btc_balance"]) ? (float) $userData["btc_balance"] : 0,
+    "LTC" => isset($userData["ltc_balance"]) ? (float) $userData["ltc_balance"] : 0,
+    "ETH" => isset($userData["eth_balance"]) ? (float) $userData["eth_balance"] : 0,
+    "DOGE" => isset($userData["doge_balance"]) ? (float) $userData["doge_balance"] : 0
+];
+
+//  Store subscribed plan in session for persistent display
+if (!isset($_SESSION['subscribed_plan'])) {
+    $_SESSION['subscribed_plan'] = $userData['subscribed_plan'] ?? "None";
+}
+
+//  Fetch live crypto prices via API with cURL (more efficient & error handling)
+function fetchCryptoPrices() {
+    $apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,litecoin,ethereum,dogecoin&vs_currencies=usd";
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10); // 10 seconds timeout
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    //  Return decoded JSON if successful, otherwise return an empty array
+    return ($httpCode === 200) ? json_decode($response, true) : [];
+}
+
+// Check if session already has recent crypto prices (avoid frequent API calls)
+if (!isset($_SESSION["crypto_prices"]) || time() - $_SESSION["crypto_prices_time"] > 300) { // Refresh every 5 minutes
+    $_SESSION["crypto_prices"] = fetchCryptoPrices();
+    $_SESSION["crypto_prices_time"] = time();
+}
+
+$cryptoPrices = $_SESSION["crypto_prices"];
+
+// Ensure API returned valid prices, otherwise set default values
+$conversionRates = [
+    "BTC" => $cryptoPrices["bitcoin"]["usd"] ?? 0,
+    "LTC" => $cryptoPrices["litecoin"]["usd"] ?? 0,
+    "ETH" => $cryptoPrices["ethereum"]["usd"] ?? 0,
+    "DOGE" => $cryptoPrices["dogecoin"]["usd"] ?? 0
+];
+
+//  Calculate USD balances (use session-cached rates)
+$usdBalances = [
+    "BTC" => $userBalances["BTC"] * $conversionRates["BTC"],
+    "LTC" => $userBalances["LTC"] * $conversionRates["LTC"],
+    "ETH" => $userBalances["ETH"] * $conversionRates["ETH"],
+    "DOGE" => $userBalances["DOGE"] * $conversionRates["DOGE"]
+];
+
+// ✅ Store balances in session (avoiding repetitive calculations)
+$_SESSION["user_balances"] = $usdBalances;
+
+?>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -32,62 +104,6 @@
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
 	 <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-
-    <script>
-        let selectedPlan = null;
-        let minDeposit = 0;
-        let selectedCrypto = null;
-        let userBalances = <?= json_encode($usdBalances); ?>; // USD Equivalent of Crypto Balances
-
-        // ✅ Function to Select a Plan
-        function selectPlan(plan, minAmount) {
-            selectedPlan = plan;
-            minDeposit = minAmount;
-
-            // ✅ Highlight selected plan
-            document.querySelectorAll(".investment_content_wrapper").forEach(box => box.classList.remove("selected"));
-            document.getElementById(plan).classList.add("selected");
-
-            document.getElementById("selectedPlan").innerText = plan.charAt(0).toUpperCase() + plan.slice(1);
-        }
-
-        // ✅ Update Account Balance Based on Selected Crypto
-        function updateBalance(crypto) {
-            selectedCrypto = crypto;
-            document.getElementById("accountBalance").innerText = "$" + userBalances[crypto].toLocaleString();
-        }
-
-        // ✅ Function to Submit Subscription
-        function submitSubscription() {
-            if (!selectedPlan) {
-                alert("Please choose a plan first.");
-                return;
-            }
-            if (!selectedCrypto) {
-                alert("Please choose a payment mode.");
-                return;
-            }
-            if (userBalances[selectedCrypto] < minDeposit) {
-                alert("Insufficient balance for this plan.");
-                return;
-            }
-
-            fetch("process_subscription.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ plan: selectedPlan, crypto: selectedCrypto })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                if (data.success) {
-                    userBalances[selectedCrypto] -= minDeposit; // Deduct balance in UI
-                    updateBalance(selectedCrypto);
-                    document.getElementById("selectedPlan").innerText = selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1);
-                }
-            });
-        }
-    </script>
 </head>
 <!-- color picker start -->
 
@@ -763,11 +779,8 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper">
-
                             <h3>choose payment mode</h3>
-
                         </div>
-
                     </div>
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="payment_radio_btn_wrapper float_left">
@@ -788,7 +801,7 @@
                                 <label for="bitcoin"><img src="images/bitcoin.png" alt="Bitcoin"> Bitcoin</label>
                             </div>
                             <div class="about_btn acc_balance_btn float_left">
-                                <p>YOUR ACCOUNT BALANCE :</p>
+                            <p>YOUR ACCOUNT BALANCE :</p>
                                 <ul>
                                     <li>
                                         <p><span id="accountBalance"><a>$0.00</a></span></p>
@@ -798,7 +811,7 @@
                             <div class="about_btn float_left">
                                 <ul>
                                     <li>
-                                        <a href="#" onclick="submitSubscription()">submit</a>
+                                        <a href="#" onclick="submitSubscription(); return false;">submit</a>
                                     </li>
                                 </ul>
                             </div>
@@ -823,6 +836,8 @@
          </div>
        <!--  footer  wrapper end -->      
     <!-- main box wrapper End-->
+    <script src="js/crypto_prices.js"></script>
+    <script src="js/plan_subscription.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>

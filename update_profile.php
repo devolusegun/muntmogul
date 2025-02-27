@@ -10,7 +10,7 @@ $userId = $_SESSION["user"]["id"];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
-        // ✅ Handle Profile Picture Upload (if provided)
+        // Handle Profile Picture Upload
         if (isset($_FILES["profile_picture"]) && $_FILES["profile_picture"]["error"] === UPLOAD_ERR_OK) {
             $allowedTypes = ["image/jpeg", "image/png"];
             $maxFileSize = 2 * 1024 * 1024; // 2MB
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 die(json_encode(["success" => false, "message" => "File size must be less than 2MB."]));
             }
 
-            // ✅ Secure Filename
+            //  Secure Filename
             $fileExtension = pathinfo($_FILES["profile_picture"]["name"], PATHINFO_EXTENSION);
             $newFileName = "profile_" . $userId . "_" . time() . "." . $fileExtension;
             $uploadDir = "uploads/profile_pictures/";
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
 
             if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $uploadPath)) {
-                // ✅ Store only the filename instead of the full path
+                //  Store only the filename instead of the full path
                 $stmt = $pdo->prepare("UPDATE crypticusers SET profile_picture = ? WHERE id = ?");
                 $stmt->execute([$newFileName, $userId]);
 
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
 
-        //  Handle Address Update with Transaction PIN Verification
+        // Address Update with Transaction PIN Verification
         $transactionPin = trim($_POST["transaction_pin"] ?? '');
         $address = trim($_POST["address"] ?? '');
         $city = trim($_POST["city"] ?? '');

@@ -665,7 +665,7 @@ if (!$user) {
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
                         <div class="investment_box_wrapper color_1 float_left">
-                            <a href="#">
+                            <a>
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
                                     <h1>deposits</h1>
@@ -675,12 +675,12 @@ if (!$user) {
                                     <table class="invest_table">
                                         <tbody>
                                             <tr>
-                                                <td class="invest_td1">Active Deposit</td>
-                                                <td class="invest_td1"> : $0.00 USD</td>
+                                                <td class="invest_td1">Total Deposit:</td>
+                                                <td class="invest_td1"> <span id="totalDeposit">$0.00 USD</span></td>
                                             </tr>
                                             <tr>
-                                                <td class="invest_td1">New Deposit</td>
-                                                <td class="invest_td1">: $0.00 USD</td>
+                                                <td class="invest_td1">New Deposit:</td>
+                                                <td class="invest_td1"><span id="newDeposit">$0.00 USD</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -690,7 +690,7 @@ if (!$user) {
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
                         <div class="investment_box_wrapper color_2 float_left">
-                            <a href="#">
+                            <a>
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
                                     <h1>payouts</h1>
@@ -700,12 +700,12 @@ if (!$user) {
                                     <table class="invest_table">
                                         <tbody>
                                             <tr>
-                                                <td class="invest_td1">total payouts</td>
-                                                <td class="invest_td1"> : $0.00 USD</td>
+                                                <td class="invest_td1">total payouts:</td>
+                                                <td class="invest_td1"> <span id="totalPayouts">$0.00 USD</span></td>
                                             </tr>
                                             <tr>
-                                                <td class="invest_td1">pending payouts</td>
-                                                <td class="invest_td1">: $0.00 USD</td>
+                                                <td class="invest_td1">pending payouts:</td>
+                                                <td class="invest_td1"><span id="pendingPayouts">$0.00 USD</span></td>
                                             </tr>
 
                                         </tbody>
@@ -716,24 +716,24 @@ if (!$user) {
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
                         <div class="investment_box_wrapper color_3 float_left">
-                            <a href="#">
+                            <a>
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
-                                    <h1>interest earn</h1>
+                                    <h1>earnings</h1>
                                 </div>
 
                                 <div class="invest_details float_left">
                                     <table class="invest_table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="invest_td1">interest today</td>
-                                                <td class="invest_td1"> : $0.00 USD</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="invest_td1">interest this week</td>
-                                                <td class="invest_td1">: $0.00 USD</td>
-                                            </tr>
-                                        </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td class="invest_td1">Interest Today</td>
+                                            <td class="invest_td1">: <span id="todayInterest">$0.00 USD</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="invest_td1">This Week</td>
+                                            <td class="invest_td1">: <span id="weekInterest">$0.00 USD</span></td>
+                                        </tr>
+                                    </tbody>
                                     </table>
                                 </div>
                             </a>
@@ -835,7 +835,7 @@ if (!$user) {
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper">
 
-                            <h3>LAST 5 TRANSACTIONS</h3>
+                            <h4>LAST 5 TRANSACTIONS</h4>
 
                         </div>
                     </div>
@@ -1754,7 +1754,7 @@ if (!$user) {
 
         let cryptoData = {};  // Stores JSON data globally
 
-        // ✅ Load JSON Data on Page Load
+        // Load JSON Data on Page Load
         fetch("assets/crypto_addresses.json")
             .then(response => response.json())
             .then(data => {
@@ -1770,7 +1770,7 @@ if (!$user) {
             document.getElementById("depositModal").style.display = "none";
         }
         
-        // ✅ Close modal when clicking outside
+        // Close modal when clicking outside
         window.onclick = function(event) {
             var modal = document.getElementById("depositModal");
             if (event.target === modal) {
@@ -1778,7 +1778,7 @@ if (!$user) {
             }
         }
 
-        // ✅ Update Networks Based on Selected Crypto
+        // Update Networks Based on Selected Crypto
         function updateNetworks() {
             let cryptoType = document.getElementById("cryptoType").value;
             let networkDropdown = document.getElementById("networkType");
@@ -1821,7 +1821,8 @@ if (!$user) {
         }
     </script>
 
-
+    <script src="js/live_crypto_rates.js"></script>
+    <script src="js/dashboard.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
