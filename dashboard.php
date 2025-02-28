@@ -264,16 +264,17 @@ if (!$user) {
                     </div>
                 </div>
                 <div class="crm_profile_dropbox_wrapper">
-                    <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img"><?php echo $_SESSION["user"]; ?> <span class="hidden_xs_content"></span></span>
+                    <div class="nice-select" tabindex="0"> <span class="current"><img src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>" 
+                            alt="User's Thumbnail" width="50" height="50" style="border-radius: 50%;"><?php echo $_SESSION["user"]; ?> <span class="hidden_xs_content"></span></span>
                         <ul class="list">
-                            <li><a href="#"><i class="flaticon-profile"></i> Profile</a></li>
-                            <li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
-                            <!--<li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
+                            <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a></li>
+                            <!--<li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
+                            <li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
                             <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a></li>
                             <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a></li>
-                            <li><a href="#"><i class="flaticon-settings"></i> Setting</a>--></li>
+                            <li><a href="#"><i class="flaticon-settings"></i> Setting</a></li>
                             <li><a href="#"><i class="flaticon-help"></i> Support</a></li>
-                            <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a></li>-->
+                            <li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a></li>-->
                             <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a></li>
                         </ul>
                     </div>
