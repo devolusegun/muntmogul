@@ -732,13 +732,52 @@
                                 <thead>
                                     <tr>
                                         <th class="width_table1">transaction ID</th>
-                                        <th class="width_table1">amount ($)</th>
+                                        <th class="width_table1">amount</th>
                                         <th class="width_table1">description</th>
                                         <th class="width_table1">payment mode</th>
                                         <th class="width_table1">date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if (!empty($transactions)) : ?>
+                                        <?php foreach ($transactions as $transaction) : ?>
+                                            <tr class="background_white">
+                                                <td>
+                                                    <div class="media cs-media">
+                                                        <div class="media-body">
+                                                            <h5><?= htmlspecialchars('TXN' . str_pad($transaction["id"], 6, '0', STR_PAD_LEFT)); ?></h5>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="pretty p-svg p-curve">
+                                                        <?= number_format($transaction["amount"], 8) . ' ' . $cryptoSymbols[$transaction["crypto_type"]]; ?>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="pretty p-svg p-curve">
+                                                        <?= htmlspecialchars(ucfirst($transaction["transaction_type"])); ?>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="pretty p-svg p-curve">
+                                                        <?= htmlspecialchars($transaction["crypto_type"]); ?>
+                                                    </div>
+                                                </td>
+                                                <td class="flag">
+                                                    <div class="pretty p-svg p-curve">
+                                                        <?= date("d/m/Y", strtotime($transaction["created_at"])); ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="5" style="text-align:center;">No transactions found.</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                                <!--<tbody>
                                     <tr class="background_white">
 
                                         <td>
@@ -889,106 +928,6 @@
                                         </td>
                                         
                                     </tr>
-                                    <tr class="background_white">
-
-                                        <td>
-                                            <div class="media cs-media">
-
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr class="background_white">
-
-                                        <td>
-                                            <div class="media cs-media">
-
-                                                <div class="media-body">
-                                                    <h5>AWNT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr class="background_white">
-
-                                        <td>
-                                            <div class="media cs-media">
-
-                                                <div class="media-body">
-                                                    <h5>OWNT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr class="background_white">
-
-                                        <td>
-                                            <div class="media cs-media">
-
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        
-                                    </tr>
                                     
                                     <tr class="background_white">
 
@@ -1014,7 +953,7 @@
                                             <div class="pretty p-svg p-curve">04/09/2019</div>
                                         </td>
                                     </tr>
-                                </tbody>
+                                </tbody>-->
                             </table>
 
                         </div>
