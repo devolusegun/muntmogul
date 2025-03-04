@@ -4,15 +4,15 @@
         "addresses": {
             "BSC": {
                 "address": "bc1qeq5npxvtztzn6x48mljlr980449vn9vv7nekfp",
-                "qr_code": "qr_codes/btc_bsc.png"
+                "qr_code": "qr_codes/btc_qr_code.png"
             },
             "ERC20": {
                 "address": "bc1qeq5npxvtztzn6x48mljlr980449vn9vv7nekfp",
-                "qr_code": "qr_codes/btc_erc20.png"
+                "qr_code": "qr_codes/btc_qr_code.png"
             },
             "TRC20": {
                 "address": "bc1qeq5npxvtztzn6x48mljlr980449vn9vv7nekfp",
-                "qr_code": "qr_codes/btc_trc20.png"
+                "qr_code": "qr_codes/btc_qr_code.png"
             }
         }
     },
@@ -21,11 +21,11 @@
         "addresses": {
             "ERC20": {
                 "address": "0x314C8E50fdcF0c55aB2B676a288EC2f8D405257f",
-                "qr_code": "qr_codes/eth_erc20.png"
+                "qr_code": "qr_codes/eth_qr_code.png"
             },
             "BSC": {
                 "address": "0x314C8E50fdcF0c55aB2B676a288EC2f8D405257f",
-                "qr_code": "qr_codes/eth_bsc.png"
+                "qr_code": "qr_codes/eth_qr_code.png"
             }
         }
     },
@@ -34,7 +34,7 @@
         "addresses": {
             "LTC Native": {
                 "address": "ltc1qgvpacxy2vatghx3edmclm0545c4vm902wxj5d3",
-                "qr_code": "qr_codes/ltc_native.png"
+                "qr_code": "qr_codes/ltc_qr_code.png"
             }
         }
     },
@@ -43,7 +43,7 @@
         "addresses": {
             "DOGE Native": {
                 "address": "D755NrMwiUkZmX2eJc7qcTTyL5MFiNwCgR",
-                "qr_code": "qr_codes/doge_native.png"
+                "qr_code": "qr_codes/doge_qr_code.png"
             }
         }
     }
