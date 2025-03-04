@@ -365,10 +365,10 @@ MuntMogul
                                         <div class="slider_btn index2_sliderbtn float_left">
                                             <ul>
                                                 <li data-animation="animated bounceInLeft">
-                                                    <a href="#">start now</a>
+                                                    <a href="login">start now</a>
                                                 </li>
                                                 <li data-animation="animated bounceInLeft">
-                                                    <a href="#">view plans</a>
+                                                    <a href="#plansDiv">view plans</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -396,10 +396,10 @@ MuntMogul
                                         <div class="slider_btn index2_sliderbtn float_left">
                                             <ul>
                                                 <li data-animation="animated bounceInLeft">
-                                                    <a href="#">start now</a>
+                                                    <a href="login">start now</a>
                                                 </li>
                                                 <li data-animation="animated bounceInLeft">
-                                                    <a href="#">view plans</a>
+                                                    <a href="#plansDiv">view plans</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -427,10 +427,10 @@ MuntMogul
                                         <div class="slider_btn index2_sliderbtn float_left">
                                             <ul>
                                                 <li data-animation="animated bounceInLeft">
-                                                    <a href="#">start now</a>
+                                                    <a href="login">start now</a>
                                                 </li>
                                                 <li data-animation="animated bounceInLeft">
-                                                    <a href="#">view plans</a>
+                                                    <a href="#plansDiv">view plans</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -509,7 +509,7 @@ MuntMogul
     </div>
     <!-- about us wrapper end -->
     <!--investment plan wrapper start -->
-    <div class="investment_plans index2_investment_plans float_left">
+    <div id="plansDiv" class="investment_plans index2_investment_plans float_left">
         <div class="investment_overlay"></div>
         <div class="container">
             <div class="row">
@@ -530,11 +530,10 @@ MuntMogul
                         <div class="investment_content_wrapper">
                             <h1><a href="#">silver plan</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Up to 5% for 20 Hourly
-                                <br> Compound Available
-                                <br> Down to 5% for 20 Hourly
-                                <br> Principal Return
-                                <br> Up to 5% for 20 Hourly</p>
+                            <p>Up to 20% for 30 Days
+                                <br> Min deposit: $2,000
+                                <br> Max Deposit: $5,100
+                                <br> Compound Available</p>
                         </div>
                         <div class="about_btn plans_btn index2_investment_btn">
                             <ul>
@@ -554,10 +553,9 @@ MuntMogul
                         <div class="investment_content_wrapper red_content_wrapper">
                             <h1><a href="#">Bronze Plan</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Up to 5% Daily for 5 Days
-                                <br> Min deposit: $2020
-                                <br> Max deposit: $101010
-                                <br> Principal Return
+                            <p>Up to 28% for 30 Days
+                                <br> Min deposit: $5,000
+                                <br> Max deposit: $15,100
                                 <br> Compound Available</p>
                         </div>
                         <div class="about_btn plans_btn red_btn_plans index2_investment_btn">
@@ -578,11 +576,10 @@ MuntMogul
                         <div class="investment_content_wrapper blue_content_wrapper">
                             <h1><a href="#">copper plan</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Up to 3% Hourly for 10 Hourly
-                                <br> Min deposit: $300
-                                <br> Max deposit: $3000
-                                <br> Principal Not Return
-                                <br> Compound Not Available</p>
+                            <p>Up to 37% for 30 Days
+                                <br> Min deposit: $15,000
+                                <br> Max deposit: $50,100
+                                <br> Compound Available</p>
                         </div>
                         <div class="about_btn plans_btn blue_btn_plans index2_investment_btn">
                             <ul>
@@ -602,10 +599,9 @@ MuntMogul
                         <div class="investment_content_wrapper green_content_wrapper">
                             <h1><a href="#">gold plan</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Up to 7% for 30 days
-                                <br> Min deposit: $500
-                                <br> Max deposit: $3000
-                                <br> Principal Not Return
+                            <p>Up to 52% for 30 Days
+                                <br> Min deposit: $50,000
+                                <br> Max deposit: $100,000
                                 <br> Compound Available</p>
                         </div>
                         <div class="about_btn plans_btn green_plan_btn index2_investment_btn">
@@ -667,18 +663,18 @@ MuntMogul
                                 </div>
                                 <div class="labels funds_label" style="display: block;">
                                     <div class="chart-label">
-                                        <span class="amt" id="directFund"><i class="fa fa-rupee-sign"></i>1.98 Cr</span>
+                                        <span class="amt" id="directFund"><i class="fa fa-dollar-sign"></i>1.98 Cr</span>
                                         <span class="sub">total returns</span>
                                     </div>
                                     <div class="chart-label label-regular">
-                                        <span class="amt" id="regularFund"><i class="fa fa-rupee-sign"></i>1.64 Cr</span>
+                                        <span class="amt" id="regularFund"><i class="fa fa-dollar-sign"></i>1.64 Cr</span>
                                         <span class="sub">investment amounts</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                         <div class="calc-amt">
-                            <p class="calc-price" id="returnAmount">Rs. 34.06 L</p>
+                            <p class="calc-price" id="returnAmount">USD. 34.06 L</p>
                             <p>extra returns for you </p>
                         </div>
                     </div>
@@ -691,7 +687,7 @@ MuntMogul
                             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div class="caluclator_text_wrapper">
                                     <p>deposit amount : <i class="fas fa-info-circle"></i></p>
-                                    <p class="dollar_wrap"><i class="fa fa-rupee-sign"></i>
+                                    <p class="dollar_wrap"><i class="fa fa-dollar-sign"></i>
                                         <input type="text" id="investmentAmount" />
                                     </p>
                                 </div>
@@ -699,7 +695,7 @@ MuntMogul
                             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div class="caluclator_text_wrapper">
                                     <p>monthly SIP : <i class="fas fa-info-circle"></i></p>
-                                    <p class="dollar_wrap"><i class="fa fa-rupee-sign"></i>
+                                    <p class="dollar_wrap"><i class="fa fa-dollar-sign"></i>
                                         <input type="text" id="investmentAmountSIP" />
                                     </p>
                                 </div>
@@ -741,7 +737,7 @@ MuntMogul
             <div class="row">
                 <div class="global_comm_wraper index2_global_comm_wrapper">
                     <h1>We Were Always Thinking Global Community</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>From the very beginning, our vision has been to connect and empower a global community. We believe in breaking barriers, fostering inclusivity, and creating opportunities that transcend borders.</p>
                 </div>
                 <div class="zero_balance_wrapper">
                     <div class="zero_commisition">
@@ -754,7 +750,7 @@ Commissions</h1>
                         <div class="about_btn float_left">
                             <ul>
                                 <li>
-                                    <a href="#">SignUp now !</a>
+                                    <a href="register">SignUp now !</a>
                                 </li>
                             </ul>
                         </div>
@@ -784,9 +780,9 @@ Commissions</h1>
                         </div>
                         <div class="investment_border_wrapper"></div>
                         <div class="investment_content_wrapper">
-                            <h1><a href="#">We're Certified</a></h1>
+                            <h1><a>We're Certified</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam</p>
+                            <p>Our certification reflects our commitment to excellence, ensuring the highest standards in everything we do</p>
                             <span class="investment_index_icon"><a href="#"><i class="flaticon-arrow-pointing-to-right"></i></a></span>
                         </div>
 
@@ -799,9 +795,9 @@ Commissions</h1>
                         </div>
                         <div class="investment_border_wrapper red_border_wrapper"></div>
                         <div class="investment_content_wrapper red_content_wrapper">
-                            <h1><a href="#">We're Secure</a></h1>
+                            <h1><a>We're Secure</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam</p>
+                            <p>Security is our top priority. We implement advanced measures to protect your data and ensure a safe and trustworthy experience</p>
                             <span class="investment_index_icon"><a href="#"><i class="flaticon-arrow-pointing-to-right"></i></a></span>
                         </div>
 
@@ -814,9 +810,9 @@ Commissions</h1>
                         </div>
                         <div class="investment_border_wrapper blue_border_wrapper"></div>
                         <div class="investment_content_wrapper blue_content_wrapper">
-                            <h1><a href="#">We're Profitable</a></h1>
+                            <h1><a>We're Profitable</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam</p>
+                            <p><p>Our proven strategies and smart investments drive consistent growth, ensuring profitability and long-term success for our stakeholders</p>
                             <span class="investment_index_icon"><a href="#"><i class="flaticon-arrow-pointing-to-right"></i></a></span>
                         </div>
 
@@ -829,9 +825,9 @@ Commissions</h1>
                         </div>
                         <div class="investment_border_wrapper green_border_wrapper"></div>
                         <div class="investment_content_wrapper green_content_wrapper">
-                            <h1><a href="#">We Accept Crypto</a></h1>
+                            <h1><a>We Accept Crypto</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam</p>
+                            <p>We accept a variety of cryptocurrencies, making transactions seamless, secure, and globally accessible</p>
                             <span class="investment_index_icon"><a href="#"><i class="flaticon-arrow-pointing-to-right"></i></a></span>
                         </div>
 
@@ -844,9 +840,9 @@ Commissions</h1>
                         </div>
                         <div class="investment_border_wrapper pink_border_wrapper"></div>
                         <div class="investment_content_wrapper pink_content_wrapper">
-                            <h1><a href="#">best support</a></h1>
+                            <h1><a>best support</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam</p>
+                            <p>Our dedicated support team is always ready to assist you with quick, and reliable, anytime you need help</p>
                             <span class="investment_index_icon"><a href="#"><i class="flaticon-arrow-pointing-to-right"></i></a></span>
                         </div>
 
@@ -859,9 +855,9 @@ Commissions</h1>
                         </div>
                         <div class="investment_border_wrapper yellow_border_wrapper"></div>
                         <div class="investment_content_wrapper yellow_content_wrapper">
-                            <h1><a href="#">We're global</a></h1>
+                            <h1><a>We're global</a></h1>
                             <div class="line_shape investment_line_shape"></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Ut enim ad minim veniam</p>
+                            <p>With a presence in multiple countries, we connect and serve clients worldwide, ensuring seamless access to our services</p>
                             <span class="investment_index_icon"><a href="#"><i class="flaticon-arrow-pointing-to-right"></i></a></span>
                         </div>
 
@@ -884,11 +880,9 @@ Commissions</h1>
                 <div class="work_content_wrap">
                     <h1>How It Works</h1>
                     <ul class="work_checklist_wrapper">
-                        <li>
-                            <a href="#"><i class="fas fa-dollar-sign"></i>get deposit</a>
-                        </li>
-                        <li><a href="#"><i class="far fa-money-bill-alt"></i> utilize money</a></li>
-                        <li><a href="#"><i class="fas fa-plus"></i> give interest</a></li>
+                        <li><a><i class="fas fa-dollar-sign"></i>make deposit</a></li>
+                        <li><a><i class="far fa-money-bill-alt"></i> utilize money</a></li>
+                        <li><a><i class="fas fa-plus"></i> give interest</a></li>
                     </ul>
 
                 </div>
@@ -908,11 +902,8 @@ Commissions</h1>
                     </div>
                     <div class="x_offer_tabs_wrapper">
                         <ul class="nav nav-tabs">
-                            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home"> deposits</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#menu2">withdraw</a>
-                            </li>
-
+                            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home"> deposits</a></li>
+                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#menu2">withdraw</a></li>
                         </ul>
                     </div>
                 </div>
@@ -929,91 +920,50 @@ Commissions</h1>
                                                 <th>amount</th>
                                                 <th>currency</th>
                                                 <th>deposit</th>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem1.png" alt="img"> <span>Olympia Ripple</span></td>
-
+                                                <td> <span>Olympia Ripple</span></td>
                                                 <td>June 24,2019</td>
                                                 <td>$6,00,000.00</td>
                                                 <td>Dollar</td>
                                                 <td>03 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem4.png" alt="img"> <span>Nancee Broom</span></td>
-
-                                                <td>June 04,2019</td>
-                                                <td>$16,00,000.00</td>
-                                                <td>card</td>
-                                                <td>22 Minutes Ago</td>
-
-                                            </tr>
-                                            <tr>
-
-                                                <td><img src="images/mem1.png" alt="img"> <span>Broom Nancee</span></td>
-
+                                                <td><span>Broom Nancee</span></td>
                                                 <td>June 24,2019</td>
                                                 <td>$6,00,000.00</td>
                                                 <td>bitcoin</td>
                                                 <td>15 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem2.png" alt="img"> <span>Ripple Alison</span></td>
-
+                                                <td> <span>Ripple Alison</span></td>
                                                 <td>June 24,2019</td>
                                                 <td>$06,00,000.00</td>
                                                 <td>ripees</td>
                                                 <td>05 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem3.png" alt="img"> <span>Olympia Ripple</span></td>
-
+                                                <td> <span>Olympia Ripple</span></td>
                                                 <td>June 05,2019</td>
                                                 <td>$45,00,000.00</td>
                                                 <td>ETH</td>
                                                 <td>13 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem4.png" alt="img"> <span>Alison Rittichier</span></td>
-
+                                                <td><span>Alison Rittichier</span></td>
                                                 <td>June 28,2019</td>
                                                 <td>$77,00,000.00</td>
                                                 <td>payonner</td>
                                                 <td>05 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem5.png" alt="img"> <span>Olympia Ripple</span></td>
-
-                                                <td>June 24,2019</td>
-                                                <td>$11,00,000.00</td>
-                                                <td>card</td>
-                                                <td>23 Minutes Ago</td>
-
-                                            </tr>
-                                            <tr>
-
-                                                <td><img src="images/mem6.png" alt="img"> <span>Emmett Stein </span></td>
-
+                                                <td><span>Emmett Stein </span></td>
                                                 <td>June 21,2019</td>
                                                 <td>$66,00,000.00</td>
                                                 <td>paypal</td>
                                                 <td>53 Minutes Ago</td>
-
                                             </tr>
-
                                         </table>
-
                                     </div>
                                 </div>
                             </div>
@@ -1029,91 +979,56 @@ Commissions</h1>
                                                 <th>amount</th>
                                                 <th>currency</th>
                                                 <th>deposit</th>
-
                                             </tr>
-
                                             <tr>
-
-                                                <td><img src="images/mem4.png" alt="img"> <span>Nancee Broom</span></td>
-
+                                                <td><span>Nancee Broom</span></td>
                                                 <td>June 04,2019</td>
                                                 <td>$16,00,000.00</td>
                                                 <td>card</td>
                                                 <td>22 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem1.png" alt="img"> <span>Olympia Ripple</span></td>
-
+                                                <td><span>Olympia Ripple</span></td>
                                                 <td>June 24,2019</td>
                                                 <td>$6,00,000.00</td>
                                                 <td>Dollar</td>
                                                 <td>03 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem2.png" alt="img"> <span>Ripple Alison</span></td>
-
+                                                <td><span>Ripple Alison</span></td>
                                                 <td>June 24,2019</td>
                                                 <td>$06,00,000.00</td>
                                                 <td>ripees</td>
                                                 <td>05 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem6.png" alt="img"> <span>Emmett Stein
-                                              </span></td>
+                                                <td><span>Emmett Stein </span></td>
                                                 <td>June 21,2019</td>
                                                 <td>$66,00,000.00</td>
                                                 <td>paypal</td>
                                                 <td>53 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem1.png" alt="img"> <span>Broom Nancee</span></td>
-
+                                                <td><span>Broom Nancee</span></td>
                                                 <td>June 24,2019</td>
                                                 <td>$6,00,000.00</td>
                                                 <td>bitcoin</td>
                                                 <td>15 Minutes Ago</td>
-
                                             </tr>
-
                                             <tr>
-
-                                                <td><img src="images/mem4.png" alt="img"> <span>Alison Rittichier</span></td>
-
+                                                <td><span>Alison Rittichier</span></td>
                                                 <td>June 28,2019</td>
                                                 <td>$77,00,000.00</td>
-                                                <td>payonner</td>
+                                                <td>litecoin</td>
                                                 <td>05 Minutes Ago</td>
-
                                             </tr>
                                             <tr>
-
-                                                <td><img src="images/mem3.png" alt="img"> <span>Olympia Ripple</span></td>
-
+                                                <td><span>Olympia Ripple</span></td>
                                                 <td>June 05,2019</td>
                                                 <td>$45,00,000.00</td>
                                                 <td>ETH</td>
                                                 <td>13 Minutes Ago</td>
-
                                             </tr>
-                                            <tr>
-
-                                                <td><img src="images/mem5.png" alt="img"> <span>Olympia Ripple</span></td>
-
-                                                <td>June 24,2019</td>
-                                                <td>$11,00,000.00</td>
-                                                <td>card</td>
-                                                <td>23 Minutes Ago</td>
-
-                                            </tr>
-
                                         </table>
 
                                     </div>
@@ -1212,16 +1127,15 @@ Commissions</h1>
                                             </div>
 
                                             <div class="investment_content_wrapper inves_heading_txt">
-                                                <h1><a href="#">akshay H.</a></h1>
+                                                <h1><a>akshay H.</a></h1>
                                                 <div class="line_shape investment_line_shape"></div>
-                                                <p>$22500.00 USD</p>
+                                                <!--<p>$22500.00 USD</p>
                                                 <ul class="investment_slider_icon">
                                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-google"></i></a></li>
-
-                                                </ul>
+                                                </ul>-->
                                             </div>
 
                                         </div>
@@ -1239,16 +1153,15 @@ Commissions</h1>
                                             </div>
 
                                             <div class="investment_content_wrapper inves_heading_txt">
-                                                <h1><a href="#">maria F.</a></h1>
+                                                <h1><a>maria F.</a></h1>
                                                 <div class="line_shape investment_line_shape"></div>
-                                                <p>$22500.00 USD</p>
+                                                <!--<p>$22500.00 USD</p>
                                                 <ul class="investment_slider_icon">
                                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-google"></i></a></li>
-
-                                                </ul>
+                                                </ul>-->
                                             </div>
 
                                         </div>
@@ -1266,16 +1179,41 @@ Commissions</h1>
                                             </div>
 
                                             <div class="investment_content_wrapper inves_heading_txt">
-                                                <h1><a href="#">josep K.</a></h1>
+                                                <h1><a>josep K.</a></h1>
                                                 <div class="line_shape investment_line_shape"></div>
-                                                <p>$22500.00 USD</p>
+                                                <!--<p>$22500.00 USD</p>
                                                 <ul class="investment_slider_icon">
                                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-google"></i></a></li>
+                                                </ul>-->
+                                            </div>
 
-                                                </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+
+                                <div class="inves_slider_cntn index2_inves_slider_cntnt float_left">
+                                    <div class="investment_box_wrapper index_investment float_left">
+
+                                        <div class="inves_main_border float_left">
+                                            <div class="inves_img_wrapper">
+                                                <img src="images/inves5.png" class="img-responsive" alt="img" />
+                                            </div>
+
+                                            <div class="investment_content_wrapper inves_heading_txt">
+                                                <h1><a>liva M.</a></h1>
+                                                <div class="line_shape investment_line_shape"></div>
+                                                <!--<p>$22500.00 USD</p>
+                                                <ul class="investment_slider_icon">
+                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                                    <li><a href="#"><i class="fab fa-google"></i></a></li>
+                                                </ul>-->
                                             </div>
 
                                         </div>
@@ -1293,43 +1231,15 @@ Commissions</h1>
                                             </div>
 
                                             <div class="investment_content_wrapper inves_heading_txt">
-                                                <h1><a href="#">liva M.</a></h1>
+                                                <h1><a>Tom Brad</a></h1>
                                                 <div class="line_shape investment_line_shape"></div>
-                                                <p>$22500.00 USD</p>
+                                                <!--<p>$22500.00 USD</p>
                                                 <ul class="investment_slider_icon">
                                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                                     <li><a href="#"><i class="fab fa-google"></i></a></li>
-
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-
-                                <div class="inves_slider_cntn index2_inves_slider_cntnt float_left">
-                                    <div class="investment_box_wrapper index_investment float_left">
-
-                                        <div class="inves_main_border float_left">
-                                            <div class="inves_img_wrapper">
-                                                <img src="images/inves4.png" class="img-responsive" alt="img" />
-                                            </div>
-
-                                            <div class="investment_content_wrapper inves_heading_txt">
-                                                <h1><a href="#">akshay H.</a></h1>
-                                                <div class="line_shape investment_line_shape"></div>
-                                                <p>$22500.00 USD</p>
-                                                <ul class="investment_slider_icon">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-google"></i></a></li>
-
-                                                </ul>
+                                                </ul>-->
                                             </div>
 
                                         </div>
@@ -1351,11 +1261,14 @@ Commissions</h1>
                     <h1>Join Our Newsletter</h1>
                     <p>Put your investing ideas into action with full range of investments.</p>
                     <div class="save_newsletter_field">
-                        <input type="text" placeholder="Enter Your Email">
-                        <button type="submit">subscribe</button>
+                        <form id="newsletterForm">
+                            <input type="email" id="emailInput" placeholder="Enter Your Email" required>
+                            <button type="submit">subscribe</button>
+                        </form>
                     </div>
+                    <p id="subscriptionMessage"></p>
                 </div>
-                <div class="zero_balance_wrapper">
+                <!--<div class="zero_balance_wrapper">
                     <div class="zero_commisition refreal_commison_section">
                         <h1>Credit Rating</h1>
                         <p>Apply for free creditworthiness now </p>
@@ -1368,8 +1281,7 @@ Commissions</h1>
                             </ul>
                         </div>
                     </div>
-
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
@@ -1830,36 +1742,30 @@ Commissions</h1>
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner1.png" class="img-responsive" alt="img">
+                                    <img src="images/litecoin.png" class="img-responsive" alt="img">
                                 </div>
 
                             </div>
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner2.png" class="img-responsive" alt="img">
+                                    <img src="images/ethereum.png" class="img-responsive" alt="img">
                                 </div>
 
                             </div>
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner3.png" class="img-responsive" alt="img">
+                                    <img src="images/dogecoin.png" class="img-responsive" alt="img">
                                 </div>
 
                             </div>
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner4.png" class="img-responsive" alt="img">
+                                    <img src="images/bitcoin.png" class="img-responsive" alt="img">
                                 </div>
 
-                            </div>
-                            <div class="item">
-
-                                <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner2.png" class="img-responsive" alt="img">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -1905,34 +1811,22 @@ Commissions</h1>
                 <div class="col-lg-2 col-md-3 col-12 col-sm-4">
                     <div class="wrapper_second_useful">
                         <h4>usefull links </h4>
-
                         <ul>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>About us</a>
-                            </li>
-
-                            <li><a href="#"><i class="fa fa-angle-right"></i>contact </a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>services</a>
-                            </li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>About us</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>contact </a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>services</a></li>
                             <!--<li><a href="#"><i class="fa fa-angle-right"></i>news</a> </li>-->
                             <!--<li><a href="#"><i class="fa fa-angle-right"></i>blog</a> </li>-->
                         </ul>
-
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-12 col-sm-4">
                     <div class="wrapper_second_useful wrapper_second_links">
-
                         <ul>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>sitemap</a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>FAQ </a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>awards </a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>tstimonials</a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i>career</a> </li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>sitemap</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i>FAQ </a></li>
+                            <!--<li><a href="#"><i class="fa fa-angle-right"></i>tstimonials</a></li>-->
+                            <li><a href="#"><i class="fa fa-angle-right"></i>partners</a> </li>
                         </ul>
 
                     </div>
@@ -1940,11 +1834,11 @@ Commissions</h1>
 
                 <div class="col-lg-4 col-md-6 col-12 col-sm-12">
                     <div class="wrapper_second_useful wrapper_second_useful_2">
-                        <h4>contact  us</h4>
+                        <h4>Hotline</h4>
 
                         <ul>
                             <li>
-                                <h1>+800 568 322</h1></li>
+                                <h1>+1 800 568 322</h1></li>
                             <li><a href="#"><i class="flaticon-mail"></i>save@muntmogul.com</a>
                             </li>
                             <li><a href="#"><i class="flaticon-language"></i>www.muntmogul.com</a>
@@ -1979,6 +1873,7 @@ Commissions</h1>
     </div>
     <!-- footer section end-->
     <!--custom js files-->
+    <script src="js/newsletter.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
