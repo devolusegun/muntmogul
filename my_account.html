@@ -900,9 +900,7 @@
 
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper">
-
                             <h4>LAST 5 TRANSACTIONS</h4>
-
                         </div>
                     </div>
                     <div class="crm_customer_table_main_wrapper float_left">
@@ -1196,12 +1194,17 @@
                 <!-- Options will be dynamically populated -->
             </select>
 
-            <h4>Deposit Address:</h4>
-            <input type="text" id="depositAddress" readonly>
-            <button onclick="copyAddress()">Copy</button>
+            <div class="sw_heading_wraper">
+                <h4>Deposit Address:</h4>
 
-            <h4>QR Code:</h4>
-            <img id="qrCodeImage" src="" alt="QR Code">
+                <input type="text" id="depositAddress" readonly>
+                <button onclick="copyAddress()">Copy</button>
+            </div>
+            
+            <div class="sw_heading_wraper">
+                <h6>Scan Code:</h6>
+                <img id="qrCodeImage" src="" alt="QR Code">
+            </div>
 
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>
@@ -1212,7 +1215,7 @@
 
         let cryptoData = {};  // Stores JSON data globally
 
-        // ✅ Load JSON Data on Page Load
+        // Load JSON Data on Page Load
         fetch("assets/crypto_addresses.json")
             .then(response => response.json())
             .then(data => {
@@ -1228,7 +1231,7 @@
             document.getElementById("depositModal").style.display = "none";
         }
         
-        // ✅ Close modal when clicking outside
+        // Close modal when clicking outside
         window.onclick = function(event) {
             var modal = document.getElementById("depositModal");
             if (event.target === modal) {
@@ -1236,7 +1239,7 @@
             }
         }
 
-        // ✅ Update Networks Based on Selected Crypto
+        // Update Networks Based on Selected Crypto
         function updateNetworks() {
             let cryptoType = document.getElementById("cryptoType").value;
             let networkDropdown = document.getElementById("networkType");

@@ -7808,16 +7808,32 @@ dl.userdescc dd{
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.6);
+    overflow: auto; /* Ensure scrolling if content is too large */
 }
 
+/* Center Modal Properly */
 .modal-content {
     background-color: white;
     padding: 20px;
-    margin: 15% auto;
-    width: 50%;
+    margin: 5% auto; /* Reduce margin so it fits better on large screens */
+    width: 90%; /* Make it responsive */
+    max-width: 600px; /* Limit width for better view */
     border-radius: 8px;
     text-align: center;
     position: relative;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Improve Large Screen Display */
+@media (min-width: 992px) {
+    .modal-content {
+        max-width: 500px; /* Adjust modal width for large screens */
+    }
+}
+
+/* Fix Overflow Issues */
+body.modal-open {
+    overflow: hidden; /* Prevent background scrolling when modal is open */
 }
 
 .close {
@@ -7877,4 +7893,46 @@ dl.userdescc dd{
     background-color: #ffffff;
 	color: #007bff;
 	border:1px solid #007bff;
+}
+.sw_heading_wraper{
+	margin-bottom:5px;
+	margin-top: 15px;
+}
+.sw_heading_wraper h4{
+	font-size: 16px;
+    color: #00aaef;
+    letter-spacing: 5px;
+	margin-bottom:10px;
+	font-weight:500;
+    text-transform: uppercase;
+}
+.sw_heading_wraper button{
+	display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.sw_heading_wraper input{
+	font-size: 16px;
+	padding: 10px;
+    width: 100%;
+    max-width: 320px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f8f9fa;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.sw_heading_wraper input:focus{
+	border-color: #007bff;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.5);
 }
