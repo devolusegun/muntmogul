@@ -13,6 +13,11 @@ require 'src/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+$smtp_host = getenv('SMTP_HOST') ?: 'default_host';
+$smtp_user = getenv('SMTP_USER') ?: 'default_user';
+$smtp_pass = getenv('SMTP_PASS') ?: 'default_pass';
+$smtp_port = getenv('SMTP_PORT') ?: 587;
+
 // Fetch countries from the database
 $stmt = $pdo->prepare("SELECT name FROM countries ORDER BY name ASC");
 $stmt->execute();
@@ -32,18 +37,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $country = $_POST["country"];
     $verification_code = md5(uniqid($email, true)); // Generate unique verification code
 
-    // ✅ Check if email already exists
+    // Check if email already exists
     $stmt = $pdo->prepare("SELECT id FROM crypticusers WHERE email = ?");
     $stmt->execute([$email]);
     if ($stmt->rowCount() > 0) {
         $error = "Email already registered. Please use a different email.";
     } else {
-        // ✅ Insert & check email does not exist
+        // Insert & check email does not exist
         $stmt = $pdo->prepare("INSERT INTO crypticusers (referral_name, first_name, last_name, username, password, transaction_pin, email, country, verification_code, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
         
         if ($stmt->execute([$referral_name, $first_name, $last_name, $username, $password, $transaction_pin, $email, $country, $verification_code])) {
             
-            // ✅ Send verification email
+            // Send verification email
             $mail = new PHPMailer(true);
             try {
                 $mail->isSMTP();
@@ -550,28 +555,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner1.png" class="img-responsive" alt="img">
+                                    <img src="images/litecoin.png" class="img-responsive" alt="img">
                                 </div>
 
                             </div>
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner2.png" class="img-responsive" alt="img">
+                                    <img src="images/bitcoin.png" class="img-responsive" alt="img">
                                 </div>
 
                             </div>
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner3.png" class="img-responsive" alt="img">
+                                    <img src="images/dogecoin.png" class="img-responsive" alt="img">
                                 </div>
 
                             </div>
                             <div class="item">
 
                                 <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner4.png" class="img-responsive" alt="img">
+                                    <img src="images/ethereum.png" class="img-responsive" alt="img">
                                 </div>
 
                             </div>
