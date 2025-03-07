@@ -1,11 +1,12 @@
 <?php
 session_start();
 require 'config/config.php';
+require 'load_env.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Including PHPMailer
+// Include PHPMailer
 require 'src/PHPMailer.php';
 require 'src/SMTP.php';
 require 'src/Exception.php';
@@ -13,10 +14,15 @@ require 'src/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$smtp_host = getenv('SMTP_HOST') ?: 'default_host';
-$smtp_user = getenv('SMTP_USER') ?: 'default_user';
-$smtp_pass = getenv('SMTP_PASS') ?: 'default_pass';
-$smtp_port = getenv('SMTP_PORT') ?: 587;
+// Fetch SMTP credentials from environment
+$smtp_host = getenv('SMTP_HOST');
+$smtp_user = getenv('SMTP_USER');
+$smtp_pass = getenv('SMTP_PASS');
+$smtp_port = getenv('SMTP_PORT');
+
+if (!$smtp_host || !$smtp_user || !$smtp_pass || !$smtp_port) {
+    die("SMTP configuration is missing. Please check your .env file.");
+}
 
 // Fetch countries from the database
 $stmt = $pdo->prepare("SELECT name FROM countries ORDER BY name ASC");
@@ -32,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_name = $_POST["last_name"];
     $username = $_POST["username"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $transaction_pin = $_POST["transaction_pin"];
+    $transaction_pin = password_hash($_POST["transaction_pin"], PASSWORD_DEFAULT); // Hash PIN for security
     $email = $_POST["email"];
     $country = $_POST["country"];
     $verification_code = md5(uniqid($email, true)); // Generate unique verification code
@@ -40,11 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if email already exists
     $stmt = $pdo->prepare("SELECT id FROM crypticusers WHERE email = ?");
     $stmt->execute([$email]);
+    
     if ($stmt->rowCount() > 0) {
-        $error = "Email already registered. Please use a different email.";
+        $error = "User already exists. Please register a new account.";
     } else {
-        // Insert & check email does not exist
-        $stmt = $pdo->prepare("INSERT INTO crypticusers (referral_name, first_name, last_name, username, password, transaction_pin, email, country, verification_code, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
+        // Insert user into database
+        $stmt = $pdo->prepare("INSERT INTO crypticusers (referral_name, first_name, last_name, username, password, transaction_pin, email, country, verification_code, is_verified) 
+                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
         
         if ($stmt->execute([$referral_name, $first_name, $last_name, $username, $password, $transaction_pin, $email, $country, $verification_code])) {
             
@@ -52,31 +60,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail = new PHPMailer(true);
             try {
                 $mail->isSMTP();
-                $mail->Host       = $_ENV['smtp_host'];
+                $mail->Host       = $smtp_host;
                 $mail->SMTPAuth   = true;
-                $mail->Username   = $_ENV['smtp_user'];
-                $mail->Password   = $_ENV['smtp_pass'];
+                $mail->Username   = $smtp_user;
+                $mail->Password   = $smtp_pass;
                 $mail->SMTPSecure = 'tls';
-                $mail->Port       = $_ENV['smtp_port'];
-            
-                $mail->setFrom($_ENV['smtp_user'], 'MuntMogul');
+                $mail->Port       = $smtp_port;
+
+                $mail->setFrom($smtp_user, 'MuntMogul');
                 $mail->addAddress($email, $first_name);
-            
+
+                /*$mail->isSMTP();
+                $mail->Host       = $_ENV['SMTP_HOST'];
+                $mail->SMTPAuth   = true;
+                $mail->Username   = $_ENV['SMTP_USER'];
+                $mail->Password   = $_ENV['SMTP_PASS'];
+                $mail->SMTPSecure = 'tls';
+                $mail->Port       = $_ENV['SMTP_PORT'];
+
+                $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);*/
+
                 $mail->isHTML(true);
                 $mail->Subject = "Email Verification";
                 $mail->Body    = "Hello $first_name, <br><br> Please verify your email by clicking the link below:<br>
-                                  <a href='https://cryptic.donatewater.ng/verify.php?code=$verification_code'>Verify Now</a>";
-                
+                                  <a href='https://7evenspirits.us/verify.php?code=$verification_code'>Verify Now</a>";
+
                 $mail->send();
                 $success = "Registration successful! Please check your email to verify your account.";
             } catch (Exception $e) {
                 $error = "Error sending verification email. Error: {$mail->ErrorInfo}";
             }
-
         } else {
             $error = "Error registering user.";
         }
     }
+
+    // Debugging Output
+    print_r($_POST);
+    print_r($_ENV);
+    var_dump(getenv('SMTP_USER'));
+    print_r($_SERVER);
 }
 ?>
 <!DOCTYPE html>
@@ -579,12 +602,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <img src="images/ethereum.png" class="img-responsive" alt="img">
                                 </div>
 
-                            </div>
-                            <div class="item">
-
-                                <div class="partner_img_wrapper float_left">
-                                    <img src="images/partner2.png" class="img-responsive" alt="img">
-                                </div>
                             </div>
                         </div>
                     </div>
