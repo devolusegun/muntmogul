@@ -1,5 +1,5 @@
 <?php
-require 'src/config.php';
+require 'config/config.php';
 
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
@@ -10,7 +10,7 @@ if (isset($_GET['code'])) {
     if ($user) {
         $updateStmt = $pdo->prepare("UPDATE crypticusers SET is_verified = 1 WHERE verification_code = ?");
         $updateStmt->execute([$code]);
-        echo "Your email has been successfully verified! You can now <a href='login.php'>Login</a>.";
+        echo "Your email has been successfully verified! You can now <a href='login'>Login</a>.";
     } else {
         echo "Invalid verification link!";
     }

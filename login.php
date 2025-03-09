@@ -17,20 +17,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user) {
             if ($user["is_verified"] == 0) {
                 $error = "Please verify your email before logging in.";
-            } elseif ($user && password_verify($password, $user["password"])) {
-                $_SESSION["user"] = $user["name"];
-                $_SESSION["email"] = $user["email"];
+            } elseif (password_verify($password, $user["password"])) {
+                // Store essential user details in session
+                $_SESSION["user"] = [
+                    "id" => $user["id"],
+                    "username" => $user["username"],
+                    "email" => $user["email"],
+                    "first_name" => $user["first_name"],
+                    "last_name" => $user["last_name"]
+                ];
 
-                //record user's latest login time and IP
+                // Record user's latest login time and IP
                 $update = $pdo->prepare("UPDATE crypticusers SET last_login = NOW(), last_ip = ? WHERE id = ?");
                 $update->execute([$_SERVER["REMOTE_ADDR"], $user["id"]]);
 
-                header("Location: dashboard"); // Redirect to dashboard after login
+                header("Location: dashboard"); // Redirect to dashboard
                 exit();
             } else {
                 $error = "Invalid email or password!";
             }
-        } else{
+        } else {
             $error = "Invalid email or password!";
         }
     } else {
@@ -459,7 +465,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </form>
 
                             <div class="dont_have_account float_left">
-                                <p>Don’t have an account? <a href="register">Sign up</a></p>
+                                <p>Don't have an account? <a href="register">Sign up</a></p>
                             </div>
                         </div>
                     </div>

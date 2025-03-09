@@ -1,10 +1,10 @@
 <?php
 session_start();
 require 'config/config.php';
-require 'load_env.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Ensure `.env` loads first
+require_once __DIR__ . '/load_env.php';
+loadEnv(__DIR__ . '/.env');
 
 // Include PHPMailer
 require 'src/PHPMailer.php';
@@ -14,11 +14,15 @@ require 'src/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Fetch SMTP credentials from environment
-$smtp_host = getenv('SMTP_HOST');
-$smtp_user = getenv('SMTP_USER');
-$smtp_pass = getenv('SMTP_PASS');
-$smtp_port = getenv('SMTP_PORT');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+// Fetch SMTP credentials from .env
+$smtp_host = getenv('SMTP_HOST') ?: $_ENV['SMTP_HOST'];
+$smtp_user = getenv('SMTP_USER') ?: $_ENV['SMTP_USER'];
+$smtp_pass = getenv('SMTP_PASS') ?: $_ENV['SMTP_PASS'];
+$smtp_port = getenv('SMTP_PORT') ?: $_ENV['SMTP_PORT'];
 
 if (!$smtp_host || !$smtp_user || !$smtp_pass || !$smtp_port) {
     die("SMTP configuration is missing. Please check your .env file.");
@@ -46,14 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if email already exists
     $stmt = $pdo->prepare("SELECT id FROM crypticusers WHERE email = ?");
     $stmt->execute([$email]);
-    
+
     if ($stmt->rowCount() > 0) {
         $error = "User already exists. Please register a new account.";
     } else {
         // Insert user into database
         $stmt = $pdo->prepare("INSERT INTO crypticusers (referral_name, first_name, last_name, username, password, transaction_pin, email, country, verification_code, is_verified) 
                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
-        
+
         if ($stmt->execute([$referral_name, $first_name, $last_name, $username, $password, $transaction_pin, $email, $country, $verification_code])) {
             
             // Send verification email
@@ -67,41 +71,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->SMTPSecure = 'tls';
                 $mail->Port       = $smtp_port;
 
-                $mail->setFrom($smtp_user, 'MuntMogul');
+                $mail->setFrom(getenv('MAIL_FROM_ADDRESS') ?: $_ENV['MAIL_FROM_ADDRESS'], getenv('MAIL_FROM_NAME') ?: $_ENV['MAIL_FROM_NAME']);
                 $mail->addAddress($email, $first_name);
-
-                /*$mail->isSMTP();
-                $mail->Host       = $_ENV['SMTP_HOST'];
-                $mail->SMTPAuth   = true;
-                $mail->Username   = $_ENV['SMTP_USER'];
-                $mail->Password   = $_ENV['SMTP_PASS'];
-                $mail->SMTPSecure = 'tls';
-                $mail->Port       = $_ENV['SMTP_PORT'];
-
-                $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);*/
 
                 $mail->isHTML(true);
                 $mail->Subject = "Email Verification";
                 $mail->Body    = "Hello $first_name, <br><br> Please verify your email by clicking the link below:<br>
-                                  <a href='https://7evenspirits.us/verify.php?code=$verification_code'>Verify Now</a>";
+                                  <a href='https://www.7evenspirits.us/verify?code=$verification_code'>Verify Now</a>";
 
                 $mail->send();
                 $success = "Registration successful! Please check your email to verify your account.";
             } catch (Exception $e) {
-                $error = "Error sending verification email. Error: {$mail->ErrorInfo}";
+                error_log("Error sending email: " . $mail->ErrorInfo);
+                $error = "Email sending failed. Please try again later.";
             }
         } else {
             $error = "Error registering user.";
         }
     }
-
-    // Debugging Output
-    print_r($_POST);
-    print_r($_ENV);
-    var_dump(getenv('SMTP_USER'));
-    print_r($_SERVER);
 }
+
+// Debug Again
+/*print_r($_ENV);
+print_r($_SERVER);
+echo "SMTP_HOST from getenv(): " . getenv('SMTP_HOST') . "<br>";
+exit;*/
 ?>
+
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -143,8 +139,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-
-
 </head>
 
 <body>
