@@ -83,7 +83,7 @@ if (!$user) {
                     <li><a href="index3.html">index III</a></li>
                 </ul>
             </li>-->
-            <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</h1></li>
+            <li><h6>hello, <?php echo $_SESSION["user"]["firstname"]; ?></h6></li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
 			<!--<li><a href="faq.html"> FAQ </a></li>-->
 			<li class="has-children">
@@ -91,36 +91,23 @@ if (!$user) {
                 <ul class="cd-secondary-dropdown icon_menu is-hidden">
                     <li class="go-back"><a href="#0">Menu</a></li>
                     <li><a href="#"></a></li>
-				   <li> <a href="changepassword">change password</a></li>
-					<!--<li><a href="change_pin.html">change pin</a></li>-->
-					<li><a href="deposited">deposit history</a></li>
-					<!--<li><a href="deposit_list.html">deposit list</a></li>-->
-					<li><a href="earnings">earnings history</a></li>
-					<!--<li> <a href="email_notification.html">email notification</a></li>   
-					<li><a href="exchange_history.html">exchange history</a></li> 
-					<li><a href="exchange_money.html">exchange money</a></li> -->
-					<li><a href="make_deposit">make deposit</a></li> 	
-					<!--<li> <a href="my_account.html">my account</a> </li> 	-->
-					<!--<li><a href="payment_request.html">payment request</a></li> 	
-					<li><a href="pending_history.html">pending history</a> </li> 	
-					<li> <a href="referral_earnings.html">referral earnings</a></li> 	
+                    <li><a href="viewprofile">view profile</a></li>
+                    <li><a href="password">change password</a></li>
+					<li>
+                        <a href="javascript:void(0);" onclick="openDepositModal()">
+                            <div class="c-menu-item__title">make deposit</div>
+                        </a>
+                    </li>
+					<li><a href="depositupload">upload deposit proof</a></li>
+                    <li><a href="getplan">choose plan</a></li>
+                    <li><a href="paymentrequest">withdraw</a></li>
+                    <li><a href="deposited">deposit history</a></li>
+					<li><a href="transactions">all transactions</a></li>
+					<!--<li><a href="pending_history.html">pending history</a> </li> 	
 					<li> <a href="referrals.html">referrals</a></li> -->
-					<li><a href="tickets.html">tickets</a> </li> 	
-					<!--<li><a href="transfer_fund.html">transfer fund</a> </li>-->
-				    <li><a href="view_profile.html">view profile</a></li> 									
+					<li><a href="tickets">tickets</a></li>								
                 </ul>
-            </li>  
-			<!--<li class="has-children">
-                <a href="#">blog</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
-                    <li class="go-back"><a href="#0">Menu</a></li>
-                    <li><a href="blog_category.html">blog category</a></li>
-                    <li><a href="blog_single.html">blog single</a></li>
-                </ul>
-            </li>-->   
-            <!--<li><a href="contact_us.html"> contact us </a></li>
-            <li><a href="login.html"> login </a></li>
-            <li><a href="register.html"> register </a></li>-->
+            </li>
         </ul>
         <!-- .cd-dropdown-content -->
     </nav>
@@ -174,8 +161,8 @@ if (!$user) {
                     <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
                         <div class="budge_noti"></div>
                         <ul class="list">
-                            <li><a href="#">2 New Messages</a></li>
-                            <li>
+                            <li><a href="#">No New Messages</a></li>
+                            <!--<li>
                                 <div class="crm_mess_main_box_wrapper">
                                     <div class="crm_mess_img_wrapper">
                                         <img src="images/mess1.jpg" alt="img">
@@ -223,7 +210,7 @@ if (!$user) {
                                 <div class="crm_mess_all_main_box_wrapper">
                                     <p><a href="#">See All</a></p>
                                 </div>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -397,13 +384,13 @@ if (!$user) {
 
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
 
-                        <h1>My Account </h1>
+                        <h1>srolling msgs here.. </h1>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
                                 <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
-                                <li>My Account</li>
+                                <li>Dashboard</li>
                             </ul>
                         </div>
                     </div>
@@ -421,33 +408,23 @@ if (!$user) {
                         <li class="crm_navi_icon">
                             <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-profile"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
-                                    </li>-->
-                                    <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a>
-                                    </li>
-                                    <li><a href="changepassword"><i class="fa fa-circle"></i>change password</a>
-                                    </li>
-                                    <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a>
-                                    </li>
-									<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a>
-                                    </li>-->
+                                    <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
+                                    <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>
+                                    <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
+                                    <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
+									<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                             <a href="view_profile.html">
-                                <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i>
-                                </div>
+                                <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i></div>
                             </a>
                             <ul>
-                                 <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
-                                 </li>-->
-                                 <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a>
-                                 </li>                      
-                                 <li><a href="changepassword"><i class="fa fa-circle"></i>change password</a>
-                                 </li>
-                                 <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a>
-                                 </li>
+                                 <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
+                                 <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>                      
+                                 <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
+                                 <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
 								<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                             </ul>
                         </li>
@@ -455,8 +432,7 @@ if (!$user) {
                     
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a>
-                            </div>
+                            <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a></div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
                             <a href="javascript:void(0);" onclick="openDepositModal()">
@@ -466,19 +442,19 @@ if (!$user) {
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a></div>
+                            <div class="c-menu__item__inner"><a href="getplan"><i class="flaticon-settings"></i></a></div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="make_deposit.html">
+                            <a href="getplan">
                                 <div class="c-menu-item__title">choose a plan </div>
                             </a>
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="deposit_upload.php"><i class="flaticon-movie-tickets"></i></a>
+                            <div class="c-menu__item__inner"><a href="depositupload"><i class="flaticon-movie-tickets"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="depositupload.php"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
+                                    <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
                                     <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a> </li>
                                     <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a></li>-->
                                     <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
@@ -492,26 +468,20 @@ if (!$user) {
                                 </div>
                             </a>
                             <ul>
-                                <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a>
-                                </li>
-                                <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a>
-                                </li>
-                                <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a>
-                                </li>-->
-                                <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a>
-                                </li>
-                                <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
-                                </li>-->
+                                <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
+                                <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a> </li>
+                                <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a> </li>-->
+                                <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
+                                <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a> </li>-->
                             </ul>
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="investment.html"><i class="flaticon-file"></i></a>
-                            </div>
+                            <div class="c-menu__item__inner"><a href="investments"><i class="flaticon-file"></i></a> </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="investment">
+                            <a href="investments">
                                 <div class="c-menu-item__title">view plans</div>
                             </a>
                         </li>
@@ -523,33 +493,27 @@ if (!$user) {
                                     <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
                                     <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
 									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
+									<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
+									<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                             <a href="tickets">
-                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i>
-                                </div>
+                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i></div>
                             </a>
                             <ul>
-                              <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
-                                    </li>-->
+                              <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
                                     <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
-									 <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
-                                    </li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
-                                    </li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
-                                    </li>-->
+									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+									<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a> </li>
+									<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                             </ul>
                         </li>
                     </ul>
 					  <!--<ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-profile"></i></a>
-                            </div>
+                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-profile"></i></a></div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
                             <a href="make_deposit.html">
@@ -605,22 +569,11 @@ if (!$user) {
 
             <!--  account wrapper start -->
             <div class="account_wrapper float_left">
-
                 <div class="row">
-
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper">
-
                             <h3>my account</h3>
-
                         </div>
-                        <!--<div class="payment_gateway_wrapper">
-                            <select>
-                                <option selected>choose payment gateway</option>
-                                <option value="1">paypal</option>
-                                <option value="2">bitcoin</option>
-                            </select>
-                        </div>-->
                     </div>
                     <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
                         <div class="investment_box_wrapper color_1 float_left">
@@ -788,14 +741,10 @@ if (!$user) {
             <!--  account wrapper end -->
             <!--  transactions wrapper start -->
             <div class="last_transaction_wrapper float_left">
-
                 <div class="row">
-
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper">
-
                             <h4>LAST 5 TRANSACTIONS</h4>
-
                         </div>
                     </div>
                     <div class="crm_customer_table_main_wrapper float_left">
@@ -813,15 +762,12 @@ if (!$user) {
                                         <th class="width_table1">payment mode</th>
                                         <th class="width_table1">date</th>
                                         <th class="width_table1">options</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>COMM1004411</h5>
                                                 </div>
@@ -836,7 +782,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">03/07/2019</div>
                                         </td>
@@ -856,7 +801,6 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
 
@@ -874,7 +818,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -894,10 +837,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>UXINT1570066</h5>
                                                 </div>
@@ -912,7 +853,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -932,10 +872,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -950,7 +888,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -970,10 +907,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -988,7 +923,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1008,10 +942,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -1026,7 +958,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1046,10 +977,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -1064,7 +993,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1084,10 +1012,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>AWNT1570066</h5>
                                                 </div>
@@ -1102,7 +1028,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1122,10 +1047,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>OWNT1570066</h5>
                                                 </div>
@@ -1140,7 +1063,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1160,10 +1082,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -1198,10 +1118,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -1216,7 +1134,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1236,10 +1153,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>UINT1570066</h5>
                                                 </div>
@@ -1254,7 +1169,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1274,10 +1188,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>YYNT1570066</h5>
                                                 </div>
@@ -1292,7 +1204,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">payza</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1312,10 +1223,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -1330,7 +1239,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1350,10 +1258,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT1570066</h5>
                                                 </div>
@@ -1368,7 +1274,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">Bitcoin</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/07/2019</div>
                                         </td>
@@ -1388,10 +1293,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>TQNT1570066</h5>
                                                 </div>
@@ -1426,10 +1329,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>DINT2676563</h5>
                                                 </div>
@@ -1444,7 +1345,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">payza</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">20/08/2019</div>
                                         </td>
@@ -1464,10 +1364,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>EXCR1004425</h5>
                                                 </div>
@@ -1482,7 +1380,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">PerfectMoney</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">28/08/2019</div>
                                         </td>
@@ -1502,10 +1399,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>EXCS1004424</h5>
                                                 </div>
@@ -1520,7 +1415,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">payza</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">2/09/2019</div>
                                         </td>
@@ -1540,10 +1434,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>EQCS1004424</h5>
                                                 </div>
@@ -1558,7 +1450,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">OKpay</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">2/09/2019</div>
                                         </td>
@@ -1578,10 +1469,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>COMM1004411</h5>
                                                 </div>
@@ -1596,7 +1485,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">OKpay</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">04/09/2019</div>
                                         </td>
@@ -1616,10 +1504,8 @@ if (!$user) {
                                         </td>
                                     </tr>
                                     <tr class="background_white">
-
                                         <td>
                                             <div class="media cs-media">
-
                                                 <div class="media-body">
                                                     <h5>KQM1004411</h5>
                                                 </div>
@@ -1634,7 +1520,6 @@ if (!$user) {
                                         <td>
                                             <div class="pretty p-svg p-curve">paypal</div>
                                         </td>
-
                                         <td class="flag">
                                             <div class="pretty p-svg p-curve">04/09/2019</div>
                                         </td>
@@ -1655,7 +1540,6 @@ if (!$user) {
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
@@ -1697,22 +1581,22 @@ if (!$user) {
                 <!-- Options will be dynamically populated -->
             </select>
 
-            <h4>Deposit Address:</h4>
-            <input type="text" id="depositAddress" readonly>
-            <button onclick="copyAddress()">Copy</button>
-
-            <h4>QR Code:</h4>
-            <img id="qrCodeImage" src="" alt="QR Code">
-
+            <div class="sw_heading_wraper">
+                <h4 >Deposit Address:</h4>
+                <input type="text" id="depositAddress" readonly>
+                <button onclick="copyAddress()">Copy</button>
+            </div>
+            <div class="sw_heading_wraper">
+                <h6>Scan Code:</h6>
+                <img id="qrCodeImage" src="" alt="QR Code">
+            </div>
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>
     </div>
 
     <!-- JavaScript for Modal Functionality -->
     <script>
-
         let cryptoData = {};  // Stores JSON data globally
-
         // Load JSON Data on Page Load
         fetch("assets/crypto_addresses.json")
             .then(response => response.json())

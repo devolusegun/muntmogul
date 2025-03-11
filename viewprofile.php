@@ -7,7 +7,7 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 
-// ✅ Fetch User Data
+// Fetch User Data
 $stmt = $pdo->prepare("SELECT first_name, last_name, email, address, city, state, country, profile_picture FROM crypticusers WHERE id = ?");
 $stmt->execute([$_SESSION["user"]["id"]]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,11 +26,11 @@ if (!$user) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Profile Details</title>
+    <title>Dashboard | Profile</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="description" content="Savehyip" />
-    <meta name="keywords" content="Savehyip" />
-    <meta name="author" content="" />
+    <meta name="description" content="Muntmogul" />
+    <meta name="keywords" content="Muntmogul" />
+    <meta name="author" content="7evenspirits" />
     <meta name="MobileOptimized" content="320" />
     <!--Template style -->
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
@@ -82,80 +82,31 @@ if (!$user) {
                     <li><a href="index3.html">index III</a></li>
                 </ul>
             </li>-->
-            <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</h1></li>
+            <li><!--<h1>hi, </h1>--></li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
 			<!--<li><a href="faq.html"> FAQ </a></li>-->
 			<li class="has-children">
               <a href="#">dashboard</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
+              <ul class="cd-secondary-dropdown icon_menu is-hidden">
                     <li class="go-back"><a href="#0">Menu</a></li>
-                      <li>
-                      <a href="#"></a>
-					</li>
-				   <li>
-                      <a href="change_password.html">change password</a>
-					</li>
+                    <li><a href="#"></a></li>
+                    <li><a href="viewprofile">view profile</a></li>
+                    <li><a href="password">change password</a></li>
 					<li>
-                      <a href="change_pin.html">change pin</a>
-					</li>
-					<li>
-                      <a href="deposit_history.html">deposit history</a>
-                  </li>
-					<!--<li>
-                      <a href="deposit_list.html">deposit list</a>
-                  </li>-->
-					<li>
-                      <a href="earnings_history.html">earnings history</a>
-                  </li>
-					<!--<li>
-                      <a href="email_notification.html">email notification</a>
-                  </li>   
-					<li>
-                      <a href="exchange_history.html">exchange history</a>
-                  </li> 
-					<li>
-						<a href="exchange_money.html">exchange money</a>
-                  </li> -->
-					<li>
-                      <a href="make_deposit.html">make deposit</a>
-                  </li> 	
-					<li>
-                      <a href="my_account.html">my account</a>
-                  </li> 	
-					<!--<li>
-                      <a href="payment_request.html">payment request</a>
-                  </li> 	
-					<li>
-                      <a href="pending_history.html">pending history</a>
-                  </li> 	
-					<li>
-                      <a href="referral_earnings.html">referral earnings</a>
-                  </li> 	
-					<li>
-                      <a href="referrals.html">referrals</a>
-                  </li> -->
-					<li>
-                      <a href="tickets.html">tickets</a>
-                  </li> 	
-					<!--<li>
-                      <a href="transfer_fund.html">transfer fund</a>
-                  </li>-->
-				<li>
-                      <a href="view_profile.html">view profile</a>
-                  </li> 									
-              </ul>
-            </li>  
-			<!--<li class="has-children">
-                <a href="#">blog</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
-                    <li class="go-back"><a href="#0">Menu</a></li>
-                    <li><a href="blog_category.html">blog category</a></li>
-                    <li><a href="blog_single.html">blog single</a></li>
+                        <a href="javascript:void(0);" onclick="openDepositModal()">
+                            <div class="c-menu-item__title">make deposit</div>
+                        </a>
+                    </li>
+					<li><a href="depositupload">upload deposit proof</a></li>
+                    <li><a href="getplan">choose plan</a></li>
+                    <li><a href="paymentrequest">withdraw</a></li>
+                    <li><a href="deposited">deposit history</a></li>
+					<li><a href="transactions">all transactions</a></li>
+					<!--<li><a href="pending_history.html">pending history</a> </li> 	
+					<li> <a href="referrals.html">referrals</a></li> -->
+					<li><a href="tickets">tickets</a></li>								
                 </ul>
-            </li>-->   
-            <!--<li><a href="contact_us.html"> contact us </a></li>
-            <li><a href="login.html"> login </a></li>
-            <li><a href="register.html"> register </a></li>-->
+            </li>
         </ul>
         <!-- .cd-dropdown-content -->
     </nav>
@@ -210,8 +161,8 @@ if (!$user) {
                     <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
                         <div class="budge_noti"></div>
                         <ul class="list">
-                            <li><a href="#">2 New Messages</a></li>
-                            <li>
+                            <li><a href="#">No New Messages</a></li>
+                            <!--<li>
                                 <div class="crm_mess_main_box_wrapper">
                                     <div class="crm_mess_img_wrapper">
                                         <img src="images/mess1.jpg" alt="img">
@@ -259,7 +210,7 @@ if (!$user) {
                                 <div class="crm_mess_all_main_box_wrapper">
                                     <p><a href="#">See All</a></p>
                                 </div>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -267,13 +218,13 @@ if (!$user) {
                     <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img"><?php echo $_SESSION["user"]; ?> <span class="hidden_xs_content"></span></span>
                         <ul class="list">
                             <li><a href="#"><i class="flaticon-profile"></i> Profile</a></li>
-                            <li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
-                            <!--<li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
+                            <!--<li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
+                            <li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
                             <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a></li>
                             <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a></li>
-                            <li><a href="#"><i class="flaticon-settings"></i> Setting</a>--></li>
+                            <li><a href="#"><i class="flaticon-settings"></i> Setting</a></li>
                             <li><a href="#"><i class="flaticon-help"></i> Support</a></li>
-                            <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a></li>-->
+                            <li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a></li>-->
                             <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a></li>
                         </ul>
                     </div>
@@ -297,7 +248,7 @@ if (!$user) {
                                 </li> 								
                             </ul>
                         </li>-->   
-                        <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</h1></li>
+                        <li><!--<h1></h1>--></li>
                         <!--<li><a href="investment.html" class="gc_main_navigation">investment plan</a></li> -->
 						<!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
@@ -432,13 +383,13 @@ if (!$user) {
 
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
 
-                        <h1> Profile</h1>
+                        <h1> srolling news here..</h1>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
                                 <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
-                                <li>View Profile</li>
+                                <li>My Profile</li>
                             </ul>
                         </div>
                     </div>
@@ -454,36 +405,26 @@ if (!$user) {
             <nav class="c-menu js-menu" id="mynavi">
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="view_profile.html"><i class="flaticon-profile"></i></a>
+                        <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-profile"></i></a>
                             <ul class="crm_hover_menu">
-                                <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
-                                    </li>-->
-                                <li><a href="view_profile.html"><i class="fa fa-circle"></i> my profile</a>
-                                    </li>
-                                <li><a href="change_password.html"><i class="fa fa-circle"></i>change password</a>
-                                    </li>
-                                <li><a href="email_notification.html"><i class="fa fa-circle"></i>withdraw</a>
-                                    </li>
-								<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a>
-                                    </li>-->
+                                <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
+                                <li><a href="#"><i class="fa fa-circle"></i> my profile</a> </li>
+                                <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
+                                <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
+								<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                             </ul>
                         </div>
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                         <a href="view_profile.html">
-                            <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i></div>
+                            <div class="c-menu-item__title"><span>my profile</span><i class="no_badge">3</i></div>
                         </a>
                         <ul>
-                            <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
-                                 </li>-->
-                            <li><a href="view_profile.html"><i class="fa fa-circle"></i> my profile</a>
-                                 </li>                      
-                            <li><a href="change_password.html"><i class="fa fa-circle"></i>change password</a>
-                                 </li>
-                            <li><a href="payment_request.html"><i class="fa fa-circle"></i>withdraw</a>
-                                 </li>
-							<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a>
-                                 </li>-->
+                            <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a> </li>-->
+                            <li><a href="#"><i class="fa fa-circle"></i> my profile</a></li>                      
+                            <li><a href="password"><i class="fa fa-circle"></i>change password</a> </li>
+                            <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a> </li>
+							<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                         </ul>
                     </li>
                 </ul>
@@ -500,56 +441,56 @@ if (!$user) {
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a>
+                        <div class="c-menu__item__inner"><a href="getplan"><i class="flaticon-settings"></i></a>
                         </div>
                     </li>
                     <li class="c-menu__item crm_navi_icon_cont">
-                        <a href="make_deposit.html">
+                        <a href="getplan">
                             <div class="c-menu-item__title">choose a plan </div>
                         </a>
                     </li>
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="deposit_upload.php"><i class="flaticon-movie-tickets"></i></a>
+                        <div class="c-menu__item__inner"><a href="depositupload"><i class="flaticon-movie-tickets"></i></a>
                             <ul class="crm_hover_menu">
-                                <li><a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a> </li>
-                                <li><a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a></li>
+                                <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a> </li>
+                                <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a></li>
                                 <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a></li>-->
-                                <li><a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a></li>
+                                <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
                                 <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a> </li>-->
                             </ul>
                         </div>
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                        <a href="deposit_upload.php">
+                        <a href="depositupload">
                             <div class="c-menu-item__title"><span>finances</span><i class="no_badge">3</i></div>
                         </a>
                         <ul>
-                            <li><a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
-                            <li><a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a></li>
+                            <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
+                            <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a></li>
                             <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a></li>-->
-                            <li><a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a> </li>
+                            <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a> </li>
                             <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a></li>-->
                         </ul>
                     </li>
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="investment.html"><i class="flaticon-file"></i></a></div>
+                        <div class="c-menu__item__inner"><a href="investments"><i class="flaticon-file"></i></a></div>
                     </li>
                     <li class="c-menu__item crm_navi_icon_cont">
-                        <a href="investment.html">
+                        <a href="investments">
                             <div class="c-menu-item__title">view plans</div>
                         </a>
                     </li>
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="tickets.html"><i class="flaticon-help"></i></a>
+                        <div class="c-menu__item__inner"><a href="tickets"><i class="flaticon-help"></i></a>
                             <ul class="crm_hover_menu">
                                 <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
-                                <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+                                <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
 								<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
 								<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
 								<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
@@ -557,12 +498,12 @@ if (!$user) {
                         </div>
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                        <a href="tickets.html">
+                        <a href="tickets">
                             <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i> </div>
                         </a>
                         <ul>
                             <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
-                            <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+                            <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
 							<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
 							<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
 							<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
@@ -627,7 +568,7 @@ if (!$user) {
             <div class="row">
                 <div class="col-md-12">
                     <div class="sv_heading_wraper">
-                        <h3>Profile</h3>
+                        <h4>Profile</h4>
                     </div>
                 </div>
 
@@ -709,7 +650,7 @@ if (!$user) {
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="crm_left_footer_cont">
-                            <p>2019 Copyright © <a href="#"> savehyip </a> . All Rights Reserved.</p>
+                            <p>2025 Copyright © <a href="#"> muntmogul </a> . All Rights Reserved.</p>
                         </div>
                     </div>
 

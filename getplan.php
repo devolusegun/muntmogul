@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Savehyip Dashboard HTML Template</title>
+    <title>Profile Details</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="Savehyip" />
     <meta name="keywords" content="Savehyip" />
@@ -32,6 +32,62 @@
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
 	 <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+
+    <script>
+        let selectedPlan = null;
+        let minDeposit = 0;
+        let selectedCrypto = null;
+        let userBalances = <?= json_encode($usdBalances); ?>; // USD Equivalent of Crypto Balances
+
+        // ✅ Function to Select a Plan
+        function selectPlan(plan, minAmount) {
+            selectedPlan = plan;
+            minDeposit = minAmount;
+
+            // ✅ Highlight selected plan
+            document.querySelectorAll(".investment_content_wrapper").forEach(box => box.classList.remove("selected"));
+            document.getElementById(plan).classList.add("selected");
+
+            document.getElementById("selectedPlan").innerText = plan.charAt(0).toUpperCase() + plan.slice(1);
+        }
+
+        // ✅ Update Account Balance Based on Selected Crypto
+        function updateBalance(crypto) {
+            selectedCrypto = crypto;
+            document.getElementById("accountBalance").innerText = "$" + userBalances[crypto].toLocaleString();
+        }
+
+        // ✅ Function to Submit Subscription
+        function submitSubscription() {
+            if (!selectedPlan) {
+                alert("Please choose a plan first.");
+                return;
+            }
+            if (!selectedCrypto) {
+                alert("Please choose a payment mode.");
+                return;
+            }
+            if (userBalances[selectedCrypto] < minDeposit) {
+                alert("Insufficient balance for this plan.");
+                return;
+            }
+
+            fetch("process_subscription.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ plan: selectedPlan, crypto: selectedCrypto })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    userBalances[selectedCrypto] -= minDeposit; // Deduct balance in UI
+                    updateBalance(selectedCrypto);
+                    document.getElementById("selectedPlan").innerText = selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1);
+                }
+            });
+        }
+    </script>
 </head>
 <!-- color picker start -->
 
@@ -415,13 +471,13 @@
 
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
 
-                        <h1>Profile</h1>
+                        <h4> savings plans</h4>
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
                                 <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
-                                <li>View Profile</li>
+                                <li>choose a plan</li>
                             </ul>
                         </div>
                     </div>
@@ -483,11 +539,12 @@
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a></div>
+                        <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a>
+                        </div>
                     </li>
                     <li class="c-menu__item crm_navi_icon_cont">
                         <a href="make_deposit.html">
-                            <div class="c-menu-item__title">choose a plan</div>
+                            <div class="c-menu-item__title">choose a plan </div>
                         </a>
                     </li>
                 </ul>
@@ -575,8 +632,6 @@
             <div class="userdet uderid">
                 <h3><?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?></h3>
                 <dl class="userdescc">
-                    <dt>Registration Date</dt>
-                    <dd>: &nbsp; <?php echo $user["created_at"]; ?></dd>
                     <dt>Last Login</dt>
                     <dd>: &nbsp; <?php echo $user["last_login"]; ?></dd>
                     <dt>Last Access IP</dt>
@@ -589,185 +644,185 @@
             </div>
 
             <div class="userdet user_transcation">
-                <h3>Available Balance</h3>
+                <h3> Currently Subscribed Plan</h3>
                 <dl class="userdescc">
-                    <dt>Bitcoin</dt>
-                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
-                    <dt>Ethereum</dt>
-                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
-                    <dt>Litecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
-                    <dt>Dogecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
+                    <!-- Display Subscribed Plan -->
+                    <dt><p>Active: </p></dt>
+                    <dd><p><span id="selectedPlan"><?= $_SESSION['subscribed_plan']; ?></span></p></dd>
                 </dl>
             </div>
         </div>
-        <!--  my account wrapper end -->    
-            
-        <!-- Profile Section Start -->
-        <div class="view_profile_wrapper_top float_left">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="sv_heading_wraper">
-                        <h4>Profile</h4>
+        <!--  my account wrapper end -->
+
+        <!--  plan sub section start -->
+            <div class="plan_investment_wrapper float_left">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                        <div class="sv_heading_wraper">
+                            <h4>Plan Details</h4>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
+                        <div class="investment_box_wrapper sv_pricing_border float_left">
+                            <div class="investment_icon_circle">
+                                <i class="flaticon-movie-tickets"></i>
+                            </div>
+                            <div class="investment_border_wrapper"></div>
+                            <div id="gold" class="investment_content_wrapper" onclick="selectPlan('gold', 50000)">
+                                <h1>Gold Plan</h1>
+                                <p>Min Deposit: $50,000.00</p>
+                                <p>Max Deposit: $100,000.00</p>
+                                <p>Up to 52% for 30 Days</p>
+                                <p>Compound Available</p>
+                                <div class="about_btn plans_btn">
+                                    <ul>
+                                        <li>
+                                        <a href="#">Choose Plan</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>      
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
+                        <div class="investment_box_wrapper sv_pricing_border float_left">
+                            <div class="investment_icon_circle red_info_circle">
+                                <i class="flaticon-invoice"></i>
+                            </div>
+                            <div class="investment_border_wrapper red_border_wrapper"></div>
+                            <div id="copper" class="investment_content_wrapper red_content_wrapper" onclick="selectPlan('copper', 15000)">
+                                <h1>Copper Plan</h1>
+                                <p>Min Deposit: $15,000</p>
+                                <p>Max Deposit: $50,100</p>
+                                <p>Up to 37% for 30 Days</p>
+                                <p>Compound Available</p>
+                                <!--<button>Select Plan</button>-->
+                                <div class="about_btn plans_btn red_btn_plans">
+                                    <ul>
+                                        <li>
+                                            <a href="#">choose plan</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
+                        <div class="investment_box_wrapper sv_pricing_border float_left">
+                            <div class="investment_icon_circle blue_icon_circle">
+                                <i class="flaticon-progress-report"></i>
+                            </div>
+                            <div class="investment_border_wrapper blue_border_wrapper"></div>
+                            <div id="bronze" class="investment_content_wrapper blue_content_wrapper" onclick="selectPlan('bronze', 5000)">
+                                <h1>Bronze Plan</h1>
+                                <p>Min Deposit: $5,000</p>
+                                <p>Max Deposit: $15,100</p>
+                                <p>Up to 28% for 30 Days</p>
+                                <p>Compound Available</p>
+                                <div class="about_btn plans_btn blue_btn_plans">
+                                    <ul>
+                                        <li>
+                                            <a href="#">choose plan</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
+                        <div class="investment_box_wrapper sv_pricing_border float_left">
+                            <div class="investment_icon_circle green_info_circle">
+                                <i class="flaticon-file"></i>
+                            </div>
+                            <div class="investment_border_wrapper green_border_wrapper"></div>
+                            <div id="silver" class="investment_content_wrapper green_content_wrapper" onclick="selectPlan('silver', 2000)">
+                                <h1>Silver Plan</h1>
+                                <p>Min Deposit: $2,000</p>
+                                <p>Max Deposit: $5,100</p>
+                                <p>Up to 20% for 30 Days</p>
+                                <p>Compound Available</p>
+                                <div class="about_btn plans_btn green_plan_btn">
+                                    <ul>
+                                        <li>
+                                            <a href="#">choose plan</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="view_profile_wrapper float_left">
-                        <div class="row">
-                            <!-- Profile Image Upload Section -->
-                            <div class="col-md-12">
-                                <div class="profile_view_img">
-                                    <!--<img id="profileImage" src="<//?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/user.png'; ?>" alt="Profile Picture">-->
-                                    <img id="profileImage" src="uploads/profile_pictures/<?= $user['profile_picture'] ?: 'default.png'; ?>" alt="Profile Picture">
-                                </div>
-                                <div class="profile_width_cntnt">
-                                    <h4>JPEG or PNG (500x500px)</h4>
-                                    <form id="profilePicForm" enctype="multipart/form-data">
-                                        <input type="file" id="profilePicInput" name="profile_picture" accept="image/jpeg, image/png" required>
-                                        <!--<button type="button" onclick="uploadProfilePicture()">Upload</button>-->
-                                        <a href="#" class="upload-btn" onclick="uploadProfilePicture()">Upload</a>
-                                    </form>
-                                </div>
-                            </div>
+            </div>
+            <!--  plan sub section end -->
+            <!--  payment mode wrapper start -->
+            <div class="payment_mode_wrapper float_left">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                        <div class="sv_heading_wraper">
 
-                            <!-- Editable Profile Info Section -->
-                            <div class="col-md-6">
-                                <form id="profileForm">
-                                    <ul class="profile_list">
-                                        <li><span class="detail_left_part">First Name</span> <span class="detail_right_part"><?= htmlspecialchars($user["first_name"]); ?></span></li>
-                                        <li><span class="detail_left_part">Last Name</span> <span class="detail_right_part"><?= htmlspecialchars($user["last_name"]); ?></span></li>
-                                        <li><span class="detail_left_part">Email Address</span> <span class="detail_right_part"><?= htmlspecialchars($user["email"]); ?></span></li>
-                                        <li><span class="detail_left_part">Address</span> <input type="text" id="address" value="<?= htmlspecialchars($user["address"]); ?>" required></li>
-                                        <li><span class="detail_left_part">City</span> <input type="text" id="city" value="<?= htmlspecialchars($user["city"]); ?>" required></li>
-                                        <li><span class="detail_left_part">State</span> <input type="text" id="state" value="<?= htmlspecialchars($user["state"]); ?>" required></li>
-                                        <li><span class="detail_left_part">Country</span> <input type="text" id="country" value="<?= htmlspecialchars($user["country"]); ?>" required></li>
-                                    </ul>
-                                </form>
-                            </div>
+                            <h3>choose payment mode</h3>
 
-                            <!-- Save Changes Button -->
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                        <div class="payment_radio_btn_wrapper float_left">
+                            <div class="radio">
+                                <input type="radio" name="crypto" id="litecoin" value="LTC" onclick="updateBalance('LTC')">
+                                <label for="litecoin"><img src="images/litecoin.png" alt="Litecoin"> Litecoin</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" name="crypto" id="dogecoin" value="DOGE" onclick="updateBalance('DOGE')">
+                                <label for="dogecoin"><img src="images/dogecoin.png" alt="Dogecoin"> Dogecoin</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" name="crypto" id="ethereum" value="ETH" onclick="updateBalance('ETH')">
+                                <label for="ethereum"><img src="images/ethereum.png" alt="Ethereum"> Ethereum</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" name="crypto" id="bitcoin" value="BTC" onclick="updateBalance('BTC')">
+                                <label for="bitcoin"><img src="images/bitcoin.png" alt="Bitcoin"> Bitcoin</label>
+                            </div>
+                            <div class="about_btn acc_balance_btn float_left">
+                                <p>YOUR ACCOUNT BALANCE :</p>
+                                <ul>
+                                    <li>
+                                        <p><span id="accountBalance"><a>$0.00</a></span></p>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="about_btn float_left">
                                 <ul>
-                                    <li><a href="#" onclick="showTransactionPinModal()">Save Changes</a></li>
+                                    <li>
+                                        <a href="#" onclick="submitSubscription()">submit</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-
-                        <!-- Transaction PIN Modal -->
-                        <div class="modal fade" id="transactionPinModal" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <div class="sv_question_pop float_left">
-                                        <h1>User Security</h1>
-                                        <p>Enter your Transaction PIN to confirm changes</p>
-                                        <div class="change_field">
-                                            <input type="password" id="transactionPin" placeholder="Enter Transaction PIN" required>
-                                        </div>
-                                        <div class="question_sec float_left">
-                                            <div class="about_btn ques_Btn">
-                                                <ul>
-                                                    <li><a href="#" onclick="saveProfileChanges()">Confirm</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cancel_wrapper">
-                                                <a href="#" data-dismiss="modal">Cancel</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                         </div>
-
-                    </div> <!-- view_profile_wrapper -->
-                </div> <!-- col-md-12 -->
-            </div> <!-- row -->
-        </div> <!-- view_profile_wrapper_top -->
-        <!--  profile wrapper end -->
-        <!--  footer  wrapper start -->
-        <div class="copy_footer_wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="crm_left_footer_cont">
-                            <p>2019 Copyright © <a href="#"> savehyip </a> . All Rights Reserved.</p>
-                        </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-    </div>
-    <!--  footer  wrapper end -->      
+            <!--  payment mode wrapper end -->
+            <!--  footer  wrapper start -->
+            <div class="copy_footer_wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="crm_left_footer_cont">
+                                <p>2025 Copyright © <a href="#"> MuntMogul </a> . All Rights Reserved.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+         </div>
+       <!--  footer  wrapper end -->      
     <!-- main box wrapper End-->
-
-    <script>
-        function showTransactionPinModal() {
-            document.getElementById('transactionPinModal').style.display = 'block';
-        }
-
-        function saveProfileChanges() {
-            var formData = new FormData();
-            formData.append("transaction_pin", document.getElementById("transactionPin").value);
-            formData.append("address", document.getElementById("address").value);
-            formData.append("city", document.getElementById("city").value);
-            formData.append("state", document.getElementById("state").value);
-            formData.append("country", document.getElementById("country").value);
-
-            // Check if a new profile picture is selected
-            var profileImage = document.getElementById("profileImageInput").files[0];
-            if (profileImage) {
-                formData.append("profile_picture", profileImage);
-            }
-
-            fetch("update_profile.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-
-                if (data.success) {
-                    // Close Transaction PIN Modal on success
-                    document.getElementById("transactionPinModal").style.display = "none";
-
-                    // Update profile image if changed
-                    if (data.image_path) {
-                        document.getElementById("profileImagePreview").src = data.image_path;
-                    }
-                }
-            })
-            .catch(error => console.error("Error:", error));
-        }
-
-        function uploadProfilePicture() {
-            var fileInput = document.getElementById("profilePicInput");
-            if (!fileInput.files.length) {
-                alert("Please select an image to upload.");
-                return;
-            }
-
-            var formData = new FormData();
-            formData.append("profile_picture", fileInput.files[0]);
-
-            fetch("upload_profile_picture.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                if (data.success) {
-                    document.getElementById("profileImage").src = data.image_path;
-                }
-            })
-            .catch(error => console.error("Error:", error));
-        }
-    </script>
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>

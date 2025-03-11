@@ -9,7 +9,7 @@ if (!isset($_SESSION["user"])) {
 $userId = $_SESSION["user"]["id"];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // ✅ Read JSON Data
+    // Read JSON Data
     $data = json_decode(file_get_contents("php://input"), true);
 
     $currentPassword = $data["current_password"] ?? '';
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die(json_encode(["success" => false, "message" => "Password must be at least 8 characters, include an uppercase letter and a number."]));
     }
 
-    // ✅ Fetch user’s current password
+    // Fetch user’s current password
     $stmt = $pdo->prepare("SELECT password FROM crypticusers WHERE id = ?");
     $stmt->execute([$userId]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die(json_encode(["success" => false, "message" => "Current password is incorrect."]));
     }
 
-    // ✅ Hash new password & update
+    // Hash new password & update
     $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
     $updateStmt = $pdo->prepare("UPDATE crypticusers SET password = ? WHERE id = ?");
     $updateStmt->execute([$hashedPassword, $userId]);
@@ -45,3 +45,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     die(json_encode(["success" => true, "message" => "Password changed successfully!"]));
 }
 ?>
+
