@@ -1,0 +1,25 @@
+.news-reel-container {
+    width: 100%;
+    background-color: #14abf6;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 8px 0;
+}
+
+.news-reel {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    animation: scrollNews 15s linear infinite;
+}
+
+@keyframes scrollNews {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

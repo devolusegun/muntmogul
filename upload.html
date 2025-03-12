@@ -7,13 +7,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | Plan Subscription</title>
+    <title>Dashboard | Upload Deposit</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="Muntmogul" />
     <meta name="keywords" content="Muntmogul" />
     <meta name="author" content="7evenspirits" />
     <meta name="MobileOptimized" content="320" />
     <!--Template style -->
+    <link rel="stylesheet" type="text/css" href="css/news.css" />
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/fonts.css" />
@@ -88,17 +89,6 @@
                     <li><a href="tickets">tickets</a></li>
                 </ul>
             </li>
-            <!--<li class="has-children">
-                <a href="#">blog</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
-                    <li class="go-back"><a href="#0">Menu</a></li>
-                    <li><a href="blog_category.html">blog category</a></li>
-                    <li><a href="blog_single.html">blog single</a></li>
-                </ul>
-            </li>-->
-            <!--<li><a href="contact_us.html"> contact us </a></li>
-            <li><a href="login.html"> login </a></li>
-            <li><a href="register.html"> register </a></li>-->
         </ul>
         <!-- .cd-dropdown-content -->
     </nav>
@@ -163,12 +153,33 @@
 
             <div class="top_header_right_wrapper dashboard_right_Wrapper">
                 <div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
-                    <div class="nice-select budge_noti_wrapper" tabindex="0">
-                        <span class="current"><i class="flaticon-notification">..</i></span>
+                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i
+                                class="flaticon-notification"></i></span>
                         <div class="budge_noti"></div>
                         <ul class="list">
                             <li><a href="#">No New Messages</a></li>
-                            <!--
+                            <!--<li>
+                                <div class="crm_mess_main_box_wrapper">
+                                    <div class="crm_mess_img_wrapper">
+                                        <img src="images/mess1.jpg" alt="img">
+                                    </div>
+                                    <div class="crm_mess_img_cont_wrapper">
+                                        <h4>Mr.Farhan <span>01:30PM</span></h4>
+                                        <p>I'm Leaving early</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="crm_mess_main_box_wrapper">
+                                    <div class="crm_mess_img_wrapper">
+                                        <img src="images/mess1.jpg" alt="img">
+                                    </div>
+                                    <div class="crm_mess_img_cont_wrapper">
+                                        <h4>Mr.ajay <span>01:30PM</span></h4>
+                                        <p>I'm Leaving early</p>
+                                    </div>
+                                </div>
+                            </li>
                             <li>
                                 <div class="crm_mess_main_box_wrapper">
                                     <div class="crm_mess_img_wrapper">
@@ -204,11 +215,14 @@
                             <?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span>
                         </span>
                         <ul class="list">
-                            <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a></li>
+                            <li><a href="#"><i class="flaticon-profile"></i> Profile</a></li>
                             <!--<li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
+                            <li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
+                            <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a></li>
                             <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a></li>
                             <li><a href="#"><i class="flaticon-settings"></i> Setting</a></li>
-                            <li><a href="#"><i class="flaticon-help"></i> Support</a></li>-->
+                            <li><a href="#"><i class="flaticon-help"></i> Support</a></li>
+                            <li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a></li>-->
                             <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a></li>
                         </ul>
                     </div>
@@ -221,24 +235,21 @@
                     <ul class="main_nav_ul">
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation active_class">index <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
-                                <li class="parent">
-                                    <a href="index.html"><i class="fas fa-caret-right"></i>index I</a>
-                                </li>
-                                <li class="parent">
-                                    <a href="index2.html"><i class="fas fa-caret-right"></i>index II</a>
-                                </li>
-								<li class="parent">
-                                    <a href="index3.html"><i class="fas fa-caret-right"></i>index III</a>
-                                </li> 								
+                                <li class="parent"> <a href="index.html"><i class="fas fa-caret-right"></i>index I</a> </li>
+                                <li class="parent"> <a href="index2.html"><i class="fas fa-caret-right"></i>index II</a> </li>
+								<li class="parent"> <a href="index3.html"><i class="fas fa-caret-right"></i>index III</a></li> 								
                             </ul>
                         </li>-->
-                        <li><!--<h1>hi, !</h1>--></li>
+                        <li><!--<h1></h1>--></li>
                         <!--<li><a href="investment.html" class="gc_main_navigation">investment plan</a></li> -->
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
-                                <li class="parent"><a href="faq.html"><i class="fas fa-caret-right"></i>FAQ</a></li>
-                                <li class="parent"> <a href="login.html"><i class="fas fa-caret-right"></i>login</a></li>  
-								<li class="parent"><a href="register.html"><i class="fas fa-caret-right"></i>register</a> </li>   								
+                                <li class="parent"> <a href="faq.html"><i class="fas fa-caret-right"></i>FAQ</a>
+                                </li>
+                                <li class="parent"> <a href="login.html"><i class="fas fa-caret-right"></i>login</a>
+                                </li>  
+								<li class="parent">  <a href="register.html"><i class="fas fa-caret-right"></i>register</a>
+                                </li>   								
                             </ul>
                         </li>-->
                         <li class="has-mega gc_main_navigation"><a class=""> <i class=""></i></a>
@@ -249,51 +260,74 @@
                                     <a href="#"><i class="fas fa-caret-right"></i>my account<span><i class="fas fa-caret-right"></i>
 									</span></a>
                                     <ul class="dropdown-menu-right">
-                                        <li><a href="my_account.html"> <i class="fas fa-caret-right"></i>my account  </a></li>
-                                        <li><a href="view_profile.html"> <i class="fas fa-caret-right"></i> my profile</a></li>
-                                        <li> <a href="email_notification.html"><i class="fas fa-caret-right"></i>email notification </a></li>
-                                        <li><a href="change_password.html"><i class="fas fa-caret-right"></i>change password</a></li>
-                                        <li><a href="change_pin.html"><i class="fas fa-caret-right"></i>change pin</a></li>
+                                        <li> <a href="my_account.html"> <i class="fas fa-caret-right"></i>my account  </a>
+                                        </li>
+                                        <li> <a href="view_profile.html"> <i class="fas fa-caret-right"></i> my profile</a>
+                                        </li>
+                                        <li> <a href="email_notification.html"><i class="fas fa-caret-right"></i>email notification </a>
+                                        </li>
+                                        <li> <a href="change_password.html"><i class="fas fa-caret-right"></i>change password</a>
+                                        </li>
+                                        <li> <a href="change_pin.html"><i class="fas fa-caret-right"></i>change pin</a>
+                                        </li>
+                                     
                                     </ul>
                                 </li>
                                 <li class="parent">
                                     <a href="#"> <i class="fas fa-caret-right"></i>finance<span> <i class="fas fa-caret-right"></i>
 									</span></a>
                                     <ul class="dropdown-menu-right">
-                                        <li><a href="make_deposit.html"> <i class="fas fa-caret-right"></i>Withdraw</a> </li>
-                                        <li><a href="deposit_list.html"> <i class="fas fa-caret-right"></i> deposit lists</a> </li>
-                                        <li><a href="payment_request.html"><i class="fas fa-caret-right"></i>payment request</a></li>
-                                        <li><a href="exchange_money.html"><i class="fas fa-caret-right"></i>exchange money</a> </li>
-                                        <li><a href="transfer_fund.html"><i class="fas fa-caret-right"></i>Deposit</a></li>
+                                         <li> <a href="make_deposit.html"> <i class="fas fa-caret-right"></i>Withdraw</a>
+                                        </li>
+                                        <li> <a href="deposit_list.html"> <i class="fas fa-caret-right"></i> deposit lists</a>
+                                        </li>
+                                        <li> <a href="payment_request.html"><i class="fas fa-caret-right"></i>payment request</a>
+                                        </li>
+                                        <li> <a href="exchange_money.html"><i class="fas fa-caret-right"></i>exchange money</a>
+                                        </li>
+                                        <li> <a href="transfer_fund.html"><i class="fas fa-caret-right"></i>Deposit</a>
+                                        </li>
                                     </ul>
                                 </li>
 								<li class="parent">
                                     <a href="#"> <i class="fas fa-caret-right"></i>Transactions<span> <i class="fas fa-caret-right"></i>
 									</span></a>
                                     <ul class="dropdown-menu-right">
-                                        <li><a href="all_transactions.html"> <i class="fas fa-caret-right"></i>all transactions</a></li>
-                                        <li> <a href="deposit_history.html"> <i class="fas fa-caret-right"></i>deposit history</a> </li>
-                                        <li><a href="pending_history.html"><i class="fas fa-caret-right"></i>withdrawal history</a></li>
-                                        <li><a href="exchange_history.html"><i class="fas fa-caret-right"></i>exchange history</a></li>
-                                        <li> <a href="earnings_history.html"><i class="fas fa-caret-right"></i>earning history</a></li>
+                                         <li><a href="all_transactions.html"> <i class="fas fa-caret-right"></i>all transactions</a>
+                                        </li>
+                                        <li><a href="deposit_history.html"> <i class="fas fa-caret-right"></i>deposit history</a>
+                                        </li>
+                                        <li> <a href="pending_history.html"><i class="fas fa-caret-right"></i>withdrawal history</a>
+                                        </li>
+                                        <li><a href="exchange_history.html"><i class="fas fa-caret-right"></i>exchange history</a>
+                                        </li>
+                                        <li> <a href="earnings_history.html"><i class="fas fa-caret-right"></i>earning history</a>
+                                        </li>
+                                     
                                     </ul>
                                 </li>
 								<li class="parent">
                                     <a href="#"> <i class="fas fa-caret-right"></i>referrals<span> <i class="fas fa-caret-right"></i></span></a>
                                     <ul class="dropdown-menu-right">
-                                        <li><a href="referrals.html"> <i class="fas fa-caret-right"></i>my referrals</a></li>
-                                        <li> <a href="banners.html"> <i class="fas fa-caret-right"></i> promotionals banners</a> </li>
-                                        <li><a href="referral_earnings.html"><i class="fas fa-caret-right"></i>referral earnings</a> </li>
+                                         <li><a href="referrals.html"> <i class="fas fa-caret-right"></i>my referrals</a></li>
+                                        <li>  <a href="banners.html"> <i class="fas fa-caret-right"></i> promotionals banners</a></li>
+                                        <li> <a href="referral_earnings.html"><i class="fas fa-caret-right"></i>referral earnings</a> </li>
+                                      
                                     </ul>
                                 </li>
-								<li class="parent"> <a href="tickets.html"><i class="fas fa-caret-right"></i>view tickets</a></li>
+								<li class="parent"><a href="tickets.html"><i class="fas fa-caret-right"></i>view tickets</a></li>
                             </ul>
                             -->
                         </li>
+
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">blog <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
-                                <li class="parent"><a href="blog_category.html"><i class="fas fa-caret-right"></i>blog category</a> </li>
-                                <li class="parent"><a href="blog_single.html"><i class="fas fa-caret-right"></i> blog single</a></li>                   
+                                <li class="parent">
+                                    <a href="blog_category.html"><i class="fas fa-caret-right"></i>blog category</a>
+                                </li>
+                                <li class="parent">
+                                    <a href="blog_single.html"><i class="fas fa-caret-right"></i> blog single</a>
+                                </li>                   
                             </ul>
                         </li>     
                         <li><a href="contact_us.html" class="gc_main_navigation">contact us</a></li>-->
@@ -307,17 +341,24 @@
 
     <!-- inner header wrapper start -->
     <div class="page_title_section dashboard_title">
+
         <div class="page_header">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
-                        <h4>News reel here..</h4>
+                        <!-- News Reel section start-->
+                        <div class="news-reel-container">
+                            <div class="news-reel" id="newsReel">
+                                🔥 Latest Update: Bitcoin Hits $65K! 🚀 | Ethereum Surges 10% 📈 | Dogecoin Partners with Tesla ⚡
+                            </div>
+                        </div>
+                        <!-- News Reel section end-->
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
                                 <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
-                                <li>Plans</li>
+                                <li>Deposit Proof</li>
                             </ul>
                         </div>
                     </div>
@@ -335,22 +376,24 @@
                     <li class="crm_navi_icon">
                         <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-profile"></i></a>
                             <ul class="crm_hover_menu">
-                                <li><a href="viewprofile"><i class="fa fa-circle"></i> profile</a> </li>
-                                <li><a href="password"><i class="fa fa-circle"></i>change password</a> </li>
-                                <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a> </li>
-                                <!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a> </li>-->
+                                <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
+                                <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a> </li>
+                                <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
+                                <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
+                                <!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                             </ul>
                         </div>
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                        <a href="viewprofile">
-                            <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i></div>
+                        <a href="view_profile.html">
+                            <div class="c-menu-item__title"><span>my profile</span><i class="no_badge">3</i></div>
                         </a>
                         <ul>
-                            <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
-                            <li><a href="viewprofile"><i class="fa fa-circle"></i> profile</a> </li>
+                            <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a> </li>-->
+                            <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>
                             <li><a href="password"><i class="fa fa-circle"></i>change password</a> </li>
                             <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a> </li>
+                            <!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                         </ul>
                     </li>
                 </ul>
@@ -367,36 +410,38 @@
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="#"><i class="flaticon-settings"></i></a>
+                        <div class="c-menu__item__inner"><a href="getplan"><i class="flaticon-settings"></i></a>
                         </div>
                     </li>
                     <li class="c-menu__item crm_navi_icon_cont">
-                        <a href="#">
+                        <a href="getplan">
                             <div class="c-menu-item__title">choose a plan </div>
                         </a>
                     </li>
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="depositupload"><i
+                        <div class="c-menu__item__inner"><a href="#"><i
                                     class="flaticon-movie-tickets"></i></a>
                             <ul class="crm_hover_menu">
-                                <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a> </li>
+                                <li><a href="#"> <i class="fa fa-circle"></i>upload deposit proof</a> </li>
                                 <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a></li>
                                 <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a></li>-->
                                 <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
+                                <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a> </li>-->
                             </ul>
                         </div>
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                        <a href="depositupload">
+                        <a href="#">
                             <div class="c-menu-item__title"><span>finances</span><i class="no_badge">3</i></div>
                         </a>
                         <ul>
-                            <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
+                            <li><a href="#"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
                             <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a></li>
                             <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a></li>-->
                             <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a> </li>
+                            <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a></li>-->
                         </ul>
                     </li>
                 </ul>
@@ -461,6 +506,10 @@
                     <?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?>
                 </h3>
                 <dl class="userdescc">
+                    <dt>Registration Date</dt>
+                    <dd>: &nbsp;
+                        <?php echo $user["created_at"]; ?>
+                    </dd>
                     <dt>Last Login</dt>
                     <dd>: &nbsp;
                         <?php echo $user["last_login"]; ?>
@@ -479,184 +528,116 @@
             </div>
 
             <div class="userdet user_transcation">
-                <h3> Currently Subscribed Plan</h3>
+                <h3>Available Balance</h3>
                 <dl class="userdescc">
-                    <!-- Display Subscribed Plan -->
-                    <dt>
-                        <p>Active: </p>
-                    </dt>
-                    <dd>
-                        <p><span id="selectedPlan">
-                                <?= $_SESSION['subscribed_plan']; ?>
-                            </span></p>
+                    <dt>Bitcoin</dt>
+                    <dd>:&nbsp;&nbsp;₿
+                        <?php echo number_format($user["bitcoin_balance"], 8); ?>
+                    </dd>
+                    <dt>Ethereum</dt>
+                    <dd>:&nbsp;&nbsp;Ξ
+                        <?php echo number_format($user["ethereum_balance"], 8); ?>
+                    </dd>
+                    <dt>Litecoin</dt>
+                    <dd>:&nbsp;&nbsp;Ł
+                        <?php echo number_format($user["litecoin_balance"], 8); ?>
+                    </dd>
+                    <dt>Dogecoin</dt>
+                    <dd>:&nbsp;&nbsp;Ð
+                        <?php echo number_format($user["dogecoin_balance"], 8); ?>
                     </dd>
                 </dl>
             </div>
         </div>
         <!--  my account wrapper end -->
 
-        
-        <!--  plan sub section start -->
-        <div class="plan_investment_wrapper float_left">
+        <!-- Profile Section Start -->
+        <div class="view_profile_wrapper_top float_left">
             <div class="row">
-                <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                <div class="col-md-12">
                     <div class="sv_heading_wraper">
-                        <h4>Plan Details</h4>
+                        <!--<h4>Upload</h4>-->
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
-                    <div class="investment_box_wrapper sv_pricing_border float_left">
-                        <div class="investment_icon_circle">
-                            <i class="flaticon-movie-tickets"></i>
-                        </div>
-                        <div class="investment_border_wrapper"></div>
-                        <div id="gold" class="investment_content_wrapper" onclick="selectPlan('gold', 50000)">
-                            <h1>Gold Plan</h1>
-                            <p>Min Deposit: $50,000.00</p>
-                            <p>Max Deposit: $100,000.00</p>
-                            <p>Up to 52% for 30 Days</p>
-                            <p>Compound Available</p>
-                            <div class="about_btn plans_btn">
-                                <ul>
-                                    <li>
-                                        <a href="#">Choose Plan</a>
-                                    </li>
-                                </ul>
+
+                <div class="col-md-12">
+                    <div class="view_profile_wrapper float_left">
+                        <div class="row">
+                            <!-- deposit proof Section -->
+                            <div class="col-md-6">
+                                <div class="sv_heading_wraper heading_wrapper_dark dark_heading hwd">
+                                    <h4> Upload Payment Proof</h4>
+                                    <div class="row mt-4">
+                                        <?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
+                                        <?php if ($success) echo "<p style='color:green;'>$success</p>"; ?>
+                                    </div>
+                                </div>
+                                <form method="POST" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="cryptoSelect">Select Cryptocurrency:</label>
+                                            <select name="crypto_type" required class="form-control">
+                                                <option value="" disabled selected>Choose Cryptocurrency</option>
+                                                <option value="BTC">Bitcoin (BTC)</option>
+                                                <option value="ETH">Ethereum (ETH)</option>
+                                                <option value="LTC">Litecoin (LTC)</option>
+                                                <option value="DOGE">Dogecoin (DOGE)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="networkSelect">Select Network:</label>
+                                            <select name="network" required class="form-control">
+                                                <option value="" disabled selected>Choose Network</option>
+                                                <option value="BSC">Binance Smart Chain (BSC)</option>
+                                                <option value="ETH">Ethereum (ERC-20)</option>
+                                                <option value="TRX">Tron (TRC-20)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label for="transactionID">Transaction ID:</label>
+                                            <input type="text" name="tx_id" required class="form-control" placeholder="Enter Transaction ID">
+                                        </div>
+                            
+                                        <div class="col-md-6">
+                                            <label for="amount">Amount:</label>
+                                            <input type="number" name="amount" step="0.000001" class="form-control" placeholder="Enter Amount">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label for="walletAddress">Your Wallet Address:</label>
+                                            <input type="text" name="wallet_address" class="form-control" placeholder="Enter Wallet Address" required>
+                                        </div>
+                            
+                                        <div class="col-md-6">
+                                            <label for="uploadScreenshot">Upload Screenshot:</label>
+                                            <input type="file" name="proof_image" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col text-center">
+                                            <button type="submit" class="btn btn-primary">Submit Deposit</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
-                    <div class="investment_box_wrapper sv_pricing_border float_left">
-                        <div class="investment_icon_circle red_info_circle">
-                            <i class="flaticon-invoice"></i>
-                        </div>
-                        <div class="investment_border_wrapper red_border_wrapper"></div>
-                        <div id="copper" class="investment_content_wrapper red_content_wrapper"
-                            onclick="selectPlan('copper', 15000)">
-                            <h1>Copper Plan</h1>
-                            <p>Min Deposit: $15,000</p>
-                            <p>Max Deposit: $50,100</p>
-                            <p>Up to 37% for 30 Days</p>
-                            <p>Compound Available</p>
-                            <!--<button>Select Plan</button>-->
-                            <div class="about_btn plans_btn red_btn_plans">
-                                <ul>
-                                    <li>
-                                        <a href="#">choose plan</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
-                    <div class="investment_box_wrapper sv_pricing_border float_left">
-                        <div class="investment_icon_circle blue_icon_circle">
-                            <i class="flaticon-progress-report"></i>
-                        </div>
-                        <div class="investment_border_wrapper blue_border_wrapper"></div>
-                        <div id="bronze" class="investment_content_wrapper blue_content_wrapper"
-                            onclick="selectPlan('bronze', 5000)">
-                            <h1>Bronze Plan</h1>
-                            <p>Min Deposit: $5,000</p>
-                            <p>Max Deposit: $15,100</p>
-                            <p>Up to 28% for 30 Days</p>
-                            <p>Compound Available</p>
-                            <div class="about_btn plans_btn blue_btn_plans">
-                                <ul>
-                                    <li>
-                                        <a href="#">choose plan</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-lg-6 col-sm-6 col-12">
-                    <div class="investment_box_wrapper sv_pricing_border float_left">
-                        <div class="investment_icon_circle green_info_circle">
-                            <i class="flaticon-file"></i>
-                        </div>
-                        <div class="investment_border_wrapper green_border_wrapper"></div>
-                        <div id="silver" class="investment_content_wrapper green_content_wrapper"
-                            onclick="selectPlan('silver', 2000)">
-                            <h1>Silver Plan</h1>
-                            <p>Min Deposit: $2,000</p>
-                            <p>Max Deposit: $5,100</p>
-                            <p>Up to 20% for 30 Days</p>
-                            <p>Compound Available</p>
-                            <div class="about_btn plans_btn green_plan_btn">
-                                <ul>
-                                    <li>
-                                        <a href="#">choose plan</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!--  plan sub section end -->
-        <!--  payment mode wrapper start -->
-        <div class="payment_mode_wrapper float_left">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-sm-12 col-12">
-                    <div class="sv_heading_wraper">
-                        <h3>choose payment mode</h3>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-12 col-sm-12 col-12">
-                    <div class="payment_radio_btn_wrapper float_left">
-                        <div class="radio">
-                            <input type="radio" name="crypto" id="litecoin" value="LTC" onclick="updateBalance('LTC')">
-                            <label for="litecoin"><img src="images/litecoin.png" alt="Litecoin"> Litecoin</label>
-                        </div>
-                        <div class="radio">
-                            <input type="radio" name="crypto" id="dogecoin" value="DOGE"
-                                onclick="updateBalance('DOGE')">
-                            <label for="dogecoin"><img src="images/dogecoin.png" alt="Dogecoin"> Dogecoin</label>
-                        </div>
-                        <div class="radio">
-                            <input type="radio" name="crypto" id="ethereum" value="ETH" onclick="updateBalance('ETH')">
-                            <label for="ethereum"><img src="images/ethereum.png" alt="Ethereum"> Ethereum</label>
-                        </div>
-                        <div class="radio">
-                            <input type="radio" name="crypto" id="bitcoin" value="BTC" onclick="updateBalance('BTC')">
-                            <label for="bitcoin"><img src="images/bitcoin.png" alt="Bitcoin"> Bitcoin</label>
-                        </div>
-                        <div class="about_btn acc_balance_btn float_left">
-                            <p>YOUR ACCOUNT BALANCE :</p>
-                            <ul>
-                                <li>
-                                    <p><span id="accountBalance"><a>$0.00</a></span></p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="about_btn float_left">
-                            <ul>
-                                <li>
-                                    <a href="#" onclick="submitSubscription(); return false;">submit</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  payment mode wrapper end -->
+                    </div> <!-- view_profile_wrapper -->
+                </div> <!-- col-md-12 -->
+            </div> <!-- row -->
+        </div> <!-- view_profile_wrapper_top -->
+        <!--  profile wrapper end -->
         <!--  footer  wrapper start -->
         <div class="copy_footer_wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="crm_left_footer_cont">
-                            <p>2025 Copyright © <a href="#"> MuntMogul </a> . All Rights Reserved.</p>
+                            <p>2025 Copyright © <a href="#"> muntmogul </a> . All Rights Reserved.</p>
                         </div>
                     </div>
 
@@ -667,7 +648,24 @@
     <!--  footer  wrapper end -->
     <!-- main box wrapper End-->
 
-    <!-- Deposit Modal Page & Script start-->
+    <script src="js/depositmodal.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/dropify.min.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/jquery.countTo.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/jquery.inview.min.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/datatables.js"></script>
+    <script src="js/jquery.menu-aim.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/news.js"></script>
+    <!--main js file end-->
+
+    <!-- Deposit Modal -->
     <div id="depositModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeDepositModal()">&times;</span>
@@ -699,24 +697,7 @@
         </div>
     </div>
 
-    <!-- Deposit Modal Page & Script end-->
-    <script src="js/depositmodal.js"></script>
-    <script src="js/crypto_prices.js"></script>
-    <script src="js/plan_subscription.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/dropify.min.js"></script>
-    <script src="js/owl.carousel.js"></script>
-    <script src="js/jquery.countTo.js"></script>
-    <script src="js/plugin.js"></script>
-    <script src="js/jquery.inview.min.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/datatables.js"></script>
-    <script src="js/jquery.menu-aim.js"></script>
-    <script src="js/custom.js"></script>
-    <!--main js file end-->
+    
 </body>
 
 </html>

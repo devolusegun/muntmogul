@@ -38,23 +38,23 @@ if (!$user) {
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="css/flaticon2.css" />
-	<link rel="stylesheet" type="text/css" href="css/dropify.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/dropify.min.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="css/nice-select.css" />
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="css/owl.theme.default.css">
-	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="css/datatables.css" />
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-	 <!--favicon-->
+    <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 </head>
 <!-- color picker start -->
 
 <body>
-  <!-- preloader Start -->
+    <!-- preloader Start -->
     <div id="preloader">
         <div id="status">
             <img src="images/loader.gif" id="preloader_image" alt="loader">
@@ -73,7 +73,7 @@ if (!$user) {
                 <form class="cd-search">
                     <input type="search" placeholder="Search...">
                 </form>
-            </li>--> 
+            </li>-->
             <!--<li class="has-children">
                 <a href="#">index</a>
                 <ul class="cd-secondary-dropdown icon_menu is-hidden">
@@ -83,29 +83,31 @@ if (!$user) {
                     <li><a href="index3.html">index III</a></li>
                 </ul>
             </li>-->
-            <li><h6>hello, <?php echo $_SESSION["user"]["firstname"]; ?></h6></li>
+            <li>
+                <h6>hello, <?php echo $_SESSION["user"]["firstname"]; ?></h6>
+            </li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
-			<!--<li><a href="faq.html"> FAQ </a></li>-->
-			<li class="has-children">
-              <a href="#">dashboard</a>
+            <!--<li><a href="faq.html"> FAQ </a></li>-->
+            <li class="has-children">
+                <a href="#">dashboard</a>
                 <ul class="cd-secondary-dropdown icon_menu is-hidden">
                     <li class="go-back"><a href="#0">Menu</a></li>
                     <li><a href="#"></a></li>
                     <li><a href="viewprofile">view profile</a></li>
                     <li><a href="password">change password</a></li>
-					<li>
+                    <li>
                         <a href="javascript:void(0);" onclick="openDepositModal()">
                             <div class="c-menu-item__title">make deposit</div>
                         </a>
                     </li>
-					<li><a href="depositupload">upload deposit proof</a></li>
+                    <li><a href="depositupload">upload deposit proof</a></li>
                     <li><a href="getplan">choose plan</a></li>
                     <li><a href="paymentrequest">withdraw</a></li>
                     <li><a href="deposited">deposit history</a></li>
-					<li><a href="transactions">all transactions</a></li>
-					<!--<li><a href="pending_history.html">pending history</a> </li> 	
+                    <li><a href="transactions">all transactions</a></li>
+                    <!--<li><a href="pending_history.html">pending history</a> </li> 	
 					<li> <a href="referrals.html">referrals</a></li> -->
-					<li><a href="tickets">tickets</a></li>								
+                    <li><a href="tickets">tickets</a></li>
                 </ul>
             </li>
         </ul>
@@ -113,9 +115,9 @@ if (!$user) {
     </nav>
     <!-- nav end-->
 
-	<div class="cp_navi_main_wrapper inner_header_wrapper dashboard_header_middle float_left">
+    <div class="cp_navi_main_wrapper inner_header_wrapper dashboard_header_middle float_left">
         <div class="container-fluid">
-              <div class="cp_logo_wrapper">
+            <div class="cp_logo_wrapper">
                 <a href="index.html">
                     <img src="images/logo2.png" alt="logo">
                 </a>
@@ -124,8 +126,8 @@ if (!$user) {
             <!-- mobile menu area start -->
             <header class="mobail_menu d-block d-sm-block d-md-block d-lg-none d-xl-none">
                 <div class="container-fluid">
-                    <div class="row">				
-                       <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="cd-dropdown-wrapper">
                                 <a class="house_toggle inner_toggle" href="#0">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 31.177 31.177" style="enable-background:new 0 0 31.177 31.177;" xml:space="preserve" width="25px" height="25px">
@@ -157,8 +159,8 @@ if (!$user) {
             </header>
 
             <div class="top_header_right_wrapper dashboard_right_Wrapper">
-				<div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
-                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
+                <div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
+                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification">..</i></span>
                         <div class="budge_noti"></div>
                         <ul class="list">
                             <li><a href="#">No New Messages</a></li>
@@ -215,8 +217,8 @@ if (!$user) {
                     </div>
                 </div>
                 <div class="crm_profile_dropbox_wrapper">
-                    <div class="nice-select" tabindex="0"> <span class="current"><img src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>" 
-                            alt="User's Thumbnail" width="50" height="50" style="border-radius: 50%;"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
+                    <div class="nice-select" tabindex="0"> <span class="current"><img src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                alt="User's Thumbnail" width="50" height="50" style="border-radius: 50%;"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
                         <ul class="list">
                             <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a></li>
                             <!--<li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
@@ -235,7 +237,7 @@ if (!$user) {
             <div class="cp_navigation_wrapper main_top_wrapper dashboard_header">
                 <!-- mainmenu start -->
                 <div class="mainmenu d-xl-block d-lg-block d-md-none d-sm-none d-none">
-                     <ul class="main_nav_ul">             
+                    <ul class="main_nav_ul">
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation active_class">index <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
                                 <li class="parent">
@@ -248,10 +250,10 @@ if (!$user) {
                                     <a href="index3.html"><i class="fas fa-caret-right"></i>index III</a>
                                 </li> 								
                             </ul>
-                        </li>-->   
+                        </li>-->
                         <li><!--<h4>hi, </h4>--></li>
                         <!--<li><a href="investment.html" class="gc_main_navigation">investment plan</a></li> -->
-						<!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
+                        <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
                                 <li class="parent">
                                     <a href="faq.html"><i class="fas fa-caret-right"></i>FAQ</a>
@@ -264,7 +266,7 @@ if (!$user) {
                                 </li>   								
                             </ul>
                         </li>-->
-						<li class="has-mega gc_main_navigation"><a class=""> <i class=""></i></a>
+                        <li class="has-mega gc_main_navigation"><a class=""> <i class=""></i></a>
                             <!--
                             <ul class="navi_2_dropdown">
                               
@@ -354,8 +356,8 @@ if (!$user) {
                                     <a href="tickets.html"><i class="fas fa-caret-right"></i>view tickets</a></li>
                             </ul>
                             -->
-                        </li>						
-						    						
+                        </li>
+
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">blog <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
                                 <li class="parent">
@@ -400,118 +402,117 @@ if (!$user) {
     </div>
     <!-- inner header wrapper end -->
 
-	    <!-- side menus start -->
-        <div class="l-sidebar">
-            <div class="l-sidebar__content">
-                <nav class="c-menu js-menu" id="mynavi">
-                    <ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-profile"></i></a>
-                                <ul class="crm_hover_menu">
-                                    <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
-                                    <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>
-                                    <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
-                                    <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
-									<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="view_profile.html">
-                                <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i></div>
-                            </a>
-                            <ul>
-                                 <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
-                                 <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>                      
-                                 <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
-                                 <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
-								<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
+    <!-- side menus start -->
+    <div class="l-sidebar">
+        <div class="l-sidebar__content">
+            <nav class="c-menu js-menu" id="mynavi">
+                <ul class="u-list crm_drop_second_ul">
+                    <li class="crm_navi_icon">
+                        <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-profile"></i></a>
+                            <ul class="crm_hover_menu">
+                                <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
+                                <li><a href="viewprofile"><i class="fa fa-circle"></i> profile</a></li>
+                                <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
+                                <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
+                                <!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                             </ul>
-                        </li>
-                    </ul>
-                    
-                    <ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a></div>
-                        </li>
-                        <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="javascript:void(0);" onclick="openDepositModal()">
-                                <div class="c-menu-item__title">Deposit Funds</div>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="getplan"><i class="flaticon-settings"></i></a></div>
-                        </li>
-                        <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="getplan">
-                                <div class="c-menu-item__title">choose a plan </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="depositupload"><i class="flaticon-movie-tickets"></i></a>
-                                <ul class="crm_hover_menu">
-                                    <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
-                                    <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a> </li>
-                                    <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a></li>-->
-                                    <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
-                                    <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a> </li>-->
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="depositupload">
-                                <div class="c-menu-item__title"><span>finances</span><i class="no_badge">3</i>
-                                </div>
-                            </a>
-                            <ul>
+                        </div>
+                    </li>
+                    <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
+                        <a href="view_profile.html">
+                            <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i></div>
+                        </a>
+                        <ul>
+                            <li><a href="viewprofile"><i class="fa fa-circle"></i> profile</a></li>
+                            <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
+                            <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
+                            <!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="u-list crm_drop_second_ul">
+                    <li class="crm_navi_icon">
+                        <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a></div>
+                    </li>
+                    <li class="c-menu__item crm_navi_icon_cont">
+                        <a href="javascript:void(0);" onclick="openDepositModal()">
+                            <div class="c-menu-item__title">Deposit Funds</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="u-list crm_drop_second_ul">
+                    <li class="crm_navi_icon">
+                        <div class="c-menu__item__inner"><a href="getplan"><i class="flaticon-settings"></i></a></div>
+                    </li>
+                    <li class="c-menu__item crm_navi_icon_cont">
+                        <a href="getplan">
+                            <div class="c-menu-item__title">choose a plan </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="u-list crm_drop_second_ul">
+                    <li class="crm_navi_icon">
+                        <div class="c-menu__item__inner"><a href="depositupload"><i class="flaticon-movie-tickets"></i></a>
+                            <ul class="crm_hover_menu">
                                 <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
                                 <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a> </li>
-                                <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a> </li>-->
+                                <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a></li>-->
                                 <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
                                 <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a> </li>-->
                             </ul>
-                        </li>
-                    </ul>
-                    <ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="investments"><i class="flaticon-file"></i></a> </div>
-                        </li>
-                        <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="investments">
-                                <div class="c-menu-item__title">view plans</div>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="tickets"><i class="flaticon-help"></i></a>
-                                <ul class="crm_hover_menu">
-                                    <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
-                                    <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
-									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+                        </div>
+                    </li>
+                    <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
+                        <a href="depositupload">
+                            <div class="c-menu-item__title"><span>finances</span><i class="no_badge">3</i>
+                            </div>
+                        </a>
+                        <ul>
+                            <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
+                            <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a> </li>
+                            <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a> </li>-->
+                            <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
+                            <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a> </li>-->
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="u-list crm_drop_second_ul">
+                    <li class="crm_navi_icon">
+                        <div class="c-menu__item__inner"><a href="investments"><i class="flaticon-file"></i></a> </div>
+                    </li>
+                    <li class="c-menu__item crm_navi_icon_cont">
+                        <a href="investments">
+                            <div class="c-menu-item__title">view plans</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="u-list crm_drop_second_ul">
+                    <li class="crm_navi_icon">
+                        <div class="c-menu__item__inner"><a href="tickets"><i class="flaticon-help"></i></a>
+                            <ul class="crm_hover_menu">
+                                <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
+                                <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
+                                <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
 									<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
 									<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="tickets">
-                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i></div>
-                            </a>
-                            <ul>
-                              <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
-                                    <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
-									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
+                        <a href="tickets">
+                            <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i></div>
+                        </a>
+                        <ul>
+                            <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
+                            <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
+                            <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
 									<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a> </li>
 									<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
-                            </ul>
-                        </li>
-                    </ul>
-					  <!--<ul class="u-list crm_drop_second_ul">
+                        </ul>
+                    </li>
+                </ul>
+                <!--<ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
                             <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-profile"></i></a></div>
                         </li>
@@ -520,122 +521,122 @@ if (!$user) {
                                 <div class="c-menu-item__title">deposit</div>
                             </a>
                         </li>
-                    </ul>-->   
-                </nav>
+                    </ul>-->
+            </nav>
+        </div>
+    </div>
+    <!-- side menus end -->
+
+    <!-- Main section Start -->
+    <div class="l-main">
+        <!--  my account wrapper start -->
+        <div class="account_top_information">
+            <div class="account_overlay"></div>
+            <div class="useriimg"><img src="images/user.png" alt="users"></div>
+            <div class="userdet uderid">
+                <h3><?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?></h3>
+
+                <dl class="userdescc">
+                    <dt>Registration Date</dt>
+                    <dd>: &nbsp; <?php echo $user["created_at"]; ?></dd>
+                    <dt>Last Login</dt>
+                    <dd>: &nbsp; <?php echo $user["last_login"]; ?></dd>
+                    <!--<dt>Current Login</dt>
+                        <dd>: &nbsp; Jul-06-2019 02:47:23</dd>-->
+                    <dt>Last Access IP</dt>
+                    <dd>: &nbsp; <?php echo $user["last_ip"]; ?> </dd>
+                    <dt>Current IP</dt>
+                    <dd>: &nbsp; <?php echo $_SERVER["REMOTE_ADDR"]; ?> </dd>
+
+                </dl>
+
+            </div>
+
+            <div class="userdet user_transcation">
+                <h3>Available Balance</h3>
+                <dl class="userdescc">
+                    <dt>Bitcoin</dt>
+                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
+                    <dt>Ethereum</dt>
+                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
+                    <dt>Litecoin</dt>
+                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
+                    <dt>Dogecoin</dt>
+                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
+                </dl>
             </div>
         </div>
-        <!-- side menus end -->
+        <!--  my account wrapper end -->
 
-        <!-- Main section Start -->
-         <div class="l-main">         
-            <!--  my account wrapper start -->
-            <div class="account_top_information">
-                <div class="account_overlay"></div>
-                <div class="useriimg"><img src="images/user.png" alt="users"></div>
-                <div class="userdet uderid">
-                    <h3><?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?></h3>
-
-                    <dl class="userdescc">
-                        <dt>Registration Date</dt>
-                        <dd>: &nbsp; <?php echo $user["created_at"]; ?></dd>
-                        <dt>Last Login</dt>
-                        <dd>: &nbsp; <?php echo $user["last_login"]; ?></dd>
-                        <!--<dt>Current Login</dt>
-                        <dd>: &nbsp; Jul-06-2019 02:47:23</dd>-->
-                        <dt>Last Access IP</dt>
-                        <dd>: &nbsp; <?php echo $user["last_ip"]; ?> </dd>
-                        <dt>Current IP</dt>
-                        <dd>: &nbsp; <?php echo $_SERVER["REMOTE_ADDR"]; ?> </dd>
-
-                    </dl>
-
+        <!--  account wrapper start -->
+        <div class="account_wrapper float_left">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                    <div class="sv_heading_wraper">
+                        <h3>my account</h3>
+                    </div>
                 </div>
+                <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
+                    <div class="investment_box_wrapper color_1 float_left">
+                        <a>
+                            <div class="investment_icon_wrapper float_left">
+                                <i class="far fa-money-bill-alt"></i>
+                                <h1>deposits</h1>
+                            </div>
 
-                <div class="userdet user_transcation">
-                    <h3>Available Balance</h3>
-                    <dl class="userdescc">
-                        <dt>Bitcoin</dt>
-                        <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
-                        <dt>Ethereum</dt>
-                        <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
-                        <dt>Litecoin</dt>
-                        <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
-                        <dt>Dogecoin</dt>
-                        <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
-                    </dl>
+                            <div class="invest_details float_left">
+                                <table class="invest_table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="invest_td1">Total Deposit:</td>
+                                            <td class="invest_td1"> <span id="totalDeposit">$0.00 USD</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="invest_td1">New Deposit:</td>
+                                            <td class="invest_td1"><span id="newDeposit">$0.00 USD</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <!--  my account wrapper end -->
+                <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
+                    <div class="investment_box_wrapper color_2 float_left">
+                        <a>
+                            <div class="investment_icon_wrapper float_left">
+                                <i class="far fa-money-bill-alt"></i>
+                                <h1>payouts</h1>
+                            </div>
 
-            <!--  account wrapper start -->
-            <div class="account_wrapper float_left">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12 col-12">
-                        <div class="sv_heading_wraper">
-                            <h3>my account</h3>
-                        </div>
+                            <div class="invest_details float_left">
+                                <table class="invest_table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="invest_td1">total payouts:</td>
+                                            <td class="invest_td1"> <span id="totalPayouts">$0.00 USD</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="invest_td1">pending payouts:</td>
+                                            <td class="invest_td1"><span id="pendingPayouts">$0.00 USD</span></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <div class="investment_box_wrapper color_1 float_left">
-                            <a>
-                                <div class="investment_icon_wrapper float_left">
-                                    <i class="far fa-money-bill-alt"></i>
-                                    <h1>deposits</h1>
-                                </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
+                    <div class="investment_box_wrapper color_3 float_left">
+                        <a>
+                            <div class="investment_icon_wrapper float_left">
+                                <i class="far fa-money-bill-alt"></i>
+                                <h1>earnings</h1>
+                            </div>
 
-                                <div class="invest_details float_left">
-                                    <table class="invest_table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="invest_td1">Total Deposit:</td>
-                                                <td class="invest_td1"> <span id="totalDeposit">$0.00 USD</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="invest_td1">New Deposit:</td>
-                                                <td class="invest_td1"><span id="newDeposit">$0.00 USD</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <div class="investment_box_wrapper color_2 float_left">
-                            <a>
-                                <div class="investment_icon_wrapper float_left">
-                                    <i class="far fa-money-bill-alt"></i>
-                                    <h1>payouts</h1>
-                                </div>
-
-                                <div class="invest_details float_left">
-                                    <table class="invest_table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="invest_td1">total payouts:</td>
-                                                <td class="invest_td1"> <span id="totalPayouts">$0.00 USD</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="invest_td1">pending payouts:</td>
-                                                <td class="invest_td1"><span id="pendingPayouts">$0.00 USD</span></td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <div class="investment_box_wrapper color_3 float_left">
-                            <a>
-                                <div class="investment_icon_wrapper float_left">
-                                    <i class="far fa-money-bill-alt"></i>
-                                    <h1>earnings</h1>
-                                </div>
-
-                                <div class="invest_details float_left">
-                                    <table class="invest_table">
+                            <div class="invest_details float_left">
+                                <table class="invest_table">
                                     <tbody>
                                         <tr>
                                             <td class="invest_td1">Interest Today</td>
@@ -646,13 +647,13 @@ if (!$user) {
                                             <td class="invest_td1">: <span id="weekInterest">$0.00 USD</span></td>
                                         </tr>
                                     </tbody>
-                                    </table>
-                                </div>
-                            </a>
-                        </div>
+                                </table>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <!--<div class="investment_box_wrapper color_4 float_left">
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
+                    <!--<div class="investment_box_wrapper color_4 float_left">
                             <a href="#">
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
@@ -683,9 +684,9 @@ if (!$user) {
                                 </div>
                             </a>
                         </div>-->
-                    </div>
-                    <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <!--<div class="investment_box_wrapper color_5 float_left">
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
+                    <!--<div class="investment_box_wrapper color_5 float_left">
                             <a href="#">
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
@@ -709,9 +710,9 @@ if (!$user) {
                                 </div>
                             </a>
                         </div>-->
-                    </div>
-                    <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
-                        <!--<div class="investment_box_wrapper color_6 float_left">
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-3 col-sm-6 col-12">
+                    <!--<div class="investment_box_wrapper color_6 float_left">
                             <a href="#">
                                 <div class="investment_icon_wrapper float_left">
                                     <i class="far fa-money-bill-alt"></i>
@@ -735,831 +736,831 @@ if (!$user) {
                                 </div>
                             </a>
                         </div>-->
+                </div>
+            </div>
+        </div>
+        <!--  account wrapper end -->
+        <!--  transactions wrapper start -->
+        <div class="last_transaction_wrapper float_left">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                    <div class="sv_heading_wraper">
+                        <h4>LAST 5 TRANSACTIONS</h4>
+                    </div>
+                </div>
+                <div class="crm_customer_table_main_wrapper float_left">
+                    <div class="crm_ct_search_wrapper">
+                        <div class="crm_ct_search_bottom_cont_Wrapper">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="myTable table datatables cs-table crm_customer_table_inner_Wrapper">
+                            <thead>
+                                <tr>
+                                    <th class="width_table1">transaction ID</th>
+                                    <th class="width_table1">amount ($)</th>
+                                    <th class="width_table1">description</th>
+                                    <th class="width_table1">payment mode</th>
+                                    <th class="width_table1">date</th>
+                                    <th class="width_table1">options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>COMM1004411</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">1000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Deposit made</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">03/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+
+                                            <div class="media-body">
+                                                <h5>MMNT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>UXINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Deposit made</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>AWNT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Deposit made</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>OWNT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Deposit made</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Deposit made</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>UINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>YYNT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">payza</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>TQNT1570066</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">22000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Bitcoin</div>
+                                    </td>
+
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/07/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>DINT2676563</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">1000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">payza</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">20/08/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>EXCR1004425</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">4000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Interest Earning for investment</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">PerfectMoney</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">28/08/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>EXCS1004424</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">19000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">payza</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">2/09/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>EQCS1004424</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">3000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">OKpay</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">2/09/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>COMM1004411</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">5000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Deposit made</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">OKpay</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">04/09/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                                <tr class="background_white">
+                                    <td>
+                                        <div class="media cs-media">
+                                            <div class="media-body">
+                                                <h5>KQM1004411</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">5000.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">Deposit made</div>
+                                    </td>
+                                    <td>
+                                        <div class="pretty p-svg p-curve">paypal</div>
+                                    </td>
+                                    <td class="flag">
+                                        <div class="pretty p-svg p-curve">04/09/2019</div>
+                                    </td>
+                                    <td>
+                                        <nav class="navbar navbar-expand">
+                                            <ul class="navbar-nav">
+                                                <!-- Dropdown -->
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <!--  account wrapper end -->
-            <!--  transactions wrapper start -->
-            <div class="last_transaction_wrapper float_left">
+        </div>
+        <!--  transactions wrapper end -->
+        <!--  footer  wrapper start -->
+        <div class="copy_footer_wrapper">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12 col-12">
-                        <div class="sv_heading_wraper">
-                            <h4>LAST 5 TRANSACTIONS</h4>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="crm_left_footer_cont">
+                            <p>2025 Copyright © <a href="#"> muntmogul </a> . All Rights Reserved.</p>
                         </div>
                     </div>
-                    <div class="crm_customer_table_main_wrapper float_left">
-                        <div class="crm_ct_search_wrapper">
-                            <div class="crm_ct_search_bottom_cont_Wrapper">
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="myTable table datatables cs-table crm_customer_table_inner_Wrapper">
-                                <thead>
-                                    <tr>
-                                        <th class="width_table1">transaction ID</th>
-                                        <th class="width_table1">amount ($)</th>
-                                        <th class="width_table1">description</th>
-                                        <th class="width_table1">payment mode</th>
-                                        <th class="width_table1">date</th>
-                                        <th class="width_table1">options</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>COMM1004411</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">1000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">03/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
 
-                                                <div class="media-body">
-                                                    <h5>MMNT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>UXINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>AWNT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>OWNT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>UINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>YYNT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">payza</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>TQNT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>DINT2676563</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">1000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">payza</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/08/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>EXCR1004425</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">4000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">PerfectMoney</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">28/08/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>EXCS1004424</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">19000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">payza</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">2/09/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>EQCS1004424</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">3000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Fund Received to Paypal</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">OKpay</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">2/09/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>COMM1004411</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">5000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">OKpay</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">04/09/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                    <tr class="background_white">
-                                        <td>
-                                            <div class="media cs-media">
-                                                <div class="media-body">
-                                                    <h5>KQM1004411</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">5000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">paypal</div>
-                                        </td>
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">04/09/2019</div>
-                                        </td>
-                                        <td>
-                                            <nav class="navbar navbar-expand">
-                                                <ul class="navbar-nav">
-                                                    <!-- Dropdown -->
-                                                    <li class="nav-item dropdown">
-                                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> <i class="fa fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit</a>
-                                                            <a class="dropdown-item" href="#">Delete</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <!--  transactions wrapper end -->
-            <!--  footer  wrapper start -->
-            <div class="copy_footer_wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="crm_left_footer_cont">
-                                <p>2025 Copyright © <a href="#"> muntmogul </a> . All Rights Reserved.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-         </div>
-       <!--  footer  wrapper end -->      
+        </div>
+    </div>
+    <!--  footer  wrapper end -->
     <!-- main box wrapper End-->
 
     <!-- Deposit Modal -->
@@ -1567,7 +1568,7 @@ if (!$user) {
         <div class="modal-content">
             <span class="close" onclick="closeDepositModal()">&times;</span>
             <h3>Deposit Crypto</h3>
-            
+
             <label>Select Cryptocurrency:</label>
             <select id="cryptoType" onchange="updateNetworks()">
                 <option value="BTC">Bitcoin (BTC)</option>
@@ -1582,7 +1583,7 @@ if (!$user) {
             </select>
 
             <div class="sw_heading_wraper">
-                <h4 >Deposit Address:</h4>
+                <h4>Deposit Address:</h4>
                 <input type="text" id="depositAddress" readonly>
                 <button onclick="copyAddress()">Copy</button>
             </div>
@@ -1596,15 +1597,15 @@ if (!$user) {
 
     <!-- JavaScript for Modal Functionality -->
     <script>
-        let cryptoData = {};  // Stores JSON data globally
+        let cryptoData = {}; // Stores JSON data globally
         // Load JSON Data on Page Load
         fetch("assets/crypto_addresses.json")
             .then(response => response.json())
             .then(data => {
                 cryptoData = data;
-                updateNetworks();  // Update networks when page loads
-            }) .catch(error => console.error("Error loading JSON:", error)); // Debugging
-        
+                updateNetworks(); // Update networks when page loads
+            }).catch(error => console.error("Error loading JSON:", error)); // Debugging
+
         function openDepositModal() {
             document.getElementById("depositModal").style.display = "block";
         }
@@ -1612,7 +1613,7 @@ if (!$user) {
         function closeDepositModal() {
             document.getElementById("depositModal").style.display = "none";
         }
-        
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             var modal = document.getElementById("depositModal");
@@ -1669,10 +1670,10 @@ if (!$user) {
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
-	<script src="js/dropify.min.js"></script>
-	<script src="js/owl.carousel.js"></script>
+    <script src="js/dropify.min.js"></script>
+    <script src="js/owl.carousel.js"></script>
     <script src="js/jquery.countTo.js"></script>
-	<script src="js/plugin.js"></script>
+    <script src="js/plugin.js"></script>
     <script src="js/jquery.inview.min.js"></script>
     <script src="js/jquery.magnific-popup.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>

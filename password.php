@@ -423,10 +423,10 @@
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="investments"><i class="flaticon-file"></i></a></div>
+                        <div class="c-menu__item__inner"><a href="investment"><i class="flaticon-file"></i></a></div>
                     </li>
                     <li class="c-menu__item crm_navi_icon_cont">
-                        <a href="investments">
+                        <a href="investment">
                             <div class="c-menu-item__title">view plans</div>
                         </a>
                     </li>

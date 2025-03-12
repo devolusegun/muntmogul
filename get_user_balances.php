@@ -8,7 +8,7 @@ if (!isset($_SESSION["user"])) {
 
 $userId = $_SESSION["user"]["id"];
 
-// ✅ Fetch balances from `crypticusers`
+// Fetch balances from `crypticusers`
 $stmt = $pdo->prepare("SELECT btc_balance, ltc_balance, eth_balance, doge_balance FROM crypticusers WHERE id = ?");
 $stmt->execute([$userId]);
 $userBalances = $stmt->fetch(PDO::FETCH_ASSOC);

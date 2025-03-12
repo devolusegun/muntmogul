@@ -318,38 +318,29 @@ if (!$user) {
                 <nav class="c-menu js-menu" id="mynavi">
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="view_profile"><i class="flaticon-four-grid-layout-design-interface-symbol"></i></a>
+                            <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-four-grid-layout-design-interface-symbol"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
-                                    <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>
+                                    <li><a href="viewprofile"><i class="fa fa-circle"></i> profile</a></li>
                                     <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
-                                    <li><a href="email_notification.html"><i class="fa fa-circle"></i>withdraw</a></li>
+                                    <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="view_profile.html">
-                                <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i>
-                                </div>
+                            <a href="viewprofile">
+                                <div class="c-menu-item__title"><span>my account</span><i class="no_badge">3</i></div>
                             </a>
                             <ul>
-                                 <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a>
-                                 </li>-->
-                                 <li><a href="view_profile.html"><i class="fa fa-circle"></i> my profile</a>
-                                 </li>                      
-                                 <li><a href="change_password.html"><i class="fa fa-circle"></i>change password</a>
-                                 </li>
-                                 <li><a href="payment_request.html"><i class="fa fa-circle"></i>withdraw</a>
-                                 </li>
-								<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a>
-                                 </li>-->
+                                <li><a href="viewprofile"><i class="fa fa-circle"></i>profile</a> </li>                      
+                                <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
+                                <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
+								<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a> </li>-->
                             </ul>
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a>
-                            </div>
+                            <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a> </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
                             <a href="javascript:void(0);" onclick="openDepositModal()">
@@ -359,96 +350,75 @@ if (!$user) {
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-settings"></i></a>
+                            <div class="c-menu__item__inner"><a href="getplan"><i class="flaticon-settings"></i></a>
                                 <!--<ul class="crm_hover_menu">
-                                    <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a>
-                                    </li>
-                                    <li>
-                                        <a href="banners.html"> <i class="fa fa-circle"></i>silver</a>
-                                    </li>
-									 <li>
-                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>copper</a>
-                                    </li>
-                                    <li>
-                                        <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a>
-                                    </li>
+                                    <li><a href="referrals.html"><i class="fa fa-circle"></i> bronze </a> </li>
+                                    <li><a href="banners.html"> <i class="fa fa-circle"></i>silver</a> </li>
+									<li><a href="referral_earnings.html"> <i class="fa fa-circle"></i>copper</a> </li>
+                                    <li> <a href="referral_earnings.html"> <i class="fa fa-circle"></i>gold</a> </li>
                                 </ul>-->
                             </div>
                         </li>
-                        <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="make_deposit.html">
+                        <li class="c-menu__item is-active crm_navi_icon_cont">
+                            <a href="getplan">
                                 <div class="c-menu-item__title">choose a plan </div>
                             </a>
                         </li>
                     </ul>         
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="deposit_upload.php"><i class="flaticon-help"></i></a>
+                            <div class="c-menu__item__inner"><a href="depositupload"><i class="flaticon-help"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <li><a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a>
-                                    </li>
-                                    <li><a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                    </li>
-                                    <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i> earning history</a>
-                                    </li>-->
-                                    <li><a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a>
-                                    </li>
-                                    <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
-                                    </li>-->
+                                    <li><a href="depositupload"><i class="fa fa-circle"></i>upload deposit proof</a> </li>
+                                    <li><a href="deposited"><i class="fa fa-circle"></i> deposit history</a></li>
+                                    <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
+                                    <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a></li>-->
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="deposit_upload.php">
-                                <div class="c-menu-item__title"><span>finances</span><i class="no_badge purple">3</i>
-                                </div>
+                            <a href="depositupload">
+                                <div class="c-menu-item__title"><span>finances</span><i class="no_badge purple">3</i></div>
                             </a>
                             <ul>
-                                <li><a href="deposit_upload.php"> <i class="fa fa-circle"></i>upload deposit proof</a>
-                                </li>
-                                <li><a href="deposit_history.html"> <i class="fa fa-circle"></i> deposit history</a>
-                                </li>
-                                <!--<li><a href="earnings_history.html"> <i class="fa fa-circle"></i>earning history</a>
-                                </li>-->
-                                <li><a href="all_transactions.html"> <i class="fa fa-circle"></i>all transactions</a>
-                                </li>
-                                <!--<li><a href="transfer_fund.html"> <i class="fa fa-circle"></i>fund transfer</a>
-                                </li>-->
+                                <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
+                                <li><a href="deposited"> <i class="fa fa-circle"></i> deposit history</a></li>
+                                <li><a href="transactions"> <i class="fa fa-circle"></i>all transactions</a></li>
+                                <!--<li><a href="transfer_fund.html"><i class="fa fa-circle"></i>fund transfer</a></li>-->
                             </ul>
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="investment.html"><i class="flaticon-file"></i></a>
+                            <div class="c-menu__item__inner"><a href="investments"><i class="flaticon-file"></i></a>
                             </div>
                         </li>
                         <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="investment.html">
+                            <a href="investment">
                                 <div class="c-menu-item__title">view plans</div>
                             </a>
                         </li>
                     </ul>
                     <ul class="u-list crm_drop_second_ul">
                         <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="tickets.html"><i class="flaticon-help"></i></a>
+                            <div class="c-menu__item__inner"><a href="tickets"><i class="flaticon-help"></i></a>
                                 <ul class="crm_hover_menu">
-                                    <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
-                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+                                    <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
 									<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
+									<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
+									<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                                 </ul>
                             </div>
                         </li>
                         <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                            <a href="tickets.html">
-                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">5</i>
+                            <a href="tickets">
+                                <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i>
                                 </div>
                             </a>
                             <ul>
                               <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a>
                                     </li>-->
-                                    <li><a href="tickets.html"><i class="fa fa-circle"></i>support</a></li>
+                                    <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
 									 <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
                                     </li>
 									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
@@ -516,7 +486,7 @@ if (!$user) {
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper heading_center">
-                            <h3>Account Withdrawal</h3>
+                            <h4>Account Withdrawal</h4>
                         </div>
                     </div>
                 </div>
@@ -529,7 +499,7 @@ if (!$user) {
                                     <!-- Payment Mode Dropdown -->
                                     <div class="payment_gateway_wrapper payment_select_wrapper">
                                     <label>Select Cryptocurrency:</label>
-                                        <select id="cryptoType" name="crypto_type" onchange="updateBalance()">
+                                        <select id="" name="crypto_type" onchange="updateBalance()">
                                             <option value="" disabled selected>Choose Crypto</option>
                                             <option value="BTC">Bitcoin (BTC)</option>
                                             <option value="ETH">Ethereum (ETH)</option>
@@ -584,7 +554,7 @@ if (!$user) {
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="crm_left_footer_cont">
-                                <p>2019 Copyright © <a href="#"> muntmogul </a> . All Rights Reserved.</p>
+                                <p>2025 Copyright © <a href="#"> muntmogul </a> . All Rights Reserved.</p>
                             </div>
                         </div>
 
@@ -595,25 +565,40 @@ if (!$user) {
        <!--  footer  wrapper end -->      
     <!-- main box wrapper End-->
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        const cryptoSelect = document.querySelector("select[name='crypto_type']");
-        const balanceField = document.getElementById("available_balance");
+    <!-- Deposit Modal Page & Script start-->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDepositModal()">&times;</span>
+            <h3>Deposit Crypto</h3>
+            
+            <label>Select Cryptocurrency:</label>
+            <select id="cryptoType" onchange="updateNetworks()">
+                <option value="BTC">Bitcoin (BTC)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="LTC">Litecoin (LTC)</option>
+                <option value="DOGE">Dogecoin (DOGE)</option>
+            </select>
 
-        cryptoSelect.addEventListener("change", function () {
-            const selectedCrypto = this.value;
+            <label>Select Network:</label>
+            <select id="networkType" onchange="fetchDepositDetails()">
+                <!-- Options will be dynamically populated -->
+            </select>
 
-            // Fetch new balance from PHP dynamically
-            fetch("fetchbalance.php?crypto_type=" + selectedCrypto)
-                .then(response => response.json())
-                .then(data => {
-                    balanceField.value = data.balance + " " + selectedCrypto;
-                })
-                .catch(error => console.error("Error fetching balance:", error));
-            });
-        });
-    </script>
+            <div class="sw_heading_wraper">
+                <h4 >Deposit Address:</h4>
+                <input type="text" id="depositAddress" readonly>
+                <button onclick="copyAddress()">Copy</button>
+            </div>
+            <div class="sw_heading_wraper">
+                <h6>Scan Code:</h6>
+                <img id="qrCodeImage" src="" alt="QR Code">
+            </div>
+            <p><strong>Note:</strong> Send only selected crypto to this address.</p>
+        </div>
+    </div>
 
+    <script src="js/payrequest.js"></script>
+    <script src="js/depositmodal.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
