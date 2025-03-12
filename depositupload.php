@@ -13,7 +13,7 @@ $success = "";
 // Handle Proof Upload
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION["user"]["id"];
-    $crypto_type = $_POST["crypto_type"];
+    $crypto_type = $_POST["cryptcurr_type"];
     $network = $_POST["network"];
     $amount = $_POST["amount"];
     $tx_id = $_POST["tx_id"];
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES["proof_image"]["tmp_name"], $proof_image);
 
         // Insert into `crypto_deposits` Table
-        $stmt = $pdo->prepare("INSERT INTO crypto_deposits (user_id, crypto_type, network, amount, tx_id, wallet_address, proof_image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO crypto_deposits (user_id, cryptcurr_type, network, amount, tx_id, wallet_address, proof_image) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         if ($stmt->execute([$user_id, $crypto_type, $network, $amount, $tx_id, $wallet_address, $proof_image])) {
             $success = "Deposit submitted successfully! Waiting for admin approval.";
@@ -394,7 +394,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- News Reel section start-->
                         <div class="news-reel-container">
                             <div class="news-reel" id="newsReel">
-                                🔥 Latest Update: Bitcoin Hits $65K! 🚀 | Ethereum Surges 10% 📈 | Dogecoin Partners with Tesla ⚡
+                                Loading latest news... ⏳
                             </div>
                         </div>
                         <!-- News Reel section end-->
@@ -621,7 +621,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="cryptoSelect">Select Cryptocurrency:</label>
-                                            <select name="crypto_type" required class="form-control">
+                                            <select name="cryptcurr_type" required class="form-control">
                                                 <option value="" disabled selected>Choose Cryptocurrency</option>
                                                 <option value="BTC">Bitcoin (BTC)</option>
                                                 <option value="ETH">Ethereum (ETH)</option>
@@ -735,7 +735,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button onclick="copyAddress()">Copy</button>
             </div>
             <div class="sw_heading_wraper">
-                <h6>Scan Code:</h6>
+                <h4>Scan Code:</h4>
                 <img id="qrCodeImage" src="" alt="QR Code">
             </div>
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
