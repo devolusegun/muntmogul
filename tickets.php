@@ -1,3 +1,43 @@
+<?php
+session_start();
+require 'config/config.php'; // Include database connection
+
+// Check if user is logged in
+if (!isset($_SESSION["user"]["id"])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION["user"]["id"];
+$successMsg = $errorMsg = "";
+
+// Handle Ticket Submission (When Form is Submitted)
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_ticket"])) {
+    $subject = trim($_POST["subject"] ?? "");
+    $message = trim($_POST["message"] ?? "");
+
+    if (empty($subject) || empty($message)) {
+        $errorMsg = "Subject and message cannot be empty.";
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO support_tickets (user_id, subject, message, status, created_at) VALUES (?, ?, ?, 'Open', NOW())");
+        if ($stmt->execute([$user_id, $subject, $message])) {
+            $successMsg = "Ticket submitted successfully.";
+            // Redirect to refresh the page and prevent duplicate form submissions
+            header("Location: tickets.php?success=1");
+            exit();
+        } else {
+            $errorMsg = "Failed to submit ticket.";
+        }
+    }
+}
+
+// Fetch User Tickets
+$stmt = $pdo->prepare("SELECT id, subject, status, created_at FROM support_tickets WHERE user_id = ? ORDER BY created_at DESC");
+$stmt->execute([$user_id]);
+$tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -434,19 +474,16 @@
                                         <div class="col-lg-12">
                                             <div class="sv_question_pop float_left">
                                                 <h1>Raise a Ticket</h1>
-                                                <form id="ticketForm">
+                                                <form method="POST">
                                                     <div class="change_field">
-                                                        <input type="text" id="ticketSubject" name="subject"
-                                                            placeholder="Subject" required>
+                                                        <input type="text" name="subject" placeholder="Subject" required>
                                                     </div>
                                                     <div class="change_field">
-                                                        <textarea id="ticketMessage" name="message" rows="7" cols="45"
-                                                            placeholder="Message" required></textarea>
+                                                        <textarea name="message" rows="7" cols="45" placeholder="Message" required></textarea>
                                                     </div>
                                                     <div class="question_sec">
-                                                        <button type="submit" class="btn btn-primary">Send</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" name="submit_ticket" class="btn btn-primary">Send</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -455,54 +492,19 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="modal fade question_modal" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="sv_question_pop float_left">
-                                                <h1>raise a ticket
-                                                </h1>
-                                                <div class="search_alert_box float_left">
-
-                                                    <div class="change_field">
-
-                                                        <input type="text" name="subject" placeholder="subject">
-                                                    </div>
-                                                    <div class="change_field">
-
-                                                        <input type="text" name="phone" placeholder="contact no">
-                                                    </div>
-                                                    <div class="change_field">
-
-                                                        <textarea class="form-control require" name="message"
-                                                            required="" rows="4" placeholder=" Message"></textarea>
-                                                    </div>
-
-                                                </div>
-                                                <div class="question_sec float_left">
-                                                    <div class="about_btn ques_Btn">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#">send</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="cancel_wrapper">
-                                                        <a href="#" class="" data-dismiss="modal">cancel</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
                     </div>
+
+                    <!-- Success/Error Messages -->
+                    <?php if (isset($_GET['success'])): ?>
+                        <div class="alert alert-success">Ticket submitted successfully.</div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($errorMsg)): ?>
+                        <div class="alert alert-danger"><?php echo htmlspecialchars($errorMsg); ?></div>
+                    <?php endif; ?>
+
                     <div class="table-responsive">
-                        <table class="myTable table datatables cs-table crm_customer_table_inner_Wrapper"
-                            id="ticketTable">
+                        <table class="myTable table datatables cs-table crm_customer_table_inner_Wrapper">
                             <thead>
                                 <tr>
                                     <th>Ticket No</th>
@@ -511,12 +513,23 @@
                                     <th>Date</th>
                                 </tr>
                             </thead>
-                            <tbody id="ticketTableBody">
-                                <!-- Tickets will be loaded here dynamically -->
+                            <tbody>
+                                <?php if (!empty($tickets)): ?>
+                                    <?php foreach ($tickets as $ticket): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($ticket["id"]); ?></td>
+                                            <td><?php echo htmlspecialchars($ticket["subject"]); ?></td>
+                                            <td><?php echo htmlspecialchars($ticket["status"]); ?></td>
+                                            <td><?php echo htmlspecialchars($ticket["created_at"]); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="4">No tickets found.</td>
+                                    </tr>
+                                <?php endif; ?>
                             </tbody>
-                            
                         </table>
-
                     </div>
                 </div>
             </div>

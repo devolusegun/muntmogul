@@ -92,7 +92,7 @@ $cryptoSymbols = [
             </li>-->
             <li>
                 <!--<h1>
-                    <?php echo $_SESSION["user"]; ?>
+                   
                 </h1>-->
             </li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
@@ -192,56 +192,6 @@ $cryptoSymbols = [
                         <ul class="list">
                             <li><a href="#">No New Messages</a>
                             </li>
-                            <!--<li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.Farhan <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.ajay <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.akshay <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.john <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_all_main_box_wrapper">
-                                    <p><a href="#">See All</a>
-                                    </p>
-                                </div>
-                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -716,22 +666,6 @@ $cryptoSymbols = [
     </div>
     <!--  footer  wrapper end -->
     <!-- main box wrapper End-->
-    <script src="js/depositmodal.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/dropify.min.js"></script>
-    <script src="js/owl.carousel.js"></script>
-    <script src="js/jquery.countTo.js"></script>
-    <script src="js/plugin.js"></script>
-    <script src="js/jquery.inview.min.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/datatables.js"></script>
-    <script src="js/jquery.menu-aim.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/news.js"></script>
-    <!--main js file end-->
 
     <!-- Deposit Modal -->
     <div id="depositModal" class="modal">
@@ -765,6 +699,25 @@ $cryptoSymbols = [
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>
     </div>
+
+    <script src="js/depositmodal.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/dropify.min.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/jquery.countTo.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/jquery.inview.min.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/datatables.js"></script>
+    <script src="js/jquery.menu-aim.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/news.js"></script>
+    <!--main js file end-->
+
+
 </body>
 
 </html>

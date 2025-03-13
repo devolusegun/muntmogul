@@ -200,67 +200,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
                     <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i
                                 class="flaticon-notification"></i></span>
-                        <div class="budge_noti"></div>
+                        <div class="budge_noti">..</div>
                         <ul class="list">
                             <li><a href="#">No New Messages</a></li>
-                            <!--<li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.Farhan <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.ajay <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.akshay <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.john <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="crm_mess_all_main_box_wrapper">
-                                    <p><a href="#">See All</a></p>
-                                </div>
-                            </li>-->
+                            
                         </ul>
                     </div>
                 </div>
                 <div class="crm_profile_dropbox_wrapper">
-                    <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img">
+                    <div class="nice-select" tabindex="0"> <span class="current"><img
+                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                alt="User" width="50" height="50" style="border-radius: 50%;">
                             <?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span>
                         </span>
                         <ul class="list">
-                            <li><a href="#"><i class="flaticon-profile"></i> Profile</a></li>
+                            <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a></li>
                             <!--<li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
                             <li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
                             <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a></li>
@@ -314,39 +268,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <li> <a href="change_password.html"><i class="fas fa-caret-right"></i>change password</a>
                                         </li>
                                         <li> <a href="change_pin.html"><i class="fas fa-caret-right"></i>change pin</a>
-                                        </li>
-                                     
-                                    </ul>
-                                </li>
-                                <li class="parent">
-                                    <a href="#"> <i class="fas fa-caret-right"></i>finance<span> <i class="fas fa-caret-right"></i>
-									</span></a>
-                                    <ul class="dropdown-menu-right">
-                                         <li> <a href="make_deposit.html"> <i class="fas fa-caret-right"></i>Withdraw</a>
-                                        </li>
-                                        <li> <a href="deposit_list.html"> <i class="fas fa-caret-right"></i> deposit lists</a>
-                                        </li>
-                                        <li> <a href="payment_request.html"><i class="fas fa-caret-right"></i>payment request</a>
-                                        </li>
-                                        <li> <a href="exchange_money.html"><i class="fas fa-caret-right"></i>exchange money</a>
-                                        </li>
-                                        <li> <a href="transfer_fund.html"><i class="fas fa-caret-right"></i>Deposit</a>
-                                        </li>
-                                    </ul>
-                                </li>
-								<li class="parent">
-                                    <a href="#"> <i class="fas fa-caret-right"></i>Transactions<span> <i class="fas fa-caret-right"></i>
-									</span></a>
-                                    <ul class="dropdown-menu-right">
-                                         <li><a href="all_transactions.html"> <i class="fas fa-caret-right"></i>all transactions</a>
-                                        </li>
-                                        <li><a href="deposit_history.html"> <i class="fas fa-caret-right"></i>deposit history</a>
-                                        </li>
-                                        <li> <a href="pending_history.html"><i class="fas fa-caret-right"></i>withdrawal history</a>
-                                        </li>
-                                        <li><a href="exchange_history.html"><i class="fas fa-caret-right"></i>exchange history</a>
-                                        </li>
-                                        <li> <a href="earnings_history.html"><i class="fas fa-caret-right"></i>earning history</a>
                                         </li>
                                      
                                     </ul>
@@ -430,7 +351,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
-                        <a href="view_profile.html">
+                        <a href="viewprofile">
                             <div class="c-menu-item__title"><span>my profile</span><i class="no_badge">3</i></div>
                         </a>
                         <ul>
@@ -645,7 +566,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <label for="transactionID">Transaction ID:</label>
                                             <input type="text" name="tx_id" required class="form-control" placeholder="Enter Transaction ID">
                                         </div>
-                            
+
                                         <div class="col-md-6">
                                             <label for="amount">Amount:</label>
                                             <input type="number" name="amount" step="0.000001" class="form-control" placeholder="Enter Amount">
@@ -657,7 +578,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <label for="walletAddress">Your Wallet Address:</label>
                                             <input type="text" name="wallet_address" class="form-control" placeholder="Enter Wallet Address" required>
                                         </div>
-                            
+
                                         <div class="col-md-6">
                                             <label for="uploadScreenshot">Upload Screenshot:</label>
                                             <input type="file" name="proof_image" class="form-control" required>
@@ -693,23 +614,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--  footer  wrapper end -->
     <!-- main box wrapper End-->
 
-    <script src="js/depositmodal.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/dropify.min.js"></script>
-    <script src="js/owl.carousel.js"></script>
-    <script src="js/jquery.countTo.js"></script>
-    <script src="js/plugin.js"></script>
-    <script src="js/jquery.inview.min.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/datatables.js"></script>
-    <script src="js/jquery.menu-aim.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/news.js"></script>
-    <!--main js file end-->
-
     <!-- Deposit Modal -->
     <div id="depositModal" class="modal">
         <div class="modal-content">
@@ -742,7 +646,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    
+    <script src="js/depositmodal.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/dropify.min.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/jquery.countTo.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/jquery.inview.min.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/datatables.js"></script>
+    <script src="js/jquery.menu-aim.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/news.js"></script>
+    <!--main js file end-->
+
+
+
+
 </body>
 
 </html>

@@ -30,6 +30,7 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="MobileOptimized" content="320" />
     <!--Template style -->
     <link rel="stylesheet" type="text/css" href="css/news.css" />
+    <link rel="stylesheet" type="text/css" href="css/news.css" />
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/fonts.css" />
@@ -62,22 +63,13 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Top Scroll End -->
     <!-- cp navi wrapper Start -->
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
-        <h2><a href="index.html"> muntmogul </a></h2>
+        <h2><a href="index.html"> welcome </a></h2>
         <a href="#0" class="cd-close">Close</a>
         <ul class="cd-dropdown-content">
             <!--<li>
                 <form class="cd-search">
                     <input type="search" placeholder="Search...">
                 </form>
-            </li> 
-             <li class="has-children">
-                <a href="#">index</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
-                    <li class="go-back"><a href="#0">Menu</a></li>
-                    <li><a href="index.html">index I</a></li>
-                    <li><a href="index2.html">index II</a></li>
-                    <li><a href="index3.html">index III</a></li>
-                </ul>
             </li>-->
             <!--<li><a href="investment.html"> investment plan </a></li>
 			<li><a href="faq.html"> FAQ </a></li>-->
@@ -163,9 +155,9 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <!-- .cd-dropdown-wrapper -->
             </header>
             <div class="top_header_right_wrapper dashboard_right_Wrapper">
-                <div class="crm_message_dropbox_wrapper">
+                <div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
                     <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i
-                                class="flaticon-envelope"></i></span>
+                                class="flaticon-notification"></i></span>
                         <div class="budge_noti">..</div>
                         <ul class="list">
                             <li><a href="#">No New Messages</a>
@@ -175,14 +167,13 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <div class="crm_profile_dropbox_wrapper">
-                    <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img">
+                    <div class="nice-select" tabindex="0"> <span class="current"><img
+                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                alt="User" width="50" height="50" style="border-radius: 50%;">
                             <?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span>
                         </span>
                         <ul class="list">
                             <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a> </li>
-                            <!--<li><a href="#"><i class="flaticon-purse"></i> My Balance</a> </li>
-                            <li><a href="#"><i class="flaticon-help"></i> Support</a></li>
-                            <li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a> </li>-->
                             <li><a href="logout"><i class="flaticon-turn-off"></i> Logout</a></li>
                         </ul>
                     </div>
@@ -194,7 +185,7 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <ul class="main_nav_ul">
                         <li>
                             <!--<h3>hi,
-                                <?php echo $_SESSION["user"]; ?>!
+                                
                             </h3>-->
                         </li>
                         <li class="has-mega gc_main_navigation"><a class="gc_main_navigation"> <i
@@ -351,16 +342,6 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </ul>
                     </li>
                 </ul>
-                <!--<ul class="u-list crm_drop_second_ul">
-                        <li class="crm_navi_icon">
-                            <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-profile"></i></a></div>
-                        </li>
-                        <li class="c-menu__item crm_navi_icon_cont">
-                            <a href="make_deposit.html">
-                                <div class="c-menu-item__title">deposit</div>
-                            </a>
-                        </li>
-                    </ul>-->
             </nav>
         </div>
     </div>
@@ -447,41 +428,41 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </thead>
                             <tbody>
                                 <?php foreach ($deposits as $deposit): ?>
-                                <tr class="background_white">
-                                    <td>
-                                        <div class="media cs-media">
-                                            <div class="media-body">
-                                                <h5>
-                                                    <?= htmlspecialchars($deposit["tx_id"]); ?>
-                                                </h5>
+                                    <tr class="background_white">
+                                        <td>
+                                            <div class="media cs-media">
+                                                <div class="media-body">
+                                                    <h5>
+                                                        <?= htmlspecialchars($deposit["tx_id"]); ?>
+                                                    </h5>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="pretty p-svg p-curve">
-                                            <?= number_format($deposit["amount"], 2); ?>
-                                        </div>
-                                    </td>
-                                    <!--<td>
+                                        </td>
+                                        <td>
+                                            <div class="pretty p-svg p-curve">
+                                                <?= number_format($deposit["amount"], 2); ?>
+                                            </div>
+                                        </td>
+                                        <!--<td>
                                             <div class="pretty p-svg p-curve">Deposit Mode</div>
                                         </td>-->
-                                    <td>
-                                        <div class="pretty p-svg p-curve">
-                                            <?= htmlspecialchars($deposit["crypto_type"]); ?>
-                                        </div>
-                                    </td>
-                                    <td class="flag">
-                                        <div class="pretty p-svg p-curve">
-                                            <?= $deposit["created_at"]; ?>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div
-                                            class="pretty p-svg p-curve <?= ($deposit['status'] == 'approved') ? 'status-approved' : 'status-rejected'; ?>">
-                                            <?= ucfirst($deposit["status"]); ?>
-                                        </div>
-                                    </td>
-                                    <!--<td>
+                                        <td>
+                                            <div class="pretty p-svg p-curve">
+                                                <?= htmlspecialchars($deposit["crypto_type"]); ?>
+                                            </div>
+                                        </td>
+                                        <td class="flag">
+                                            <div class="pretty p-svg p-curve">
+                                                <?= $deposit["created_at"]; ?>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="pretty p-svg p-curve <?= ($deposit['status'] == 'approved') ? 'status-approved' : 'status-rejected'; ?>">
+                                                <?= ucfirst($deposit["status"]); ?>
+                                            </div>
+                                        </td>
+                                        <!--<td>
                                             <?php if ($deposit["status"] == "rejected"): ?>
                                                 <div class="pretty p-svg p-curve status-rejected" title="<?= htmlspecialchars($deposit["rejection_reason"]); ?>">
                                                     <?= ucfirst($deposit["status"]); ?> (Hover for reason)
@@ -492,27 +473,27 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 </div>
                                             <?php endif; ?>
                                         </td>-->
-                                    <td>
-                                        <?php if ($deposit["status"] == "rejected"): ?>
-                                        <div class="pretty p-svg p-curve status-rejected">
-                                            <?= ucfirst($deposit["status"]); ?>
-                                            <span class="rejection-text">
-                                                <?= htmlspecialchars(substr($deposit["rejection_reason"], 0, 50)); ?>...
-                                            </span>
-                                            <?php if (strlen($deposit["rejection_reason"]) > 50): ?>
-                                            <a href="javascript:void(0);" class="view-more"
-                                                onclick="toggleRejectionReason(this)"
-                                                data-fulltext="<?= htmlspecialchars($deposit[" rejection_reason"]);
-                                                ?>">View More</a>
+                                        <td>
+                                            <?php if ($deposit["status"] == "rejected"): ?>
+                                                <div class="pretty p-svg p-curve status-rejected">
+                                                    <?= ucfirst($deposit["status"]); ?>
+                                                    <span class="rejection-text">
+                                                        <?= htmlspecialchars(substr($deposit["rejection_reason"], 0, 50)); ?>...
+                                                    </span>
+                                                    <?php if (strlen($deposit["rejection_reason"]) > 50): ?>
+                                                        <a href="javascript:void(0);" class="view-more"
+                                                            onclick="toggleRejectionReason(this)"
+                                                            data-fulltext="<?= htmlspecialchars($deposit[" rejection_reason"]);
+                                                                            ?>">View More</a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php else: ?>
+                                                <div class="pretty p-svg p-curve status-approved">
+                                                    <?= ucfirst($deposit["status"]); ?>
+                                                </div>
                                             <?php endif; ?>
-                                        </div>
-                                        <?php else: ?>
-                                        <div class="pretty p-svg p-curve status-approved">
-                                            <?= ucfirst($deposit["status"]); ?>
-                                        </div>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -589,14 +570,14 @@ $deposits = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </select>
 
             <div class="sw_heading_wraper">
-            <h4>Deposit Address:</h4>
-            <input type="text" id="depositAddress" readonly>
-            <button onclick="copyAddress()">Copy</button>
+                <h4>Deposit Address:</h4>
+                <input type="text" id="depositAddress" readonly>
+                <button onclick="copyAddress()">Copy</button>
             </div>
 
             <div class="sw_heading_wraper">
-            <h4>Scan Code:</h4>
-            <img id="qrCodeImage" src="" alt="QR Code">
+                <h4>Scan Code:</h4>
+                <img id="qrCodeImage" src="" alt="QR Code">
             </div>
 
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>

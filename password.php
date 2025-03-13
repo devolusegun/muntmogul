@@ -14,27 +14,28 @@
     <meta name="author" content="7evenspirits" />
     <meta name="MobileOptimized" content="320" />
     <!--Template style -->
+    <link rel="stylesheet" type="text/css" href="css/news.css" />
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="css/flaticon2.css" />
-	<link rel="stylesheet" type="text/css" href="css/dropify.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/dropify.min.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="css/nice-select.css" />
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="css/owl.theme.default.css">
-	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="css/datatables.css" />
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-	 <!--favicon-->
+    <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 </head>
 <!-- color picker start -->
 
 <body>
-  <!-- preloader Start -->
+    <!-- preloader Start -->
     <div id="preloader">
         <div id="status">
             <img src="images/loader.gif" id="preloader_image" alt="loader">
@@ -53,7 +54,7 @@
                 <form class="cd-search">
                     <input type="search" placeholder="Search...">
                 </form>
-            </li>--> 
+            </li>-->
             <!--<li class="has-children">
                 <a href="#">index</a>
                 <ul class="cd-secondary-dropdown icon_menu is-hidden">
@@ -63,39 +64,41 @@
                     <li><a href="index3.html">index III</a></li>
                 </ul>
             </li>-->
-            <li><h1>hi, <?php echo $_SESSION["user"]; ?>!</h1></li>
+            <li>
+                <h1>hi, <?php echo $_SESSION["user"]; ?>!</h1>
+            </li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
-			<!--<li><a href="faq.html"> FAQ </a></li>-->
-			<li class="has-children">
-              <a href="#">dashboard</a>
-              <ul class="cd-secondary-dropdown icon_menu is-hidden">
+            <!--<li><a href="faq.html"> FAQ </a></li>-->
+            <li class="has-children">
+                <a href="#">dashboard</a>
+                <ul class="cd-secondary-dropdown icon_menu is-hidden">
                     <li class="go-back"><a href="#0">Menu</a></li>
                     <li><a href="#"></a></li>
                     <li><a href="viewprofile">view profile</a></li>
                     <li><a href="#">change password</a></li>
-					<li>
+                    <li>
                         <a href="javascript:void(0);" onclick="openDepositModal()">
                             <div class="c-menu-item__title">make deposit</div>
                         </a>
                     </li>
-					<li><a href="depositupload">upload deposit proof</a></li>
+                    <li><a href="depositupload">upload deposit proof</a></li>
                     <li><a href="getplan">choose plan</a></li>
                     <li><a href="paymentrequest">withdraw</a></li>
                     <li><a href="deposited">deposit history</a></li>
-					<li><a href="transactions">all transactions</a></li>
-					<!--<li><a href="pending_history.html">pending history</a> </li> 	
+                    <li><a href="transactions">all transactions</a></li>
+                    <!--<li><a href="pending_history.html">pending history</a> </li> 	
 					<li> <a href="referrals.html">referrals</a></li> -->
-					<li><a href="tickets">tickets</a></li>								
+                    <li><a href="tickets">tickets</a></li>
                 </ul>
-            </li>  
-			<!--<li class="has-children">
+            </li>
+            <!--<li class="has-children">
                 <a href="#">blog</a>
                 <ul class="cd-secondary-dropdown icon_menu is-hidden">
                     <li class="go-back"><a href="#0">Menu</a></li>
                     <li><a href="blog_category.html">blog category</a></li>
                     <li><a href="blog_single.html">blog single</a></li>
                 </ul>
-            </li>-->   
+            </li>-->
             <!--<li><a href="contact_us.html"> contact us </a></li>
             <li><a href="login.html"> login </a></li>
             <li><a href="register.html"> register </a></li>-->
@@ -104,9 +107,9 @@
     </nav>
     <!-- nav end -->
 
-	<div class="cp_navi_main_wrapper inner_header_wrapper dashboard_header_middle float_left">
+    <div class="cp_navi_main_wrapper inner_header_wrapper dashboard_header_middle float_left">
         <div class="container-fluid">
-              <div class="cp_logo_wrapper">
+            <div class="cp_logo_wrapper">
                 <a href="index.html">
                     <img src="images/logo2.png" alt="logo">
                 </a>
@@ -115,8 +118,8 @@
             <!-- mobile menu area start -->
             <header class="mobail_menu d-block d-sm-block d-md-block d-lg-none d-xl-none">
                 <div class="container-fluid">
-                    <div class="row">				
-                       <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="cd-dropdown-wrapper">
                                 <a class="house_toggle inner_toggle" href="#0">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 31.177 31.177" style="enable-background:new 0 0 31.177 31.177;" xml:space="preserve" width="25px" height="25px">
@@ -149,7 +152,7 @@
             </header>
 
             <div class="top_header_right_wrapper dashboard_right_Wrapper">
-				<div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
+                <div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
                     <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
                         <div class="budge_noti"></div>
                         <ul class="list">
@@ -185,14 +188,10 @@
                     </div>
                 </div>
                 <div class="crm_profile_dropbox_wrapper">
-                    <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
+                    <div class="nice-select" tabindex="0"> <span class="current"><img
+                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                alt="User" width="50" height="50" style="border-radius: 50%;"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
                         <ul class="list">
-                            <!--<li><a href="#"><i class="flaticon-profile"></i> Profile</a></li>
-                            <li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
-                            <li><a href="#"><i class="flaticon-file"></i> My Task</a></li>
-                            <li><a href="#"><i class="flaticon-calendar"></i> My Calender</a></li>
-                            <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a></li>
-                            <li><a href="#"><i class="flaticon-settings"></i> Setting</a></li>-->
                             <li><a href="tickets"><i class="flaticon-help"></i> Support</a></li>
                             <!--<li><a href="#"><i class="flaticon-padlock"></i> Lock Screen</a></li>-->
                             <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a></li>
@@ -204,7 +203,7 @@
             <div class="cp_navigation_wrapper main_top_wrapper dashboard_header">
                 <!-- mainmenu start -->
                 <div class="mainmenu d-xl-block d-lg-block d-md-none d-sm-none d-none">
-                     <ul class="main_nav_ul">             
+                    <ul class="main_nav_ul">
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation active_class">index <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
                                 <li class="parent">
@@ -217,10 +216,10 @@
                                     <a href="index3.html"><i class="fas fa-caret-right"></i>index III</a>
                                 </li> 								
                             </ul>
-                        </li>-->   
+                        </li>-->
                         <li><!--<h6></h6>--></li>
                         <!--<li><a href="investment.html" class="gc_main_navigation">investment plan</a></li> -->
-						<!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
+                        <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">pages <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
                                 <li class="parent">
                                     <a href="faq.html"><i class="fas fa-caret-right"></i>FAQ</a>
@@ -233,7 +232,7 @@
                                 </li>   								
                             </ul>
                         </li>-->
-						<li class="has-mega gc_main_navigation"><a class=""> <i class=""></i></a>
+                        <li class="has-mega gc_main_navigation"><a class=""> <i class=""></i></a>
                             <!--
                             <ul class="navi_2_dropdown">
                               
@@ -301,8 +300,8 @@
                                     <a href="tickets.html"><i class="fas fa-caret-right"></i>view tickets</a></li>
                             </ul>
                             -->
-                        </li>						
-						    						
+                        </li>
+
                         <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">blog <i class="fas fa-caret-down"></i></a>
                             <ul class="navi_2_dropdown">
                                 <li class="parent">
@@ -321,7 +320,7 @@
         </div>
     </div>
     <!-- navi wrapper End -->
-        
+
     <!-- inner header wrapper start -->
     <div class="page_title_section dashboard_title">
 
@@ -329,7 +328,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
-                        <h4> news reel here...</h4>
+                        <!-- News Reel section start-->
+                        <div class="news-reel-container">
+                            <div class="news-reel" id="newsReel">
+                                Loading latest news... ⏳
+                            </div>
+                        </div>
+                        <!-- News Reel section end-->
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
@@ -357,7 +362,7 @@
                                 <li><a href="viewprofile"><i class="fa fa-circle"></i>my profile</a></li>
                                 <li><a href="#"><i class="fa fa-circle"></i>change password</a></li>
                                 <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
-								<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
+                                <!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                             </ul>
                         </div>
                     </li>
@@ -367,14 +372,14 @@
                         </a>
                         <ul>
                             <!--<li><a href="my_account.html"><i class="fa fa-circle"></i> my account</a></li>-->
-                            <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>                      
+                            <li><a href="viewprofile"><i class="fa fa-circle"></i> my profile</a></li>
                             <li><a href="#"><i class="fa fa-circle"></i>change password</a></li>
                             <li><a href="paymentrequest"><i class="fa fa-circle"></i>withdraw</a></li>
-							<!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
+                            <!--<li><a href="change_pin.html"><i class="fa fa-circle"></i>change pin</a></li>-->
                         </ul>
                     </li>
                 </ul>
-                    
+
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
                         <div class="c-menu__item__inner"><a href="#"><i class="flaticon-progress-report"></i></a></div>
@@ -437,7 +442,7 @@
                             <ul class="crm_hover_menu">
                                 <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
                                 <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
-								<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+                                <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
 								<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
 								<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                             </ul>
@@ -450,13 +455,13 @@
                         <ul>
                             <!--<li><a href="all_transactions.html"><i class="fa fa-circle"></i> help articles</a></li>-->
                             <li><a href="tickets"><i class="fa fa-circle"></i>support</a></li>
-							<!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
+                            <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a></li>
 							<li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a></li>
 							<li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a></li>-->
                         </ul>
                     </li>
                 </ul>
-				<!--<ul class="u-list crm_drop_second_ul">
+                <!--<ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
                         <div class="c-menu__item__inner"><a href="make_deposit.html"><i class="flaticon-profile"></i></a></div>
                     </li>
@@ -465,14 +470,14 @@
                             <div class="c-menu-item__title">deposit</div>
                         </a>
                     </li>
-                </ul>-->   
+                </ul>-->
             </nav>
         </div>
     </div>
     <!-- side menus end -->
 
     <!-- Main section Start -->
-    <div class="l-main">         
+    <div class="l-main">
         <!--  my account wrapper start -->
         <div class="account_top_information">
             <div class="account_overlay"></div>
@@ -507,8 +512,8 @@
                 </dl>
             </div>
         </div>
-        <!--  my account wrapper end -->    
-        
+        <!--  my account wrapper end -->
+
         <!--  change password div start -->
         <div class="password_notify_wrapper float_left">
             <div class="row">
@@ -517,7 +522,7 @@
                         <h4>Change Password</h4>
                     </div>
                 </div>
-            </div>              
+            </div>
             <div class="row">
                 <div class="col-md-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-sm-12 col-12">
                     <div class="change_password_wrapper float_left">
@@ -563,46 +568,83 @@
             </div>
         </div>
     </div>
-    <!--  footer  wrapper end -->      
+    <!--  footer  wrapper end -->
     <!-- main box wrapper End-->
+
+    <!-- Deposit Modal -->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDepositModal()">&times;</span>
+            <h3>Deposit Crypto</h3>
+
+            <label>Select Cryptocurrency:</label>
+            <select id="cryptoType" onchange="updateNetworks()">
+                <option value="BTC">Bitcoin (BTC)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="LTC">Litecoin (LTC)</option>
+                <option value="DOGE">Dogecoin (DOGE)</option>
+            </select>
+
+            <label>Select Network:</label>
+            <select id="networkType" onchange="fetchDepositDetails()">
+                <!-- Options will be dynamically populated -->
+            </select>
+
+            <div class="sw_heading_wraper">
+                <h4>Deposit Address:</h4>
+                <input type="text" id="depositAddress" readonly>
+                <button onclick="copyAddress()">Copy</button>
+            </div>
+
+            <div class="sw_heading_wraper">
+                <h4>Scan Code:</h4>
+                <img id="qrCodeImage" src="" alt="QR Code">
+            </div>
+            <p><strong>Note:</strong> Send only selected crypto to this address.</p>
+        </div>
+    </div>
 
     <script>
         function changePassword() {
             var currentPassword = document.getElementById("current_password").value;
             var newPassword = document.getElementById("new_password").value;
             var confirmPassword = document.getElementById("confirm_password").value;
-        
+
             fetch('changepassword.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    current_password: currentPassword,
-                    new_password: newPassword,
-                    confirm_password: confirmPassword
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        current_password: currentPassword,
+                        new_password: newPassword,
+                        confirm_password: confirmPassword
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                if (data.success) {
-                    document.getElementById("changePasswordForm").reset();
-                }
-            });
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        document.getElementById("changePasswordForm").reset();
+                    }
+                });
         }
     </script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
-	<script src="js/dropify.min.js"></script>
-	<script src="js/owl.carousel.js"></script>
+    <script src="js/dropify.min.js"></script>
+    <script src="js/owl.carousel.js"></script>
     <script src="js/jquery.countTo.js"></script>
-	<script src="js/plugin.js"></script>
+    <script src="js/plugin.js"></script>
     <script src="js/jquery.inview.min.js"></script>
     <script src="js/jquery.magnific-popup.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/datatables.js"></script>
     <script src="js/jquery.menu-aim.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/depositmodal.js"></script>
+    <script src="js/news.js"></script>
     <!--main js file end-->
 </body>
 

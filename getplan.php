@@ -89,6 +89,7 @@ $_SESSION["user_balances"] = $usdBalances;
     <meta name="author" content="7evenspirits" />
     <meta name="MobileOptimized" content="320" />
     <!--Template style -->
+    <link rel="stylesheet" type="text/css" href="css/news.css" />
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/fonts.css" />
@@ -131,12 +132,6 @@ $_SESSION["user_balances"] = $usdBalances;
             </li>-->
             <!--<li class="has-children">
                 <a href="#">index</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
-                    <li class="go-back"><a href="#0">Menu</a></li>
-                    <li><a href="index.html">index I</a></li>
-                    <li><a href="index2.html">index II</a></li>
-                    <li><a href="index3.html">index III</a></li>
-                </ul>
             </li>-->
             <li><!--<h1>hi, </h1>--></li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
@@ -163,14 +158,7 @@ $_SESSION["user_balances"] = $usdBalances;
                     <li><a href="tickets">tickets</a></li>
                 </ul>
             </li>
-            <!--<li class="has-children">
-                <a href="#">blog</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
-                    <li class="go-back"><a href="#0">Menu</a></li>
-                    <li><a href="blog_category.html">blog category</a></li>
-                    <li><a href="blog_single.html">blog single</a></li>
-                </ul>
-            </li>-->
+
             <!--<li><a href="contact_us.html"> contact us </a></li>
             <li><a href="login.html"> login </a></li>
             <li><a href="register.html"> register </a></li>-->
@@ -225,8 +213,8 @@ $_SESSION["user_balances"] = $usdBalances;
 
             <div class="top_header_right_wrapper dashboard_right_Wrapper">
                 <div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
-                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification">..</i></span>
-                        <div class="budge_noti"></div>
+                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
+                        <div class="budge_noti">..</div>
                         <ul class="list">
                             <li><a href="#">No New Messages</a></li>
                             <!--
@@ -241,17 +229,7 @@ $_SESSION["user_balances"] = $usdBalances;
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="crm_mess_main_box_wrapper">
-                                    <div class="crm_mess_img_wrapper">
-                                        <img src="images/mess1.jpg" alt="img">
-                                    </div>
-                                    <div class="crm_mess_img_cont_wrapper">
-                                        <h4>Mr.john <span>01:30PM</span></h4>
-                                        <p>I'm Leaving early</p>
-                                    </div>
-                                </div>
-                            </li>
+                           
                             <li>
                                 <div class="crm_mess_all_main_box_wrapper">
                                     <p><a href="#">See All</a></p>
@@ -261,13 +239,11 @@ $_SESSION["user_balances"] = $usdBalances;
                     </div>
                 </div>
                 <div class="crm_profile_dropbox_wrapper">
-                    <div class="nice-select" tabindex="0"> <span class="current"><img src="images/avatar.png" alt="img"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
+                    <div class="nice-select" tabindex="0"> <span class="current"><img
+                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                alt="User" width="50" height="50" style="border-radius: 50%;"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
                         <ul class="list">
                             <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a></li>
-                            <!--<li><a href="#"><i class="flaticon-purse"></i>Account Balance</a></li>
-                            <li><a href="#"><i class="flaticon-envelope"></i> Inbox</a></li>
-                            <li><a href="#"><i class="flaticon-settings"></i> Setting</a></li>
-                            <li><a href="#"><i class="flaticon-help"></i> Support</a></li>-->
                             <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a></li>
                         </ul>
                     </div>
@@ -370,7 +346,13 @@ $_SESSION["user_balances"] = $usdBalances;
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-7 col-md-7 col-12 col-sm-7">
-                        <h4>News reel here..</h4>
+                        <!-- News Reel section start-->
+                        <div class="news-reel-container">
+                            <div class="news-reel" id="newsReel">
+                                Loading latest news... ⏳
+                            </div>
+                        </div>
+                        <!-- News Reel section end-->
                     </div>
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
@@ -735,85 +717,15 @@ $_SESSION["user_balances"] = $usdBalances;
                 <button onclick="copyAddress()">Copy</button>
             </div>
             <div class="sw_heading_wraper">
-                <h6>Scan Code:</h6>
+                <h4>Scan Code:</h4>
                 <img id="qrCodeImage" src="" alt="QR Code">
             </div>
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>
     </div>
+    <!-- Deposit Modal Page end-->
 
-    <!-- JavaScript for Modal Functionality -->
-    <script>
-        let cryptoData = {}; // Stores JSON data globally
-        // Load JSON Data on Page Load
-        fetch("assets/crypto_addresses.json")
-            .then(response => response.json())
-            .then(data => {
-                cryptoData = data;
-                updateNetworks(); // Update networks when page loads
-            }).catch(error => console.error("Error loading JSON:", error)); // Debugging
-
-        function openDepositModal() {
-            document.getElementById("depositModal").style.display = "block";
-        }
-
-        function closeDepositModal() {
-            document.getElementById("depositModal").style.display = "none";
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            var modal = document.getElementById("depositModal");
-            if (event.target === modal) {
-                closeDepositModal();
-            }
-        }
-
-        // Update Networks Based on Selected Crypto
-        function updateNetworks() {
-            let cryptoType = document.getElementById("cryptoType").value;
-            let networkDropdown = document.getElementById("networkType");
-
-            // Clear existing options
-            networkDropdown.innerHTML = "";
-
-            if (cryptoData[cryptoType]) {
-                // Populate networks from JSON
-                cryptoData[cryptoType]["networks"].forEach(network => {
-                    let option = document.createElement("option");
-                    option.value = network;
-                    option.text = network;
-                    networkDropdown.appendChild(option);
-                });
-
-                // Auto-select first network and fetch deposit details
-                fetchDepositDetails();
-            }
-        }
-
-        function fetchDepositDetails() {
-            let cryptoType = document.getElementById("cryptoType").value;
-            let networkType = document.getElementById("networkType").value;
-
-            if (cryptoData[cryptoType] && cryptoData[cryptoType]["addresses"][networkType]) {
-                let depositInfo = cryptoData[cryptoType]["addresses"][networkType];
-                document.getElementById("depositAddress").value = depositInfo["address"];
-                document.getElementById("qrCodeImage").src = depositInfo["qr_code"];
-            } else {
-                document.getElementById("depositAddress").value = "Invalid Selection";
-                document.getElementById("qrCodeImage").src = "";
-            }
-        }
-
-        function copyAddress() {
-            let copyText = document.getElementById("depositAddress");
-            navigator.clipboard.writeText(copyText.value);
-            alert("Address copied to clipboard!");
-        }
-    </script>
-
-    <!-- Deposit Modal Page & Script end-->
-
+    <script src="js/depositmodal.js"></script>
     <script src="js/crypto_prices.js"></script>
     <script src="js/plan_subscription.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -829,6 +741,7 @@ $_SESSION["user_balances"] = $usdBalances;
     <script src="js/datatables.js"></script>
     <script src="js/jquery.menu-aim.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/news.js"></script>
     <!--main js file end-->
 </body>
 
