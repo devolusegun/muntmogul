@@ -397,8 +397,8 @@ if (!$user) {
                             <!-- Profile Image Upload Section -->
                             <div class="col-md-12">
                                 <div class="profile_view_img">
-                                    <!--<img id="profileImage" src="<//?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/user.png'; ?>" alt="Profile Picture">-->
-                                    <img id="profileImage" src="uploads/profile_pictures/<?= $user['profile_picture'] ?: 'default.png'; ?>" alt="Profile Picture">
+                                    <!-- <?= var_dump($user['profile_picture']); ?> -->
+                                    <img id="profileImage" src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'uploads/profile_pictures/default.png'; ?>" alt="Profile Picture">
                                 </div>
                                 <div class="profile_width_cntnt">
                                     <h4>JPEG or PNG (500x500px)</h4>
@@ -506,7 +506,7 @@ if (!$user) {
 
             <div class="sw_heading_wraper">
                 <h4>Scan Code:</h4>
-                <img id="qrCodeImage" src="" alt="QR Code">
+                <img id="qrCodeImage" class="img-fluid qr-code" src="" alt="QR Code">
             </div>
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>

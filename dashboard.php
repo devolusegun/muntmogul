@@ -1539,7 +1539,7 @@ if (!$user) {
             </div>
             <div class="sw_heading_wraper">
                 <h4>Scan Code:</h4>
-                <img id="qrCodeImage" src="" alt="QR Code">
+                <img id="qrCodeImage" class="img-fluid qr-code" src="" alt="QR Code">
             </div>
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>

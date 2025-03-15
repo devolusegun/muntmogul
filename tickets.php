@@ -479,7 +479,7 @@ $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <input type="text" name="subject" placeholder="Subject" required>
                                                     </div>
                                                     <div class="change_field">
-                                                        <textarea name="message" rows="7" cols="45" placeholder="Message" required></textarea>
+                                                        <textarea name="message" rows="7" cols="35" placeholder="Message" required></textarea>
                                                     </div>
                                                     <div class="question_sec">
                                                         <button type="submit" name="submit_ticket" class="btn btn-primary">Send</button>
@@ -577,7 +577,7 @@ $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <div class="sw_heading_wraper">
                 <h4>Scan Code:</h4>
-                <img id="qrCodeImage" src="" alt="QR Code">
+                <img id="qrCodeImage" class="img-fluid qr-code" src="" alt="QR Code">
             </div>
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>

@@ -1,4 +1,7 @@
 <?php
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);*/
 session_start();
 require 'config/config.php';
 
@@ -7,11 +10,14 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 
-$userId = $_SESSION["user"]["id"];
-
 //  Fetch user balances from `crypticusers` table
-$stmt = $pdo->prepare("SELECT btc_balance, ltc_balance, eth_balance, doge_balance, subscribed_plan FROM crypticusers WHERE id = ?");
-$stmt->execute([$userId]);
+$stmt = $pdo->prepare("SELECT cu.first_name, cu.last_name,cu.last_login, cu.last_ip, cu.btc_balance, cu.ltc_balance, cu.eth_balance, cu.doge_balance, 
+           cs.subscribed_plan 
+    FROM crypticusers cu
+    LEFT JOIN cryptic_subscriptions cs ON cu.id = cs.user_id
+    WHERE cu.id = ?");
+
+$stmt->execute([$_SESSION["user"]["id"]]);
 $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //  Set a default if balances are NULL
@@ -497,12 +503,12 @@ $_SESSION["user_balances"] = $usdBalances;
             <div class="account_overlay"></div>
             <div class="useriimg"><img src="images/user.png" alt="users"></div>
             <div class="userdet uderid">
-                <h3><?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?></h3>
+                <h3><?php echo htmlspecialchars($userData["first_name"] . " " . $userData["last_name"]); ?></h3>
                 <dl class="userdescc">
                     <dt>Last Login</dt>
-                    <dd>: &nbsp; <?php echo $user["last_login"]; ?></dd>
+                    <dd>: &nbsp; <?php echo $userData["last_login"]; ?></dd>
                     <dt>Last Access IP</dt>
-                    <dd>: &nbsp; <?php echo $user["last_ip"]; ?> </dd>
+                    <dd>: &nbsp; <?php echo $userData["last_ip"]; ?> </dd>
                     <dt>Current IP</dt>
                     <dd>: &nbsp; <?php echo $_SERVER["REMOTE_ADDR"]; ?> </dd>
 
@@ -718,7 +724,7 @@ $_SESSION["user_balances"] = $usdBalances;
             </div>
             <div class="sw_heading_wraper">
                 <h4>Scan Code:</h4>
-                <img id="qrCodeImage" src="" alt="QR Code">
+                <img id="qrCodeImage" class="img-fluid qr-code" src="" alt="QR Code">
             </div>
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>
