@@ -7957,3 +7957,17 @@ body.modal-open {
     background-color: #004494;
     transform: scale(0.96);
 }
+
+.choose-plan-btn.selected {
+    background-color: #ffcc00; /* Highlight selected button */
+    color: #333;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.investment_content_wrapper.selected {
+    border: 2px solid #ffcc00; /* Highlight selected plan card */
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    transition: all 0.3s ease;
+}

@@ -2,12 +2,27 @@
 session_start();
 require 'config/config.php';
 
-if (!isset($_SESSION["user"])) {
-    header("Location: login");
+// Ensure user session is set
+if (!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
+    header("Location: login.php");
     exit();
 }
 
-// Fetch User Balance for the Selected Crypto Type
+$user_id = $_SESSION["user"]["id"];
+
+// Fetch user details from database
+$stmt = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("User not found.");
+}
+
+// Refresh session with full user details
+$_SESSION["user"] = $user;
+
+// Fetch Crypto Balance Function
 function getUserCryptoBalance($pdo, $user_id, $crypto_type)
 {
     $stmt = $pdo->prepare("
@@ -24,18 +39,12 @@ function getUserCryptoBalance($pdo, $user_id, $crypto_type)
     return $result['balance'] ?? 0;
 }
 
-// Get Current User ID
-$user_id = $_SESSION["user"]["id"];
-
 // Default Crypto Type (BTC)
 $selected_crypto = $_POST['crypto_type'] ?? 'BTC';
 
 // Fetch the Correct Balance for Selected Crypto
 $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
 
-if (!$user) {
-    die("User not found.");
-}
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +80,21 @@ if (!$user) {
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+
+    <style>
+        /* Ensure dropdown closes on selection */
+        .nice-select .list {
+            max-height: 250px;
+            /* Prevents it from becoming too large */
+            overflow-y: auto;
+            /* Enables scrolling for long lists */
+        }
+
+        /* Ensures dropdown closes on selection */
+        .nice-select .option {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <!-- color picker start -->
 
@@ -495,8 +519,8 @@ if (!$user) {
 
                                 <!-- Payment Mode Dropdown -->
                                 <div class="payment_gateway_wrapper payment_select_wrapper">
-                                    <label>Select Cryptocurrency:</label>
-                                    <select id="" name="crypto_type" onchange="updateBalance()">
+                                    <label for="cryptoSelect" class="form-label fw-bold">Select Cryptocurrency:</label>
+                                    <select id="cryptoSelect" class="form-select nice-select" onchange="updateBalance();">
                                         <option value="" disabled selected>Choose Crypto</option>
                                         <option value="BTC">Bitcoin (BTC)</option>
                                         <option value="ETH">Ethereum (ETH)</option>
@@ -568,16 +592,16 @@ if (!$user) {
             <span class="close" onclick="closeDepositModal()">&times;</span>
             <h3>Deposit Crypto</h3>
 
-            <label>Select Cryptocurrency:</label>
-            <select id="cryptoType" onchange="updateNetworks()">
+            <label for="cryptoType" class="form-label fw-bold">Select Cryptocurrency:</label>
+            <select id="cryptoType" class="form-select form-select-lg" onchange="updateNetworks()">
                 <option value="BTC">Bitcoin (BTC)</option>
                 <option value="ETH">Ethereum (ETH)</option>
                 <option value="LTC">Litecoin (LTC)</option>
                 <option value="DOGE">Dogecoin (DOGE)</option>
             </select>
 
-            <label>Select Network:</label>
-            <select id="networkType" onchange="fetchDepositDetails()">
+            <label for="networkType" class="form-label fw-bold">Select Network:</label>
+            <select id="networkType" class="form-select form-select-lg" onchange="fetchDepositDetails()">
                 <!-- Options will be dynamically populated -->
             </select>
 
@@ -594,9 +618,12 @@ if (!$user) {
         </div>
     </div>
 
+
+
     <script src="js/payrequest.js"></script>
     <script src="js/depositmodal.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="js/dropify.min.js"></script>
@@ -605,12 +632,34 @@ if (!$user) {
     <script src="js/plugin.js"></script>
     <script src="js/jquery.inview.min.js"></script>
     <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/datatables.js"></script>
     <script src="js/jquery.menu-aim.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/news.js"></script>
     <!--main js file end-->
+
+    <script>
+        $(document).ready(function() {
+            setTimeout(() => {
+                $('select').niceSelect();
+            }, 300); // Small delay ensures it's initialized properly
+
+            // Close dropdown when an option is selected
+            $('.nice-select').on('click', '.option', function() {
+                let parentDropdown = $(this).closest('.nice-select');
+                setTimeout(() => {
+                    parentDropdown.removeClass('open'); // Forcefully close the dropdown
+                }, 100);
+            });
+
+            // Close dropdown when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.nice-select').length) {
+                    $('.nice-select').removeClass('open');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
