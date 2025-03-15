@@ -331,13 +331,7 @@ $_SESSION["user_balances"] = $usdBalances;
                             </ul>
                             -->
                         </li>
-                        <!--<li class="has-mega gc_main_navigation"><a href="#" class="gc_main_navigation">blog <i class="fas fa-caret-down"></i></a>
-                            <ul class="navi_2_dropdown">
-                                <li class="parent"><a href="blog_category.html"><i class="fas fa-caret-right"></i>blog category</a> </li>
-                                <li class="parent"><a href="blog_single.html"><i class="fas fa-caret-right"></i> blog single</a></li>                   
-                            </ul>
-                        </li>     
-                        <li><a href="contact_us.html" class="gc_main_navigation">contact us</a></li>-->
+                        
                     </ul>
                 </div>
                 <!-- mainmenu end -->
@@ -554,7 +548,7 @@ $_SESSION["user_balances"] = $usdBalances;
                             <div class="about_btn plans_btn">
                                 <ul>
                                     <li>
-                                        <a href="#">Choose Plan</a>
+                                        <a href="#" class="choose-plan-btn" data-plan="gold" onclick="selectPlan('gold', 50000); return false;">Choose Plan</a>
                                     </li>
                                 </ul>
                             </div>
@@ -577,7 +571,7 @@ $_SESSION["user_balances"] = $usdBalances;
                             <div class="about_btn plans_btn red_btn_plans">
                                 <ul>
                                     <li>
-                                        <a href="#">choose plan</a>
+                                        <a href="#" class="choose-plan-btn" data-plan="copper" onclick="selectPlan('copper', 15000); return false;">choose plan</a>
                                     </li>
                                 </ul>
                             </div>
@@ -600,7 +594,7 @@ $_SESSION["user_balances"] = $usdBalances;
                             <div class="about_btn plans_btn blue_btn_plans">
                                 <ul>
                                     <li>
-                                        <a href="#">choose plan</a>
+                                        <a href="#" class="choose-plan-btn" data-plan="bronze" onclick="selectPlan('bronze', 5000); return false;">choose plan</a>
                                     </li>
                                 </ul>
                             </div>
@@ -623,7 +617,7 @@ $_SESSION["user_balances"] = $usdBalances;
                             <div class="about_btn plans_btn green_plan_btn">
                                 <ul>
                                     <li>
-                                        <a href="#">choose plan</a>
+                                        <a href="#" class="choose-plan-btn" data-plan="silver" onclick="selectPlan('silver', 2000); return false;">choose plan</a>
                                     </li>
                                 </ul>
                             </div>
@@ -647,19 +641,19 @@ $_SESSION["user_balances"] = $usdBalances;
                     <div class="payment_radio_btn_wrapper float_left">
                         <div class="radio">
                             <input type="radio" name="crypto" id="litecoin" value="LTC" onclick="updateBalance('LTC')">
-                            <label for="litecoin"><img src="images/litecoin.png" alt="Litecoin"> Litecoin</label>
+                            <label for="litecoin"><img src="images/litecoin.png" alt="Litecoin"> <span id="LTC_price"></span></label>
                         </div>
                         <div class="radio">
                             <input type="radio" name="crypto" id="dogecoin" value="DOGE" onclick="updateBalance('DOGE')">
-                            <label for="dogecoin"><img src="images/dogecoin.png" alt="Dogecoin"> Dogecoin</label>
+                            <label for="dogecoin"><img src="images/dogecoin.png" alt="Dogecoin"> <span id="DOGE_price"></span></label>
                         </div>
                         <div class="radio">
                             <input type="radio" name="crypto" id="ethereum" value="ETH" onclick="updateBalance('ETH')">
-                            <label for="ethereum"><img src="images/ethereum.png" alt="Ethereum"> Ethereum</label>
+                            <label for="ethereum"><img src="images/ethereum.png" alt="Ethereum"> <span id="ETH_price"></span></label>
                         </div>
                         <div class="radio">
                             <input type="radio" name="crypto" id="bitcoin" value="BTC" onclick="updateBalance('BTC')">
-                            <label for="bitcoin"><img src="images/bitcoin.png" alt="Bitcoin"> Bitcoin</label>
+                            <label for="bitcoin"><img src="images/bitcoin.png" alt="Bitcoin"> <span id="BTC_price"></span></label>
                         </div>
                         <div class="about_btn acc_balance_btn float_left">
                             <p>YOUR ACCOUNT BALANCE :</p>
@@ -672,7 +666,7 @@ $_SESSION["user_balances"] = $usdBalances;
                         <div class="about_btn float_left">
                             <ul>
                                 <li>
-                                    <a href="#" onclick="submitSubscription(); return false;">submit</a>
+                                    <a onclick="submitSubscription(); return false;">submit</a>
                                 </li>
                             </ul>
                         </div>
@@ -733,9 +727,10 @@ $_SESSION["user_balances"] = $usdBalances;
 
     <script src="js/depositmodal.js"></script>
     <script src="js/crypto_prices.js"></script>
-    <script src="js/plan_subscription.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/plan_subscription.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="js/dropify.min.js"></script>
     <script src="js/owl.carousel.js"></script>
@@ -746,7 +741,7 @@ $_SESSION["user_balances"] = $usdBalances;
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/datatables.js"></script>
     <script src="js/jquery.menu-aim.js"></script>
-    <script src="js/custom.js"></script>
+    
     <script src="js/news.js"></script>
     <!--main js file end-->
 </body>
