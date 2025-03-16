@@ -1,23 +1,19 @@
-let cryptoPrices = {}; // Store latest prices
-
 async function fetchCryptoPrices() {
     try {
-        let response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,litecoin,ethereum,dogecoin&vs_currencies=usd");
-        let data = await response.json();
+        const response = await fetch('../fetch_crypto_prices.php'); // Adjust path
 
-        cryptoPrices = {
-            BTC: data.bitcoin.usd,
-            LTC: data.litecoin.usd,
-            ETH: data.ethereum.usd,
-            DOGE: data.dogecoin.usd
-        };
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-        console.log("Live Crypto Prices Updated:", cryptoPrices);
+        const data = await response.json();
+        console.log("Crypto Prices:", data);  // Debugging log
+
     } catch (error) {
         console.error("Error fetching crypto prices:", error);
     }
 }
 
-// Fetch prices every 30 seconds to keep it updated
+// Refresh every 60 seconds
+setInterval(fetchCryptoPrices, 60000);
 fetchCryptoPrices();
-setInterval(fetchCryptoPrices, 30000);

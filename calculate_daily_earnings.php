@@ -1,28 +1,52 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require 'config/config.php';
 
-// Fetch all active subscriptions
-$stmt = $pdo->query("SELECT id, user_id, plan, crypto_type, amount FROM cryptic_subscriptions WHERE status = 'active'");
-$subscriptions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$roi_per_day = [
-    'gold' => 1.7333 / 100, // 1.7333% per day
-    'copper' => 1.2333 / 100, // 1.2333% per day
-    'bronze' => 0.9333 / 100, // 0.9333% per day
-    'silver' => 0.6667 / 100 // 0.6667% per day
+// Define ROI percentages
+$plan_roi = [
+    'gold' => 52 / 30,   // 1.7333% per day
+    'copper' => 37 / 30, // 1.2333% per day
+    'bronze' => 28 / 30, // 0.9333% per day
+    'silver' => 20 / 30, // 0.6667% per day
 ];
 
-foreach ($subscriptions as $sub) {
-    $dailyEarning = $sub['amount'] * $roi_per_day[$sub['plan']];
+// Fetch all active subscriptions
+$stmt = $pdo->prepare("SELECT id, user_id, subscribed_plan, crypto_type, amount FROM cryptic_subscriptions WHERE status = 'active'");
+$stmt->execute();
+$subscriptions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Insert daily earnings record
-    $stmt = $pdo->prepare("INSERT INTO earnings_log (user_id, subscription_id, daily_earning, crypto_type) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$sub['user_id'], $sub['id'], $dailyEarning, $sub['crypto_type']]);
-
-    // Update user's crypto balance in `crypticusers`
-    $updateStmt = $pdo->prepare("UPDATE crypticusers SET {$sub['crypto_type']}_balance = {$sub['crypto_type']}_balance + ? WHERE id = ?");
-    $updateStmt->execute([$dailyEarning, $sub['user_id']]);
+if (!$subscriptions) {
+    die("No active subscriptions found.");
 }
 
-echo "Daily earnings updated successfully.";
+// Insert daily earnings for each active subscription
+foreach ($subscriptions as $sub) {
+    $subscription_id = $sub['id'];
+    $user_id = $sub['user_id'];
+    $plan = $sub['subscribed_plan'];
+    $crypto = $sub['crypto_type'];
+    $amount = $sub['amount'];
+
+    // Calculate daily earnings
+    $daily_earning = $amount * ($plan_roi[$plan] / 100); // Convert ROI% to decimal
+
+    // Insert earnings log
+    $insert_stmt = $pdo->prepare("INSERT INTO earnings_log (user_id, subscription_id, daily_earning, crypto_type, earnings_date) VALUES (?, ?, ?, ?, NOW())");
+    $insert_stmt->execute([$user_id, $subscription_id, $daily_earning, $crypto]);
+    
+    // Update user balance based on crypto type
+    $updateBalanceQuery = "
+    UPDATE crypticusers 
+    SET {$crypto}_balance = COALESCE({$crypto}_balance, 0) + :daily_earning
+    WHERE id = :user_id
+    ";
+    $updateStmt = $pdo->prepare($updateBalanceQuery);
+    $updateStmt->execute([
+        'daily_earning' => $daily_earning,
+        'user_id' => $user_id
+    ]);
+}
+
+echo "✅ Daily earnings calculated and recorded successfully.";
 ?>
