@@ -14,14 +14,11 @@ $crypto_type = $_GET['crypto_type'] ?? 'BTC';
 // Fetch Balance Dynamically
 $stmt = $pdo->prepare("
     SELECT 
-        COALESCE(SUM(CASE WHEN transaction_type = 'deposit' AND status = 'approved' THEN amount ELSE 0 END), 0) 
-        - 
-        COALESCE(SUM(CASE WHEN transaction_type = 'withdrawal' AND status = 'approved' THEN amount ELSE 0 END), 0) 
-    AS balance
-    FROM crypto_transactions
-    WHERE user_id = ? AND crypto_type = ?
+        COALESCE({$crypto_type}_balance, 0) AS balance
+    FROM crypticusers
+    WHERE id = ?
 ");
-$stmt->execute([$user_id, $crypto_type]);
+$stmt->execute([$user_id]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Return Balance as JSON

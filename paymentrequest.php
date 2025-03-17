@@ -11,31 +11,26 @@ if (!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
 $user_id = $_SESSION["user"]["id"];
 
 // Fetch user details from database
-$stmt = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
-$stmt->execute([$user_id]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmtd = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
+$stmtd->execute([$user_id]);
+$user = $stmtd->fetch(PDO::FETCH_ASSOC);
 
 if (!$user) {
     die("User not found.");
 }
 
 // Refresh session with full user details
-$_SESSION["user"] = $user;
+//$_SESSION["user"] = $user;
 
 // Fetch Crypto Balance Function
-function getUserCryptoBalance($pdo, $user_id, $crypto_type)
-{
-    $stmt = $pdo->prepare("
-        SELECT 
-            COALESCE(SUM(CASE WHEN transaction_type = 'deposit' AND status = 'approved' THEN amount ELSE 0 END), 0) 
-            - 
-            COALESCE(SUM(CASE WHEN transaction_type = 'withdrawal' AND status = 'approved' THEN amount ELSE 0 END), 0) 
-        AS balance
-        FROM crypto_transactions
-        WHERE user_id = ? AND crypto_type = ?
-    ");
-    $stmt->execute([$user_id, $crypto_type]);
+function getUserCryptoBalance($pdo, $user_id, $crypto_type) {
+    // Column name dynamically set from crypto type (e.g., btc_balance, eth_balance)
+    $column = strtolower($crypto_type) . "_balance";
+    
+    $stmt = $pdo->prepare("SELECT $column AS balance FROM crypticusers WHERE id = ?");
+    $stmt->execute([$user_id]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
     return $result['balance'] ?? 0;
 }
 
@@ -44,6 +39,7 @@ $selected_crypto = $_POST['crypto_type'] ?? 'BTC';
 
 // Fetch the Correct Balance for Selected Crypto
 $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
+
 
 ?>
 
@@ -80,20 +76,18 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <!--favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-
+    
     <style>
         /* Ensure dropdown closes on selection */
-        .nice-select .list {
-            max-height: 250px;
-            /* Prevents it from becoming too large */
-            overflow-y: auto;
-            /* Enables scrolling for long lists */
-        }
+.nice-select .list {
+    max-height: 250px; /* Prevents it from becoming too large */
+    overflow-y: auto;  /* Enables scrolling for long lists */
+}
 
-        /* Ensures dropdown closes on selection */
-        .nice-select .option {
-            cursor: pointer;
-        }
+/* Ensures dropdown closes on selection */
+.nice-select .option {
+    cursor: pointer;
+}
     </style>
 </head>
 <!-- color picker start -->
@@ -333,7 +327,7 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
-                                <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
+                                <li> <a href="dashboard"> Home </a>&nbsp; / &nbsp; </li>
                                 <li> Payout</li>
                             </ul>
                         </div>
@@ -348,7 +342,7 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
             <nav class="c-menu js-menu" id="mynavi">
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-four-grid-layout-design-interface-symbol"></i></a>
+                        <div class="c-menu__item__inner"><a href="viewprofile"><i class="flaticon-profile"></i></a>
                             <ul class="crm_hover_menu">
                                 <li><a href="viewprofile"><i class="fa fa-circle"></i> profile</a></li>
                                 <li><a href="password"><i class="fa fa-circle"></i>change password</a></li>
@@ -392,7 +386,7 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
                 </ul>
                 <ul class="u-list crm_drop_second_ul">
                     <li class="crm_navi_icon">
-                        <div class="c-menu__item__inner"><a href="depositupload"><i class="flaticon-help"></i></a>
+                        <div class="c-menu__item__inner"><a href="depositupload"><i class="flaticon-movie-tickets"></i></a>
                             <ul class="crm_hover_menu">
                                 <li><a href="depositupload"><i class="fa fa-circle"></i>upload deposit proof</a> </li>
                                 <li><a href="deposited"><i class="fa fa-circle"></i> deposit history</a></li>
@@ -403,7 +397,7 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                         <a href="depositupload">
-                            <div class="c-menu-item__title"><span>finances</span><i class="no_badge purple">3</i></div>
+                            <div class="c-menu-item__title"><span>finances</span><i class="no_badge ">3</i></div>
                         </a>
                         <ul>
                             <li><a href="depositupload"> <i class="fa fa-circle"></i>upload deposit proof</a></li>
@@ -491,13 +485,13 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
                 <h3>Available Balance</h3>
                 <dl class="userdescc">
                     <dt>Bitcoin</dt>
-                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["btc_balance"], 8); ?></dd>
                     <dt>Ethereum</dt>
-                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["eth_balance"], 8); ?></dd>
                     <dt>Litecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["ltc_balance"], 8); ?></dd>
                     <dt>Dogecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["doge_balance"], 8); ?></dd>
                 </dl>
             </div>
         </div>
@@ -520,13 +514,13 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
                                 <!-- Payment Mode Dropdown -->
                                 <div class="payment_gateway_wrapper payment_select_wrapper">
                                     <label for="cryptoSelect" class="form-label fw-bold">Select Cryptocurrency:</label>
-                                    <select id="cryptoSelect" class="form-select nice-select" onchange="updateBalance();">
-                                        <option value="" disabled selected>Choose Crypto</option>
-                                        <option value="BTC">Bitcoin (BTC)</option>
-                                        <option value="ETH">Ethereum (ETH)</option>
-                                        <option value="LTC">Litecoin (LTC)</option>
-                                        <option value="DOGE">Dogecoin (DOGE)</option>
-                                    </select>
+    <select id="cryptoSelect" class="form-select nice-select">
+        <option value="" disabled selected>Choose Crypto</option>
+        <option value="BTC">Bitcoin (BTC)</option>
+        <option value="ETH">Ethereum (ETH)</option>
+        <option value="LTC">Litecoin (LTC)</option>
+        <option value="DOGE">Dogecoin (DOGE)</option>
+    </select>
                                 </div>
 
                                 <!-- Available Balance (Readonly) - Updates Based on Selected Crypto -->
@@ -617,8 +611,8 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>
     </div>
-
-
+    
+    
 
     <script src="js/payrequest.js"></script>
     <script src="js/depositmodal.js"></script>
@@ -637,28 +631,28 @@ $crypto_balance = getUserCryptoBalance($pdo, $user_id, $selected_crypto);
     <script src="js/custom.js"></script>
     <script src="js/news.js"></script>
     <!--main js file end-->
-
+    
     <script>
-        $(document).ready(function() {
-            setTimeout(() => {
-                $('select').niceSelect();
-            }, 300); // Small delay ensures it's initialized properly
+        $(document).ready(function () {
+    setTimeout(() => {
+        $('select').niceSelect();
+    }, 300); // Small delay ensures it's initialized properly
 
-            // Close dropdown when an option is selected
-            $('.nice-select').on('click', '.option', function() {
-                let parentDropdown = $(this).closest('.nice-select');
-                setTimeout(() => {
-                    parentDropdown.removeClass('open'); // Forcefully close the dropdown
-                }, 100);
-            });
+    // Close dropdown when an option is selected
+    $('.nice-select').on('click', '.option', function () {
+        let parentDropdown = $(this).closest('.nice-select');
+        setTimeout(() => {
+            parentDropdown.removeClass('open'); // Forcefully close the dropdown
+        }, 100);
+    });
 
-            // Close dropdown when clicking outside
-            $(document).on('click', function(e) {
-                if (!$(e.target).closest('.nice-select').length) {
-                    $('.nice-select').removeClass('open');
-                }
-            });
-        });
+    // Close dropdown when clicking outside
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.nice-select').length) {
+            $('.nice-select').removeClass('open');
+        }
+    });
+});
     </script>
 </body>
 
