@@ -1,0 +1,81 @@
+/* Reset & General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full Page Wrapper */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Top Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* MuntMogul Logo */
+.logo img {
+    width: 180px;
+}
+
+/* Hero Section (Mimicking Background Design) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 850px; /* Adjust height as needed */
+    background: linear-gradient(135deg, #FFD700, #FFCC00); /* Mimics yellow curve */
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Form Container - Layered Above Hero Section */
+.form-container {
+    position: relative;
+    max-width: 600px;
+    margin: -800px auto 50px auto; /* Pulls the form up into the yellow section */
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Center Align Form */
+.form-container h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    border: none;
+}
