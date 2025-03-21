@@ -8,7 +8,7 @@ if (!isset($_SESSION["user"])) {
 }
 
 // Fetch User Data
-$stmt = $pdo->prepare("SELECT first_name, last_name, email, address, city, state, country, profile_picture FROM crypticusers WHERE id = ?");
+$stmt = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
 $stmt->execute([$_SESSION["user"]["id"]]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -370,13 +370,13 @@ if (!$user) {
                 <h3>Available Balance</h3>
                 <dl class="userdescc">
                     <dt>Bitcoin</dt>
-                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["btc_balance"], 8); ?></dd>
                     <dt>Ethereum</dt>
-                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["eth_balance"], 8); ?></dd>
                     <dt>Litecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["ltc_balance"], 8); ?></dd>
                     <dt>Dogecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["doge_balance"], 8); ?></dd>
                 </dl>
             </div>
         </div>
@@ -427,36 +427,12 @@ if (!$user) {
                             <!-- Save Changes Button -->
                             <div class="about_btn float_left">
                                 <ul>
-                                    <li><a href="#" onclick="showTransactionPinModal()">Save Changes</a></li>
+                                    <li><a href="#" id="saveChangesBtn">Save Changes</a></li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Transaction PIN Modal -->
-                        <div class="modal fade" id="transactionPinModal" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <div class="sv_question_pop float_left">
-                                        <h1>User Security</h1>
-                                        <p>Enter your Transaction PIN to confirm changes</p>
-                                        <div class="change_field">
-                                            <input type="password" id="transactionPin" placeholder="Enter Transaction PIN" required>
-                                        </div>
-                                        <div class="question_sec float_left">
-                                            <div class="about_btn ques_Btn">
-                                                <ul>
-                                                    <li><a href="#" onclick="saveProfileChanges()">Confirm</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="cancel_wrapper">
-                                                <a href="#" data-dismiss="modal">Cancel</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                     </div> <!-- view_profile_wrapper -->
                 </div> <!-- col-md-12 -->
@@ -479,6 +455,32 @@ if (!$user) {
     </div>
     <!--  footer  wrapper end -->
     <!-- main box wrapper End-->
+
+    <!-- Transaction PIN Modal -->
+    <div class="modal fade" id="transactionPinModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="sv_question_pop float_left">
+                    <h1>User Security</h1>
+                    <p>Enter your Transaction PIN to confirm changes</p>
+                    <div class="change_field">
+                        <input type="password" id="transactionPin" placeholder="Enter Transaction PIN" required>
+                    </div>
+                    <div class="question_sec float_left">
+                        <div class="about_btn ques_Btn">
+                            <ul>
+                            <li><a href="#" id="confirmPinBtn">Confirm</a></li>
+                            </ul>
+                        </div>
+                        <div class="cancel_wrapper">
+                            <a href="#" onclick="document.getElementById('transactionPinModal').style.display = 'none';">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="depositModal" class="modal">
         <div class="modal-content">
@@ -517,7 +519,7 @@ if (!$user) {
             document.getElementById('transactionPinModal').style.display = 'block';
         }
 
-        function saveProfileChanges() {
+        /*function saveProfileChanges() {
             var formData = new FormData();
             formData.append("transaction_pin", document.getElementById("transactionPin").value);
             formData.append("address", document.getElementById("address").value);
@@ -550,7 +552,7 @@ if (!$user) {
                     }
                 })
                 .catch(error => console.error("Error:", error));
-        }
+        }*/
 
         function uploadProfilePicture() {
             var fileInput = document.getElementById("profilePicInput");
@@ -592,6 +594,7 @@ if (!$user) {
     <script src="js/jquery.menu-aim.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/news.js"></script>
+    <script src="js/profile_update.js"></script>
     <!--main js file end-->
     <!-- Deposit Modal -->
 

@@ -7,7 +7,7 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 
-$stmt = $pdo->prepare("SELECT first_name, last_name, email, country, created_at, last_login, last_ip, btc_balance FROM crypticusers WHERE id = ?");
+$stmt = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
 $stmt->execute([$_SESSION["user"]["id"]]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -67,7 +67,7 @@ if (!$user) {
     <!-- Top Scroll End -->
     <!-- cp navi wrapper Start -->
     <nav class="cd-dropdown d-block d-sm-block d-md-block d-lg-none d-xl-none">
-        <h2><a href="index.html"> welcome </a></h2>
+        <h2><a href="index.html"> muntmogul </a></h2>
         <a href="#0" class="cd-close">Close</a>
         <ul class="cd-dropdown-content">
             <!--<li>
@@ -75,17 +75,9 @@ if (!$user) {
                     <input type="search" placeholder="Search...">
                 </form>
             </li>-->
-            <!--<li class="has-children">
-                <a href="#">index</a>
-                <ul class="cd-secondary-dropdown icon_menu is-hidden">
-                    <li class="go-back"><a href="#0">Menu</a></li>
-                    <li><a href="index.html">index I</a></li>
-                    <li><a href="index2.html">index II</a></li>
-                    <li><a href="index3.html">index III</a></li>
-                </ul>
-            </li>-->
+           
             <li>
-                <h6>hello, <?php echo $_SESSION["user"]["firstname"]; ?></h6>
+                <h6>hello, <?php echo $_SESSION["user"]["first_name"]; ?></h6>
             </li>
             <!--<li><a href="investment.html"> investment plan </a></li>-->
             <!--<li><a href="faq.html"> FAQ </a></li>-->
@@ -106,9 +98,8 @@ if (!$user) {
                     <li><a href="paymentrequest">withdraw</a></li>
                     <li><a href="deposited">deposit history</a></li>
                     <li><a href="transactions">all transactions</a></li>
-                    <!--<li><a href="pending_history.html">pending history</a> </li> 	
-					<li> <a href="referrals.html">referrals</a></li> -->
                     <li><a href="tickets">tickets</a></li>
+                    <li><a href="logout"><i class="flaticon-turn-off"></i>Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -161,15 +152,15 @@ if (!$user) {
 
             <div class="top_header_right_wrapper dashboard_right_Wrapper">
                 <div class="crm_message_dropbox_wrapper crm_notify_dropbox_wrapper">
-                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification">..</i></span>
-                        <div class="budge_noti"></div>
+                    <div class="nice-select budge_noti_wrapper" tabindex="0"> <span class="current"><i class="flaticon-notification"></i></span>
+                        <div class="budge_noti">..</div>
                         <ul class="list">
                             <li><a href="#">No New Messages</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="crm_profile_dropbox_wrapper">
-                    <div class="nice-select" tabindex="0"> <span class="current"><img src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                    <div class="nice-select" tabindex="0"> <span class="current"><img src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/user.png'; ?>"
                                 alt="User's Thumbnail" width="50" height="50" style="border-radius: 50%;"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
                         <ul class="list">
                             <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a></li>
@@ -482,7 +473,7 @@ if (!$user) {
         <!--  my account wrapper start -->
         <div class="account_top_information">
             <div class="account_overlay"></div>
-            <div class="useriimg"><img src="images/user.png" alt="users"></div>
+            <div class="useriimg"><img src="images/transparent.png" alt="users"></div>
             <div class="userdet uderid">
                 <h3><?php echo htmlspecialchars($user["first_name"] . " " . $user["last_name"]); ?></h3>
 
@@ -506,13 +497,13 @@ if (!$user) {
                 <h3>Available Balance</h3>
                 <dl class="userdescc">
                     <dt>Bitcoin</dt>
-                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["bitcoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;₿ <?php echo number_format($user["btc_balance"], 8); ?></dd>
                     <dt>Ethereum</dt>
-                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["ethereum_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ξ <?php echo number_format($user["eth_balance"], 8); ?></dd>
                     <dt>Litecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["litecoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ł <?php echo number_format($user["ltc_balance"], 8); ?></dd>
                     <dt>Dogecoin</dt>
-                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["dogecoin_balance"], 8); ?></dd>
+                    <dd>:&nbsp;&nbsp;Ð <?php echo number_format($user["doge_balance"], 8); ?></dd>
                 </dl>
             </div>
         </div>
@@ -567,7 +558,7 @@ if (!$user) {
                                             <td class="invest_td1"> <span id="totalPayouts">$0.00 USD</span></td>
                                         </tr>
                                         <tr>
-                                            <td class="invest_td1">pending payouts:</td>
+                                            <td class="invest_td1">pending:</td>
                                             <td class="invest_td1"><span id="pendingPayouts">$0.00 USD</span></td>
                                         </tr>
 
@@ -590,11 +581,11 @@ if (!$user) {
                                     <tbody>
                                         <tr>
                                             <td class="invest_td1">Interest Today</td>
-                                            <td class="invest_td1">: <span id="todayInterest">$0.00 USD</span></td>
+                                            <td class="invest_td1">: <span id="todayInterest"> </span></td>
                                         </tr>
                                         <tr>
                                             <td class="invest_td1">This Week</td>
-                                            <td class="invest_td1">: <span id="weekInterest">$0.00 USD</span></td>
+                                            <td class="invest_td1">: <span id="weekInterest"> </span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1548,9 +1539,10 @@ if (!$user) {
     
     <script src="js/depositmodal.js"></script>
     <script src="js/live_crypto_rates.js"></script>
-    <script src="js/dashboard.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/dashboard.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
     <script src="js/modernizr.js"></script>
     <script src="js/dropify.min.js"></script>
     <script src="js/owl.carousel.js"></script>

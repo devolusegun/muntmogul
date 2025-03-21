@@ -54,8 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $state = trim($_POST["state"] ?? '');
         $country = trim($_POST["country"] ?? '');
 
-        if (empty($transactionPin) || empty($address) || empty($city) || empty($state) || empty($country)) {
+        /*if (empty($transactionPin) || empty($address) || empty($city) || empty($state) || empty($country)) {
             die(json_encode(["success" => false, "message" => "All fields are required."]));
+        }*/
+        if (empty($transactionPin) || empty($address) || empty($city) || empty($state) || empty($country)) {
+            die(json_encode(["success" => false, "message" => "⚠️ All fields are required."]));
         }
 
         //  Validate Inputs (Max 100 chars)
