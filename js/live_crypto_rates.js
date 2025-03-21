@@ -7,7 +7,19 @@ async function fetchCryptoPrices() {
         }
 
         const data = await response.json();
-        console.log("Crypto Prices:", data);  // Debugging log
+
+        // Check if data contains valid prices
+        if (data.prices) {
+            console.log("Crypto Prices:", data);
+
+            // Update the UI dynamically
+            document.getElementById("btc-price").innerText = `$${data.prices.BTC.toFixed(2)}`;
+            document.getElementById("eth-price").innerText = `$${data.prices.ETH.toFixed(2)}`;
+            document.getElementById("ltc-price").innerText = `$${data.prices.LTC.toFixed(2)}`;
+            document.getElementById("doge-price").innerText = `$${data.prices.DOGE.toFixed(6)}`;
+        } else {
+            console.error("Invalid price data received:", data);
+        }
 
     } catch (error) {
         console.error("Error fetching crypto prices:", error);
