@@ -8,31 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to Fetch User Earnings from Backend
 async function fetchUserEarnings() {
     try {
-        //console.log(" DEBUG: fetchUserEarnings() is running..."); // if function runs
-
         let response = await fetch("../fetch_user_earnings.php");
-
-        //console.log(" DEBUG: Raw Response:", response); // if fetch happens
-
         let data = await response.json();
-
-        //console.log(" DEBUG: Earnings Data Received:", data); // Debugging earnings data
-
-        if (!data || data.today === undefined || data.week === undefined) {
-            throw new Error("Invalid earnings data received");
-        }
-
+        
+        //console.log("Raw earnings response:", data);
+        
+        // Convert earnings arrays to total USD
         document.getElementById("todayInterest").innerText = `$${data.today}`;
         document.getElementById("weekInterest").innerText = `$${data.week}`;
-
-        //console.log("Earnings successfully updated on dashboard.");
+        
     } catch (error) {
         console.error("ERROR: Fetching earnings failed!", error);
+        document.getElementById("todayInterest").innerText = "N/A";
+        document.getElementById("weekInterest").innerText = "N/A";
     }
 }
-
-// Manually force running
-fetchUserEarnings();
 
 
 // Function to Convert Crypto Earnings to USD

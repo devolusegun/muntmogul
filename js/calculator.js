@@ -1,169 +1,146 @@
-
-var investA = $("#investmentAmount").val(0);
-var investY = $("#investmentAmountSIP").val(5000);
-var investY = $("#investmentYears").val(25);
-
-
 function animateGraph(time) {
-    var path1 = 522.957;
-    var path2 = 572.872;
+    const path1 = 522.957;
+    const path2 = 572.872;
+
     $("#path1").css({ "stroke-dashoffset": path1 });
     $("#path2").css({ "stroke-dashoffset": path2 });
 
-    setTimeout(function () {
-        $("#path1").show();
-        $("#path2").show();
+    setTimeout(() => {
+        $("#path1, #path2").show();
     }, 500);
-    setTimeout(function () {
+
+    setTimeout(() => {
         $("#path1").css({ "stroke-dashoffset": 0 });
         $("#path2").css({ "stroke-dashoffset": 0 });
-        setTimeout(function () {
+
+        setTimeout(() => {
             $('.mf-circles').fadeIn(1400);
             $('.funds_label').show();
-
         }, 1400);
     }, time);
 
+    drawYAxisLabels(); // ✅ Call this
 }
 
-function FV(PMT, IR, NP, Yearly) {
+function drawYAxisLabels() {
+    const direct = parseFloat($("#directFund").text().replace(/[^0-9.]/g, '')) || 0;
+    const regular = parseFloat($("#regularFund").text().replace(/[^0-9.]/g, '')) || 0;
+    const maxVal = Math.max(direct, regular);
+
+    const svg = document.getElementById("yAxisLabels");
+    svg.innerHTML = ""; // Clear previous labels
+
+    const chartHeight = 330;
+    const paddingTop = 20;
+    const steps = 5;
+
+    for (let i = 0; i <= steps; i++) {
+        const value = maxVal * ((steps - i) / steps);
+        const y = paddingTop + (chartHeight / steps) * i;
+
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", 0);
+        text.setAttribute("y", y);
+        text.setAttribute("fill", "#ffffff");
+        text.setAttribute("font-size", "12");
+        text.textContent = formatCurrency(value); // uses your existing formatCurrency()
+
+        svg.appendChild(text);
+    }
+}
+
+function FV(PMT, IR, NP, yearly) {
     IR = IR / 100;
-    if (!Yearly) {
+    if (!yearly) {
         IR = IR / 12;
-        NP = NP;
     }
-    FV1 = PMT * (Math.pow(1 + IR, NP) - 1) / IR;
-    return parseInt(FV1);
+    const FV = PMT * (Math.pow(1 + IR, NP) - 1) / IR;
+    return parseInt(FV);
 }
 
-function FV_for_lumsum(PMT, IR, NP) {
-    FV_lumsum = parseInt((PMT * Math.pow((1 + (IR / 100)), (NP))) - PMT);
-    return FV_lumsum;
-}
-var first = 0;
-function CalCommission() {
-
-    $('.mf-circles').hide();
-    $('.funds_label').hide();
-    
-    $("#path1").hide();
-    $("#path2").hide();
-
-    var path1 = 522.957;
-    var path2 = 572.872;
-    $("#path1").css({ "stroke-dashoffset": path1 });
-    $("#path2").css({ "stroke-dashoffset": path2 });
-
-    //alert("cla test");
-    var investA = $("#investmentAmount").val();
-    
-    var investSIP = $("#investmentAmountSIP").val();
-    var investY = $("#investmentYears").val();
-    console.log(investY);
-    // var investY = $($("#investmentYears")[0]).attr("aria-valuenow");
-    if (investY == 'undefined' || investY == 0) {
-        investY = 1;
-    }
-    $("#years_selected").text(investY+' Years');
-    var returnL;
-    var IRDirect = 16;
-    var IRRegular = 15;
-    //var calValueA12;
-    //var calValueA13;
-    //var calValueS12;
-    //var calValueS13;
-    //var calValueL;
-    //var calValueS;
-
-    if (investA > 0) {
-        
-        calValueA12 = calculateCompondInterest(investA, investY, IRDirect);
-        //console.log("Direct Lumsum: "+calValueA12 );
-        calValueA13 = calculateCompondInterest(investA, investY, IRRegular);;
-       // console.log("Regular Lumsum: "+calValueA13);
-        // return;
-        // calValueA12 = (parseInt((investA * Math.pow((1 + (12 / 100)), (investY))) - investA));
-        // calValueA13 = (parseInt((investA * Math.pow((1 + (13 / 100)), (investY))) - investA));
-    }
-    else {
-        calValueA12 = 0;
-        calValueA13 = 0;
-    }
-    if (investSIP > 0) {
-        InvestmentYears = investY;
-        InvestmentMonth = InvestmentYears * 12;
-        NP = InvestmentMonth + 1; // add one for the first month
-        calValueS12 = FV(investSIP, IRDirect, NP, false);
-
-        
-        calValueS13 = FV(investSIP, IRRegular, NP, false);
-
-
-        // calValueS12 = (parseInt((investSIP * ((Math.pow((1 + (12 / 100)), investY)) - 1)) / (12 / 100)));
-        // calValueS13 = (parseInt((investSIP * ((Math.pow((1 + (13 / 100)), investY)) - 1)) / (13 / 100)));
-    }
-    else {
-        calValueS12 = 0;
-        calValueS13 = 0;
-    }
-
-    calValueL = calValueA12 - calValueA13 ;
-    calValueS = calValueS12 - calValueS13 ;
-
-    calDirect = calValueS12 + calValueA12;
-    calregular = calValueS13 + calValueA13;
-
-    var calDiffSL = calValueL + calValueS;
-
-    var lenL = calDiffSL.toString().length;
-    if (lenL == 4 || lenL == 5) {
-    //    //var returnL = "Rs. " + Math.round(calValueL / 1000) /100 + " K";
-        returnL = "Rs. " + (calDiffSL / 1000).toFixed(2) + " K";
-        $("#returnAmount").text(returnL);
-    }
-    else{
-        returnL = "Rs. " + (calDiffSL / 100000).toFixed(2) + " L";
-        $("#returnAmount").text(returnL);
-    }
-    console.log(returnL);
-    $("#regularFund").html(changeValueToString(calregular));
-    $("#directFund").html(changeValueToString(calDirect));
-    animateGraph(700);
-    if (first == 1) {
-        if (window.innerWidth < 640) {
-            $('html, body').animate({
-                scrollTop: $("#clac-price-box").offset().top
-            }, 2000);
-        }
-        
-    }
-    first = 1; // for the second time function call
-    
+function calculateCompoundInterest(P, years, rate) {
+    const ROI = rate / 100;
+    const CI = P * Math.pow((1 + ROI), years);
+    return parseInt(CI);
 }
 
 function changeValueToString(value) {
-    
-    value = value.toFixed(0);
-    
-    if (value.toString().length == 4 || value.toString().length == 5) {
-        var returnString =  ('<i class="fa fa-inr"></i>' + (value / 1000).toFixed(2) + " K");
-    } else if (value.toString().length == 6 || value.toString().length == 7) {
-        var returnString = ('<i class="fa fa-inr"></i>' + (value / 100000).toFixed(2) + " L");
-    } else if (value.toString().length == 8 || value.toString().length == 9) {
-        var returnString = ('<i class="fa fa-inr"></i>' + (value / 10000000).toFixed(2) + " Cr");
+    value = parseFloat(value);
+
+    if (value >= 1_000_000_000) {
+        return `$${(value / 1_000_000_000).toFixed(2)}B`;
+    } else if (value >= 1_000_000) {
+        return `$${(value / 1_000_000).toFixed(2)}M`;
+    } else if (value >= 1_000) {
+        return `$${(value / 1_000).toFixed(2)}K`;
+    } else {
+        return `$${value.toFixed(2)}`;
     }
-    return returnString;
 }
-// alert(calculateCompondInterest(100000,  25 , 15));
 
-// exact  153665 // 15 // 
-// 32435296.1504077  // 32850737.352287784
-// 39130438.97995285 // 39662178.16635222
 
-// alert(calculateCompondInterest(10000, 25 , 1.25));
-function calculateCompondInterest(P , Years , rate_of_interest) {
-    ROI = rate_of_interest / 100;
-    
-    CI = (P * ( Math.pow((1 + ROI) , (Years))));
-    return parseInt(CI);
+function formatCurrency(value) {
+    value = value.toFixed(0);
+    if (value >= 1_000_000) {
+        return `$${(value / 1_000_000).toFixed(2)}M`;
+    } else if (value >= 1_000) {
+        return `$${(value / 1_000).toFixed(2)}K`;
+    } else {
+        return `$${value}`;
+    }
+}
+
+function validateAndCalculate() {
+    const deposit = parseFloat(document.getElementById("investmentAmount").value);
+    const sip = parseFloat(document.getElementById("investmentAmountSIP").value);
+    const years = parseInt(document.getElementById("investmentYears").value);
+
+    if ((isNaN(deposit) || deposit < 0) && (isNaN(sip) || sip < 0)) {
+        alert("Please enter a valid deposit amount or monthly SIP.");
+        return;
+    }
+
+    if (isNaN(years) || years <= 0) {
+        alert("Please select a valid investment duration.");
+        return;
+    }
+
+    CalCommission(); // safe to run now
+}
+
+function CalCommission() {
+    $('.mf-circles, .funds_label').hide();
+    $("#path1, #path2").hide();
+
+    const path1 = 522.957;
+    const path2 = 572.872;
+    $("#path1").css({ "stroke-dashoffset": path1 });
+    $("#path2").css({ "stroke-dashoffset": path2 });
+
+    // Get user inputs
+    const investA = parseFloat($("#investmentAmount").val()) || 0;
+    const investSIP = parseFloat($("#investmentAmountSIP").val()) || 0;
+    const investY = parseInt($("#investmentYears").val()) || 1;
+
+    $("#years_selected").text(`${investY} Years`);
+
+    const IRDirect = 16; // 16% return
+    const IRRegular = 15; // 15% return
+
+    let lumpSumDirect = investA > 0 ? calculateCompoundInterest(investA, investY, IRDirect) : 0;
+    let lumpSumRegular = investA > 0 ? calculateCompoundInterest(investA, investY, IRRegular) : 0;
+
+    let months = investY * 12 + 1;
+    let sipDirect = investSIP > 0 ? FV(investSIP, IRDirect, months, false) : 0;
+    let sipRegular = investSIP > 0 ? FV(investSIP, IRRegular, months, false) : 0;
+
+    const totalDirect = lumpSumDirect + sipDirect;
+    const totalRegular = lumpSumRegular + sipRegular;
+    const extraReturn = (totalDirect - totalRegular);
+
+    $("#returnAmount").text(changeValueToString(extraReturn));
+    $("#directFund").html(changeValueToString(totalDirect));
+    $("#regularFund").html(changeValueToString(totalRegular));
+
+    animateGraph(700);
 }

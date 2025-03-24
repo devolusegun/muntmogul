@@ -1,3 +1,29 @@
+<?php
+session_start();
+require 'config/config.php';
+
+// Ensure user session is set
+if (!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION["user"]["id"];
+
+// Fetch user details from database
+$stmt = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("User not found.");
+}
+
+// Refresh session with full user details
+$_SESSION["user"] = $user;
+
+?>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -154,7 +180,7 @@
 
                 <div class="crm_profile_dropbox_wrapper">
                     <div class="nice-select" tabindex="0"> <span class="current"><img
-                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/user.png'; ?>"
                                 alt="User" width="50" height="50" style="border-radius: 50%;">
                             <?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span>
                         </span>
@@ -198,88 +224,9 @@
                         <li class="has-mega gc_main_navigation">
                             <!--<ul class="navi_2_dropdown">
                               
-                                <li class="parent">
-                                    <a href="#"><i class="fas fa-caret-right"></i>my account<span><i class="fas fa-caret-right"></i>
-									</span></a>
-                                    <ul class="dropdown-menu-right">
-                                        <li>
-                                            <a href="my_account.html"> <i class="fas fa-caret-right"></i>my account  </a>
-                                        </li>
-                                        <li>
-                                            <a href="view_profile.html"> <i class="fas fa-caret-right"></i> my profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="email_notification.html"><i class="fas fa-caret-right"></i>email notification </a>
-                                        </li>
-                                        <li>
-                                            <a href="change_password.html"><i class="fas fa-caret-right"></i>change password</a>
-                                        </li>
-                                        <li>
-                                            <a href="change_pin.html"><i class="fas fa-caret-right"></i>change pin</a>
-                                        </li>
-                                     
-                                    </ul>
-                                </li>
-                                <li class="parent">
-                                    <a href="#"> <i class="fas fa-caret-right"></i>finance<span> <i class="fas fa-caret-right"></i>
-									</span></a>
-                                    <ul class="dropdown-menu-right">
-                                         <li>
-                                            <a href="make_deposit.html"> <i class="fas fa-caret-right"></i>make deposit</a>
-                                        </li>
-                                        <li>
-                                            <a href="deposit_list.html"> <i class="fas fa-caret-right"></i> deposit lists</a>
-                                        </li>
-                                        <li>
-                                            <a href="payment_request.html"><i class="fas fa-caret-right"></i>payment request</a>
-                                        </li>
-                                        <li>
-                                            <a href="exchange_money.html"><i class="fas fa-caret-right"></i>exchange money</a>
-                                        </li>
-                                        <li>
-                                            <a href="transfer_fund.html"><i class="fas fa-caret-right"></i>fund transfer</a>
-                                        </li>
-                                     
-                                    </ul>
-                                </li>
-								<li class="parent">
-                                    <a href="#"> <i class="fas fa-caret-right"></i>reports<span> <i class="fas fa-caret-right"></i>
-									</span></a>
-                                    <ul class="dropdown-menu-right">
-                                         <li>
-                                            <a href="all_transactions.html"> <i class="fas fa-caret-right"></i>all transactions</a>
-                                        </li>
-                                        <li>
-                                            <a href="deposit_history.html"> <i class="fas fa-caret-right"></i> deposit history</a>
-                                        </li>
-                                        <li>
-                                            <a href="pending_history.html"><i class="fas fa-caret-right"></i>pending history</a>
-                                        </li>
-                                        <li>
-                                            <a href="exchange_history.html"><i class="fas fa-caret-right"></i>exchange history</a>
-                                        </li>
-                                        <li>
-                                            <a href="earnings_history.html"><i class="fas fa-caret-right"></i>earning history</a>
-                                        </li>
-                                     
-                                    </ul>
-                                </li>
-								<li class="parent">
-                                    <a href="#"> <i class="fas fa-caret-right"></i>referrals<span> <i class="fas fa-caret-right"></i>
-									</span></a>
-                                    <ul class="dropdown-menu-right">
-                                         <li>
-                                            <a href="referrals.html"> <i class="fas fa-caret-right"></i>my referrals</a>
-                                        </li>
-                                        <li>
-                                            <a href="banners.html"> <i class="fas fa-caret-right"></i> promotionals banners</a>
-                                        </li>
-                                        <li>
-                                            <a href="referral_earnings.html"><i class="fas fa-caret-right"></i>referral earnings</a>
-                                        </li>
-                                      
-                                    </ul>
-                                </li>
+                                
+								
+								
 								<li class="parent">
                                     <a href="tickets.html"><i class="fas fa-caret-right"></i>view tickets</a></li>
                             </ul>-->
@@ -323,7 +270,7 @@
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
-                                <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
+                                <li> <a href="dashboard"> Home </a>&nbsp; / &nbsp; </li>
                                 <li> View Plans</li>
                             </ul>
                         </div>
@@ -433,18 +380,13 @@
                                     </li>-->
                                 <li><a href="tickets"><i class="fa fa-circle"></i>support</a>
                                 </li>
-                                <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
-                                    </li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
-                                    </li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
-                                    </li>-->
+
                             </ul>
                         </div>
                     </li>
                     <li class="c-menu__item is-active has-sub crm_navi_icon_cont">
                         <a href="tickets">
-                            <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">5</i>
+                            <div class="c-menu-item__title"><span>Help</span><i class="no_badge purple">1</i>
                             </div>
                         </a>
                         <ul>
@@ -452,12 +394,7 @@
                                     </li>-->
                             <li><a href="tickets"><i class="fa fa-circle"></i>support</a>
                             </li>
-                            <!--<li><a href="pending_history.html"><i class="fa fa-circle"></i>pending history</a>
-                                    </li>
-									 <li><a href="exchange_history.html"><i class="fa fa-circle"></i>exchange history</a>
-                                    </li>
-									 <li><a href="earnings_history.html"><i class="fa fa-circle"></i>earning history</a>
-                                    </li>-->
+
                         </ul>
                     </li>
                 </ul>
@@ -517,19 +454,19 @@
                 <dl class="userdescc">
                     <dt>Bitcoin</dt>
                     <dd>:&nbsp;&nbsp;₿
-                        <?php echo number_format($user["bitcoin_balance"], 8); ?>
+                        <?php echo number_format($user["btc_balance"], 8); ?>
                     </dd>
                     <dt>Ethereum</dt>
                     <dd>:&nbsp;&nbsp;Ξ
-                        <?php echo number_format($user["ethereum_balance"], 8); ?>
+                        <?php echo number_format($user["eth_balance"], 8); ?>
                     </dd>
                     <dt>Litecoin</dt>
                     <dd>:&nbsp;&nbsp;Ł
-                        <?php echo number_format($user["litecoin_balance"], 8); ?>
+                        <?php echo number_format($user["ltc_balance"], 8); ?>
                     </dd>
                     <dt>Dogecoin</dt>
                     <dd>:&nbsp;&nbsp;Ð
-                        <?php echo number_format($user["dogecoin_balance"], 8); ?>
+                        <?php echo number_format($user["doge_balance"], 8); ?>
                     </dd>
                 </dl>
             </div>
@@ -540,46 +477,53 @@
         <div class="calculator_wrapper float_left">
             <div class="container">
                 <div class="row">
-
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper heading_wrapper_dark dark_heading">
                             <h4> plans calculator </h4>
                             <h3> How Much Can You Save With Plans? </h3>
-
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 calc">
                         <div class="calculator_portion float_left">
                             <div class="caluclator_text_wrapper">
-                                <p>deposit amount : <i class="fas fa-info-circle"></i></p>
-                                <p class="dollar_wrap"><i class="fa fa-rupee-sign"></i>
-                                    <input type="text" id="investmentAmount" />
-                                </p>
+                                <label for="investmentAmount">Deposit Amount <i class="fas fa-info-circle" title="One-time investment amount in dollars."></i></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
+                                    <input type="number" id="investmentAmount" class="form-control" min="0" placeholder="e.g. 1000" />
+                                </div>
                             </div>
                             <div class="caluclator_text_wrapper">
-                                <p>monthly SIP : <i class="fas fa-info-circle"></i></p>
-                                <p class="dollar_wrap"><i class="fa fa-rupee-sign"></i>
-                                    <input type="text" id="investmentAmountSIP" />
-                                </p>
+                                <label for="investmentAmountSIP">Monthly SIP <i class="fas fa-info-circle" title="Monthly recurring investment in dollars."></i></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
+                                    <input type="number" id="investmentAmountSIP" class="form-control" min="0" placeholder="e.g. 500" />
+                                </div>
                             </div>
 
-                            <div class="caluclator_text_wrapper">
-                                <p>Investment Year : <i class="fas fa-info-circle"></i></p>
-                                <select class="custom-select" id="investmentYears">
-                                    <option selected value="5">5 Years</option>
-                                    <option value="10">10 Years</option>
-                                    <option value="15">15 Years</option>
-                                    <option value="20">20 Years</option>
-                                    <option value="25">25 Years</option>
-                                </select>
+                            <div class="form-group position-relative">
+                                <label for="investmentYears" class="font-weight-semibold mb-2">
+                                    Investment Duration
+                                    <i class="fas fa-info-circle text-muted ml-1" data-toggle="tooltip" title="Select number of years for your investment."></i>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-white border-right-0">
+                                            <i class="fas fa-calendar-alt text-primary"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-control rounded-right border-left-0" id="investmentYears">
+                                        <option value="5">5 Years</option>
+                                        <option value="10">10 Years</option>
+                                        <option value="15">15 Years</option>
+                                        <option value="20">20 Years</option>
+                                        <option value="25" selected>25 Years</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="about_btn calc_btn float_left" onclick="CalCommission(); return false;">
+                            <div class="about_btn calc_btn float_left" onclick="validateAndCalculate();">
                                 <ul>
-                                    <li>
-                                        <a href="#">calculate profit</a>
-                                    </li>
+                                    <li><a href="javascript:void(0);">Calculate Profit</a></li>
                                 </ul>
                             </div>
 
@@ -594,49 +538,51 @@
                                         version="1.1" viewBox="0 0 480 355" class="mf-chart">
 
                                         <defs>
-                                            <pattern id="grid" x="10" y="10" width="480" height="88"
-                                                patternUnits="userSpaceOnUse">
+                                            <pattern id="grid" x="10" y="10" width="480" height="88" patternUnits="userSpaceOnUse">
                                                 <line x1="0" y1="0" x2="100%" y2="0" stroke-width="1"
                                                     shape-rendering="crispEdges" stroke="#bdbdbd"></line>
                                             </pattern>
                                         </defs>
+
                                         <rect width="480" height="355" style="fill:#111111;"></rect>
+
+                                        <!--  Y-Axis tick labels group -->
+                                        <g id="yAxisLabels"></g>
+
                                         <g>
-                                            <path d="M 5,330
-                    C 5,330
-                    300,257.5
-                    475,170" id="path1" fill="none" stroke="#bdbdbd" stroke-width="5px" stroke-linecap="round"
+                                            <path d="M 5,330 C 5,330 300,257.5 475,170"
+                                                id="path1" fill="none" stroke="#bdbdbd"
+                                                stroke-width="5px" stroke-linecap="round"
                                                 class="anim-path"
                                                 style="transition: stroke-dashoffset 2s ease-in-out; stroke-dasharray: 522.957, 522.957; stroke-dashoffset: 0px; display: inline;">
                                             </path>
-                                            <path d="M 5,330
-                    C 5,330
-                    300,257.5
-                    475,20" fill="none" id="path2" stroke="#dba622" stroke-width="5px" stroke-linecap="round"
+                                            <path d="M 5,330 C 5,330 300,257.5 475,20"
+                                                id="path2" fill="none" stroke="#dba622"
+                                                stroke-width="5px" stroke-linecap="round"
                                                 class="anim-path"
                                                 style="transition: stroke-dashoffset 2s ease-in-out; stroke-dasharray: 572.872, 572.872; stroke-dashoffset: 0px; display: inline;">
                                             </path>
                                         </g>
-                                        <g class="mf-circles" >
-                                            <circle cx="472" cy="22" r="8" fill="#dba622" stroke="#dba622"
-                                                stroke-width="3px"></circle>
-                                            <circle cx="472" cy="170" r="8" fill="#bdbdbd" stroke="#bdbdbd"
-                                                stroke-width="3px"></circle>
+
+                                        <g class="mf-circles">
+                                            <circle cx="472" cy="22" r="8" fill="#dba622" stroke="#dba622" stroke-width="3px"></circle>
+                                            <circle cx="472" cy="170" r="8" fill="#bdbdbd" stroke="#bdbdbd" stroke-width="3px"></circle>
                                         </g>
                                     </svg>
-                                    <div class="mf-xAxis">
 
+                                    <div class="mf-xAxis">
                                         <span class="mf-xAxis-end" id="years_selected">25 Years</span>
                                     </div>
+
                                     <div class="labels funds_label" style="display: block;">
                                         <div class="chart-label">
-                                            <span class="amt" id="directFund"><i class="fa fa-rupee-sign"></i>1.98
-                                                Cr</span>
+                                            <!-- Dollar sign instead of rupee -->
+                                            <span class="amt" id="directFund">$</span>
                                             <span class="sub">total returns</span>
                                         </div>
                                         <div class="chart-label label-regular">
-                                            <span class="amt" id="regularFund"><i class="fa fa-rupee-sign"></i>1.64
-                                                Cr</span>
+                                            <!--  Dollar sign instead of rupee -->
+                                            <span class="amt" id="regularFund">$</span>
                                             <span class="sub">investment amounts</span>
                                         </div>
                                     </div>
@@ -644,7 +590,7 @@
                             </div>
                         </div>
                         <div class="calc-amt calc_ind_1_2">
-                            <p class="calc-price" id="returnAmount">Rs. 34.06 L</p>
+                            <p class="calc-price" id="returnAmount"></p>
                             <p>extra returns for you </p>
                         </div>
                     </div>
@@ -719,7 +665,7 @@
         </div>
     </div>
 
-    
+
     <script src="js/depositmodal.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -735,6 +681,7 @@
     <script src="js/jquery.menu-aim.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/news.js"></script>
+    <script src="js/calculator.js"></script>
     <!--main js file end-->
 </body>
 

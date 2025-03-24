@@ -2,13 +2,35 @@
 /*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
-session_start();
+//session_start();
 require 'config/config.php';
 
-if (!isset($_SESSION["user"])) {
+// Ensure user session is set
+if (!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
     header("Location: login.php");
     exit();
 }
+
+$stmtd = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
+$stmtd->execute([$_SESSION["user"]["id"]]);
+$user = $stmtd->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("User not found.");
+}
+
+//  Store subscribed plan in session for persistent display
+if (!isset($_SESSION['subscribed_plans'])) {
+    //$_SESSION['subscribed_plan'] = $userData['subscribed_plan'] ?? "None";
+    // Fetch all active plans for this user
+    $planStmt = $pdo->prepare("SELECT subscribed_plan FROM cryptic_subscriptions WHERE user_id = ? AND status = 'active'");
+    $planStmt->execute([$_SESSION["user"]["id"]]);
+    $activePlans = $planStmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Store in session for display
+    $_SESSION['subscribed_plans'] = $activePlans ?: [];
+}
+
 
 //  Fetch user balances from `crypticusers` table
 $stmt = $pdo->prepare("SELECT cu.first_name, cu.last_name,cu.last_login, cu.last_ip, cu.btc_balance, cu.ltc_balance, cu.eth_balance, cu.doge_balance, 
@@ -28,10 +50,7 @@ $userBalances = [
     "DOGE" => isset($userData["doge_balance"]) ? (float) $userData["doge_balance"] : 0
 ];
 
-//  Store subscribed plan in session for persistent display
-if (!isset($_SESSION['subscribed_plan'])) {
-    $_SESSION['subscribed_plan'] = $userData['subscribed_plan'] ?? "None";
-}
+
 
 //  Fetch live crypto prices via API with cURL (more efficient & error handling)
 function fetchCryptoPrices()
@@ -246,7 +265,7 @@ $_SESSION["user_balances"] = $usdBalances;
                 </div>
                 <div class="crm_profile_dropbox_wrapper">
                     <div class="nice-select" tabindex="0"> <span class="current"><img
-                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/user.png'; ?>"
                                 alt="User" width="50" height="50" style="border-radius: 50%;"><?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span></span>
                         <ul class="list">
                             <li><a href="viewprofile"><i class="flaticon-profile"></i> Profile</a></li>
@@ -331,7 +350,7 @@ $_SESSION["user_balances"] = $usdBalances;
                             </ul>
                             -->
                         </li>
-                        
+
                     </ul>
                 </div>
                 <!-- mainmenu end -->
@@ -357,7 +376,7 @@ $_SESSION["user_balances"] = $usdBalances;
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
-                                <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
+                                <li> <a href="dashboard"> Home </a>&nbsp; / &nbsp; </li>
                                 <li>Plans</li>
                             </ul>
                         </div>
@@ -495,7 +514,7 @@ $_SESSION["user_balances"] = $usdBalances;
         <!--  my account wrapper start -->
         <div class="account_top_information">
             <div class="account_overlay"></div>
-            <div class="useriimg"><img src="images/user.png" alt="users"></div>
+            <div class="useriimg"><img src="images/transparent.png" alt="users"></div>
             <div class="userdet uderid">
                 <h3><?php echo htmlspecialchars($userData["first_name"] . " " . $userData["last_name"]); ?></h3>
                 <dl class="userdescc">
@@ -511,16 +530,19 @@ $_SESSION["user_balances"] = $usdBalances;
             </div>
 
             <div class="userdet user_transcation">
-                <h3> Currently Subscribed Plan</h3>
-                <dl class="userdescc">
-                    <!-- Display Subscribed Plan -->
-                    <dt>
-                        <p>Active: </p>
-                    </dt>
-                    <dd>
-                        <p><span id="selectedPlan"><?= $_SESSION['subscribed_plan']; ?></span></p>
-                    </dd>
-                </dl>
+                <h3> Currently Subscribed </h3>
+                <div class="subscribed-plans-wrapper">
+                    <strong>Active:</strong>
+                    <ul id="selectedPlansList" class="subscribed-badge-list">
+                        <?php if (!empty($_SESSION['subscribed_plans'])): ?>
+                            <?php foreach ($_SESSION['subscribed_plans'] as $plan): ?>
+                                <li class="plan-badge"><?= ucfirst($plan) ?> Plan</li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li class="plan-badge">None</li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
             </div>
         </div>
         <!--  my account wrapper end -->
@@ -741,7 +763,7 @@ $_SESSION["user_balances"] = $usdBalances;
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/datatables.js"></script>
     <script src="js/jquery.menu-aim.js"></script>
-    
+
     <script src="js/news.js"></script>
     <!--main js file end-->
 </body>
