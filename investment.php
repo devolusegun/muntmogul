@@ -480,7 +480,7 @@ $_SESSION["user"] = $user;
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12">
                         <div class="sv_heading_wraper heading_wrapper_dark dark_heading">
                             <h4> plans calculator </h4>
-                            <h3> How Much Can You Save With Plans? </h3>
+                            <h3> Check How Much You Can Make </h3>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 col-12 calc">
@@ -493,35 +493,41 @@ $_SESSION["user"] = $user;
                                 </div>
                             </div>
                             <div class="caluclator_text_wrapper">
-                                <label for="investmentAmountSIP">Monthly SIP <i class="fas fa-info-circle" title="Monthly recurring investment in dollars."></i></label>
+                                <label for="investmentAmountSIP">Monthly Plans <i class="fas fa-info-circle" title="Monthly recurring investment in dollars."></i></label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
-                                    <input type="number" id="investmentAmountSIP" class="form-control" min="0" placeholder="e.g. 500" />
-                                </div>
-                            </div>
-
-                            <div class="form-group position-relative">
-                                <label for="investmentYears" class="font-weight-semibold mb-2">
-                                    Investment Duration
-                                    <i class="fas fa-info-circle text-muted ml-1" data-toggle="tooltip" title="Select number of years for your investment."></i>
-                                </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-white border-right-0">
-                                            <i class="fas fa-calendar-alt text-primary"></i>
-                                        </span>
-                                    </div>
-                                    <select class="form-control rounded-right border-left-0" id="investmentYears">
-                                        <option value="5">5 Years</option>
-                                        <option value="10">10 Years</option>
-                                        <option value="15">15 Years</option>
-                                        <option value="20">20 Years</option>
-                                        <option value="25" selected>25 Years</option>
+                                    <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                                    <!--<input type="number" id="investmentAmountSIP" class="form-control" min="0" placeholder="e.g. 500" />-->
+                                    <select id="planSelector" class="form-control">
+                                        <option value="bronze">Bronze</option>
+                                        <option value="silver">Silver</option>
+                                        <option value="copper">Copper</option>
+                                        <option value="gold">Gold</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="about_btn calc_btn float_left" onclick="validateAndCalculate();">
+                            <div class="form-group caluclator_text_wrapper">
+                                <label for="investmentYears" class="font-weight-bold">
+                                    Investment Month
+                                    <i class="fas fa-info-circle text-muted ml-1" data-toggle="tooltip" title="Select number of years for your investment."></i>
+                                </label>
+                                <select class="form-control custom-select" id="investmentYears">
+                                    <option value="1">1 Month</option>
+                                    <option value="2">2 Months</option>
+                                    <option value="3">3 Months</option>
+                                    <option value="4">4 Months</option>
+                                    <option value="5">5 Months</option>
+                                    <option value="6">6 Months</option>
+                                    <option value="7">7 Months</option>
+                                    <option value="8">8 Months</option>
+                                    <option value="9">9 Months</option>
+                                    <option value="10">10 Months</option>
+                                    <option value="11">11 Months</option>
+                                    <option value="12" selected>12 Months</option>
+                                </select>
+                            </div>
+
+                            <div class="about_btn calc_btn float_left">
                                 <ul>
                                     <li><a href="javascript:void(0);">Calculate Profit</a></li>
                                 </ul>
@@ -571,7 +577,7 @@ $_SESSION["user"] = $user;
                                     </svg>
 
                                     <div class="mf-xAxis">
-                                        <span class="mf-xAxis-end" id="years_selected">25 Years</span>
+                                        <span class="mf-xAxis-end" id="years_selected">12 Months</span>
                                     </div>
 
                                     <div class="labels funds_label" style="display: block;">
@@ -583,7 +589,7 @@ $_SESSION["user"] = $user;
                                         <div class="chart-label label-regular">
                                             <!--  Dollar sign instead of rupee -->
                                             <span class="amt" id="regularFund">$</span>
-                                            <span class="sub">investment amounts</span>
+                                            <span class="sub">investment amount</span>
                                         </div>
                                     </div>
                                 </div>
@@ -591,7 +597,7 @@ $_SESSION["user"] = $user;
                         </div>
                         <div class="calc-amt calc_ind_1_2">
                             <p class="calc-price" id="returnAmount"></p>
-                            <p>extra returns for you </p>
+                            <p>total returns on investment</p>
                         </div>
                     </div>
 
@@ -664,24 +670,28 @@ $_SESSION["user"] = $user;
             <p><strong>Note:</strong> Send only selected crypto to this address.</p>
         </div>
     </div>
-
-
-    <script src="js/depositmodal.js"></script>
+    
+    <!-- 1. Core Libraries First -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.js"></script>
+    
+    <!-- 2. Plugin Dependencies (Must Come After jQuery) -->
     <script src="js/dropify.min.js"></script>
     <script src="js/owl.carousel.js"></script>
     <script src="js/jquery.countTo.js"></script>
-    <script src="js/plugin.js"></script>
     <script src="js/jquery.inview.min.js"></script>
     <script src="js/jquery.magnific-popup.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/datatables.js"></script>
     <script src="js/jquery.menu-aim.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/news.js"></script>
-    <script src="js/calculator.js"></script>
+
+    <!-- 3. Your Custom Scripts (Should Come Last) -->
+    <script src="js/plugin.js"></script>         <!-- If it depends on plugins above -->
+    <script src="js/depositmodal.js"></script>   <!-- Any modal logic -->
+    <script src="js/news.js"></script>           <!-- Your news UI logic -->
+    <script src="js/custom.js"></script>         <!-- General custom JS (if it’s not the calculator) -->
+    <script src="js/calculator.js"></script>     <!-- ✅ Your main calculator script goes here -->
     <!--main js file end-->
 </body>
 
