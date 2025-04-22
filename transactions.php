@@ -2,12 +2,25 @@
 session_start();
 require 'config/config.php';
 
-if (!isset($_SESSION["user"])) {
-    header("Location: login.php");
+// Ensure user session is set
+if (!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
+    header("Location: login");
     exit();
 }
 
 $userId = $_SESSION["user"]["id"];
+
+// Fetch user details from database
+$stmtd = $pdo->prepare("SELECT * FROM crypticusers WHERE id = ?");
+$stmtd->execute([$userId]);
+$user = $stmtd->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    die("User not found.");
+}
+
+// Refresh session with full user details
+$_SESSION["user"] = $user;
 
 // Fetch Transactions for the Logged-in User
 $stmt = $pdo->prepare("SELECT id, crypto_type, transaction_type, amount, status, created_at FROM crypto_transactions WHERE user_id = ? ORDER BY created_at DESC");
@@ -198,7 +211,7 @@ $cryptoSymbols = [
 
                 <div class="crm_profile_dropbox_wrapper">
                     <div class="nice-select" tabindex="0"> <span class="current"><img
-                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/avatar.png'; ?>"
+                                src="<?= !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'images/user.png'; ?>"
                                 alt="User" width="50" height="50" style="border-radius: 50%;">
                             <?php echo $_SESSION["user"]["username"]; ?> <span class="hidden_xs_content"></span>
                         </span>
@@ -301,7 +314,7 @@ $cryptoSymbols = [
                     <div class="col-xl-3 col-lg-5 col-md-5 col-12 col-sm-5">
                         <div class="sub_title_section">
                             <ul class="sub_title">
-                                <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
+                                <li> <a href="dashboard"> Home </a>&nbsp; / &nbsp; </li>
                                 <li>Transactions</li>
                             </ul>
                         </div>
@@ -479,19 +492,19 @@ $cryptoSymbols = [
                 <dl class="userdescc">
                     <dt>Bitcoin</dt>
                     <dd>:&nbsp;&nbsp;₿
-                        <?php echo number_format($user["bitcoin_balance"], 8); ?>
+                        <?php echo number_format($user["btc_balance"], 8); ?>
                     </dd>
                     <dt>Ethereum</dt>
                     <dd>:&nbsp;&nbsp;Ξ
-                        <?php echo number_format($user["ethereum_balance"], 8); ?>
+                        <?php echo number_format($user["eth_balance"], 8); ?>
                     </dd>
                     <dt>Litecoin</dt>
                     <dd>:&nbsp;&nbsp;Ł
-                        <?php echo number_format($user["litecoin_balance"], 8); ?>
+                        <?php echo number_format($user["ltc_balance"], 8); ?>
                     </dd>
                     <dt>Dogecoin</dt>
                     <dd>:&nbsp;&nbsp;Ð
-                        <?php echo number_format($user["dogecoin_balance"], 8); ?>
+                        <?php echo number_format($user["doge_balance"], 8); ?>
                     </dd>
                 </dl>
             </div>
@@ -563,87 +576,6 @@ $cryptoSymbols = [
                                     </tr>
                                 <?php endif; ?>
                             </tbody>
-                            <!--<tbody>
-                                    <tr class="background_white">
-
-                                        <td>
-                                            <div class="media cs-media">
-
-                                                <div class="media-body">
-                                                    <h5>COMM1004411</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">1000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Deposit made</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">03/07/2019</div>
-                                        </td>
-                                        
-                                    </tr>
-                                    
-                                    
-                                    <tr class="background_white">
-
-                                        <td>
-                                            <div class="media cs-media">
-
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr class="background_white">
-
-                                        <td>
-                                            <div class="media cs-media">
-
-                                                <div class="media-body">
-                                                    <h5>DINT1570066</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">22000.00</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Interest Earning for investment</div>
-                                        </td>
-                                        <td>
-                                            <div class="pretty p-svg p-curve">Bitcoin</div>
-                                        </td>
-
-                                        <td class="flag">
-                                            <div class="pretty p-svg p-curve">20/07/2019</div>
-                                        </td>
-                                        
-                                    </tr>
-                                    
-                                    
-                                </tbody>-->
                         </table>
 
                     </div>
