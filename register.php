@@ -70,15 +70,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->Password   = $smtp_pass;
                 $mail->SMTPSecure = 'tls';
                 $mail->Port       = $smtp_port;
-
+            
                 $mail->setFrom(getenv('MAIL_FROM_ADDRESS') ?: $_ENV['MAIL_FROM_ADDRESS'], getenv('MAIL_FROM_NAME') ?: $_ENV['MAIL_FROM_NAME']);
                 $mail->addAddress($email, $first_name);
-
+            
                 $mail->isHTML(true);
-                $mail->Subject = "Email Verification";
-                $mail->Body    = "Hello $first_name, <br><br> Please verify your email by clicking the link below:<br>
-                                  <a href='https://www.7evenspirits.us/verify?code=$verification_code'>Verify Now</a>";
-
+                $mail->Subject = "Verify Your Email - Welcome to MuntMogul";
+            
+                $verificationLink = "https://www.7evenspirits.us/verify?code=$verification_code";
+            
+                $mail->Body = "
+                    <p>Hi $first_name,</p>
+                    <p>We’re excited to have you on board at <strong>MuntMogul</strong> — where your path to smarter, secure crypto investing begins.</p>
+                    <p>To activate your account and access your investor dashboard, please verify your email by clicking the link below:</p>
+                    <p>👉 <a href='$verificationLink' target='_blank'>Verify Email</a></p>
+                    <p>If you didn’t sign up or believe this was a mistake, you can safely ignore this message.</p>
+                    <p>Welcome again — we look forward to supporting your investment journey.</p>
+                    <p>Stay sharp, stay secure.<br><strong>The MuntMogul Team</strong></p>
+                ";
+            
                 $mail->send();
                 $success = "Registration successful! Please check your email to verify your account.";
             } catch (Exception $e) {
@@ -108,11 +118,11 @@ exit;*/
 
 <head>
     <meta charset="utf-8" />
-    <title>register</title>
+    <title>MuntMogul | register</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="description" content="Savehyip" />
-    <meta name="keywords" content="Savehyip" />
-    <meta name="author" content="" />
+    <meta name="description" content="MuntMogul" />
+    <meta name="keywords" content="MuntMogul" />
+    <meta name="author" content="7evenSpirits" />
     <meta name="MobileOptimized" content="320" />
     <!--Template style -->
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
@@ -460,7 +470,7 @@ exit;*/
                     <div class="col-lg-3 col-md-3 col-12 col-sm-4">
                         <div class="sub_title_section">
                             <ul class="sub_title">
-                                <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
+                                <li> <a href="https://muntmogul.com"> Home </a>&nbsp; / &nbsp; </li>
                                 <li>register</li>
                             </ul>
                         </div>
@@ -500,7 +510,7 @@ exit;*/
                                 <?php if ($success) echo "<p style='color:green;'>$success</p>"; ?>
 
                             </div>
-                            <form method="POST" action="register.php">
+                            <form method="POST" action="register">
                                 <div class="form-group icon_form comments_form register_contact">
                                     <input type="text" class="form-control require" name="referral_name" placeholder="Referral Name*">
                                 </div>
@@ -695,7 +705,7 @@ exit;*/
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                     <div class="copyright_wrapper float_left">
                         <div class="copyright">
-                            <p>Copyright <i class="far fa-copyright"></i> 2019 <a href="index.html"> MuntMogul</a>. all right reserved - design by <a href="index.html">7evenSpirits</a></p>
+                            <p>Copyright <i class="far fa-copyright"></i> 2025 <a href="index.html"> MuntMogul</a>. all right reserved - design by <a>7evenSpirits</a></p>
                         </div>
                         <div class="social_link_foter">
 
@@ -716,7 +726,7 @@ exit;*/
     <!--custom js files-->
     <script type="text/javascript">
         $(document).ready(function() {
-            console.log("jQuery Version:", jQuery.fn.jquery); // Should show 3.6.0
+            //console.log("jQuery Version:", jQuery.fn.jquery); // show 3.6.0
             //console.log("Select2 Loaded:", typeof $.fn.select2 !== "undefined");
 
             $('#country-select').select2({
