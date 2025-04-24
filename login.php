@@ -123,33 +123,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <li>
                       <a href="all_transactions.html">all transactions</a>
 					</li>
-                    <li>
-                      <a href="banners.html">banners</a>
-					</li> 
 				   <li>
                       <a href="change_password.html">change password</a>
 					</li>
 					<li>
-                      <a href="change_pin.html">change pin</a>
-					</li>
-					<li>
-                      <a href="deposit_history.html">deposit history</a>
+                      <a href="deposited">deposit history</a>
                   </li>
 					<li>
                       <a href="deposit_list.html">deposit list</a>
                   </li>
-					<li>
-                      <a href="earnings_history.html">earnings history</a>
-                  </li>
-					<li>
-                      <a href="email_notification.html">email notification</a>
-                  </li>   
-					<li>
-                      <a href="exchange_history.html">exchange history</a>
-                  </li>  
-					<li>
-						<a href="exchange_money.html">exchange money</a>
-                  </li> 
 					<li>
                       <a href="make_deposit.html">make deposit</a>
                   </li> 	
@@ -157,25 +139,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <a href="my_account.html">my account</a>
                   </li> 	
 					<li>
-                      <a href="payment_request.html">payment request</a>
-                  </li> 	
-					<li>
-                      <a href="pending_history.html">pending history</a>
-                  </li> 	
-					<li>
-                      <a href="referral_earnings.html">referral earnings</a>
-                  </li> 	
-					<li>
-                      <a href="referrals.html">referrals</a>
+                      <a href="paymentrequest">payment request</a>
                   </li> 
 					<li>
-                      <a href="tickets.html">tickets</a>
-                  </li> 	
-					<li>
-                      <a href="transfer_fund.html">transfer fund</a>
-                  </li>
+                      <a href="tickets">tickets</a>
+                  </li> 
 				<li>
-                      <a href="view_profile.html">view profile</a>
+                      <a href="viewprofile">view profile</a>
                   </li> 									
               </ul>
              </li>
@@ -401,7 +371,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="col-lg-3 col-md-3 col-12 col-sm-4">
                         <div class="sub_title_section">
                             <ul class="sub_title">
-                                <li> <a href="#"> Home </a>&nbsp; / &nbsp; </li>
+                                <li> <a href="https://muntmogul.com"> Home </a>&nbsp; / &nbsp; </li>
                                 <li>login</li>
                             </ul>
                         </div>
@@ -435,17 +405,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </div>
                         <div class="login_form_wrapper">
-                            <div class="sv_heading_wraper heading_wrapper_dark dark_heading hwd">
-                            <h3>Login to Enter</h3>
-
-                            </div>
+                            <div class="sv_heading_wraper heading_wrapper_dark dark_heading hwd"><h3>Login to Enter</h3></div>
+                            
+                            <?php if (isset($_SESSION['message'])): ?>
+                                <div class="alert alert-success text-center">
+                                    <?php
+                                    echo $_SESSION['message'];
+                                    unset($_SESSION['message']); // Clear it after showing once
+                                    ?>
+                                </div>
+                            <?php endif; ?>
 
                             <!-- Display error messages dynamically -->
                             <?php if (!empty($error)): ?>
                                 <p style="color:red;"><?php echo $error; ?></p>
                             <?php endif; ?>
 
-                            <form method="POST" action="login.php">
+                            <form method="POST" action="login">
                                 <div class="form-group icon_form">
                                     <input type="email" class="form-control require" name="email" placeholder="Email Address*" required>
                                 </div>

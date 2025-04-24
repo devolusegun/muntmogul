@@ -3,13 +3,14 @@ require 'config/config.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verified_email'])) {
     $userEmail = $_POST['verified_email'];
-    
+
     // Fetch user first name (you may already have it from earlier)
     $stmt = $pdo->prepare("SELECT first_name FROM crypticusers WHERE email = ?");
     $stmt->execute([$userEmail]);
@@ -59,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verified_email'])) {
         ";
 
         $mail->send();
-        
+
         $_SESSION['message'] = "🎉 You're verified! Next steps have been sent to your Email.";
 
         // Redirect after email is sent
@@ -152,7 +153,8 @@ if (isset($_GET['code'])) {
 </head>
 
 <body>
-<div class="verification-container">
+    
+    <div class="verification-container">
         <h2>Email Verification</h2>
         <p class="message"><?php echo $verificationMessage; ?></p>
         <?php if (!empty($user['email'])): ?>
