@@ -420,16 +420,22 @@ MuntMogul
                                 guidance, and support to make crypto investing simple and profitable.</p>
                             <div class="welcome_save_inpvate_wrapper">
                                 <ul>
-                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i> Up to 25% ROI in Your First Month </a></li>
-                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i> 100% Crypto-Based Investment Plans </a></li>
-                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i>Full IRS Tax Reporting Compliance</a></li>
-                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i>Dedicated Support from Verified Partners</a></li>
-                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i>Real-Time Dashboard & Transaction Tracking</a></li>
+                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i> Up to 25% ROI
+                                            in Your First Month </a></li>
+                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i> 100%
+                                            Crypto-Based Investment Plans </a></li>
+                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i>Full IRS Tax
+                                            Reporting Compliance</a></li>
+                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i>Dedicated
+                                            Support from Verified Partners</a></li>
+                                    <li style="margin-bottom: 3px;"><a><i class="flaticon-check-box"></i>Real-Time
+                                            Dashboard & Transaction Tracking</a></li>
                                 </ul>
                             </div>
                             <div class="about_btn float_left">
                                 <ul>
-                                    <li><i>“We’re not just building portfolios. We're building financial confidence.”</i></li>
+                                    <li><i>“We’re not just building portfolios. We're building financial
+                                            confidence.”</i></li>
                                 </ul>
                             </div>
                         </div>
@@ -604,26 +610,25 @@ MuntMogul
                                     </g>
                                 </svg>
                                 <div class="mf-xAxis">
-
-                                    <span class="mf-xAxis-end" id="years_selected">25 Years</span>
+                                    <span class="mf-xAxis-end" id="years_selected">12 Months</span>
                                 </div>
                                 <div class="labels funds_label" style="display: block;">
                                     <div class="chart-label">
-                                        <span class="amt" id="directFund"><i class="fa fa-dollar-sign"></i>1.98
-                                            Cr</span>
+                                        <!-- Dollar sign instead of rupee -->
+                                        <span class="amt" id="directFund">$</span>
                                         <span class="sub">total returns</span>
                                     </div>
                                     <div class="chart-label label-regular">
-                                        <span class="amt" id="regularFund"><i class="fa fa-dollar-sign"></i>1.64
-                                            Cr</span>
-                                        <span class="sub">investment amounts</span>
+                                        <!--  Dollar sign instead of rupee -->
+                                        <span class="amt" id="regularFund">$</span>
+                                        <span class="sub">investment amount</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="calc-amt">
-                            <p class="calc-price" id="returnAmount">USD. 34.06 L</p>
-                            <p>extra returns for you </p>
+                        <div class="calc-amt calc_ind_1_2">
+                            <p class="calc-price" id="returnAmount"></p>
+                            <p>total returns on investment</p>
                         </div>
                     </div>
 
@@ -634,39 +639,60 @@ MuntMogul
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div class="caluclator_text_wrapper">
-                                    <p>deposit amount : <i class="fas fa-info-circle"></i></p>
-                                    <p class="dollar_wrap"><i class="fa fa-dollar-sign"></i>
+                                    <!--<p>deposit amount : <i class="fas fa-info-circle"></i></p>-->
+                                    <label for="investmentAmount">Deposit Amount <i class="fas fa-info-circle" title="One-time investment amount in dollars."></i></label>
+                                    <!--<p class="dollar_wrap"><i class="fa fa-dollar-sign"></i>
                                         <input type="text" id="investmentAmount" />
-                                    </p>
+                                    </p>-->
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
+                                        <input type="number" id="investmentAmount" class="form-control" min="0" placeholder="e.g. 1000" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div class="caluclator_text_wrapper">
-                                    <p>monthly SIP : <i class="fas fa-info-circle"></i></p>
-                                    <p class="dollar_wrap"><i class="fa fa-dollar-sign"></i>
-                                        <input type="text" id="investmentAmountSIP" />
-                                    </p>
+                                    <label for="investmentAmountSIP">Monthly Plans <i class="fas fa-info-circle" title="Monthly recurring investment in dollars."></i></label>
+                                    <!--<p>monthly Plans : <i class="fas fa-info-circle"></i></p>
+                                    <p class="dollar_wrap"><i class="fa fa-dollar-sign"></i><input type="text" id="investmentAmountSIP" /></p>-->
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                                        <select id="planSelector" class="form-control">
+                                            <option value="bronze">Bronze</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="copper">Copper</option>
+                                            <option value="gold">Gold</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                <div class="caluclator_text_wrapper">
-                                    <p>Investment Year : <i class="fas fa-info-circle"></i></p>
-                                    <select class="custom-select" id="investmentYears">
-                                        <option selected value="5">5 Years</option>
-                                        <option value="10">10 Years</option>
-                                        <option value="15">15 Years</option>
-                                        <option value="20">20 Years</option>
-                                        <option value="25">25 Years</option>
+                                <div class="form-group caluclator_text_wrapper">
+                                    <!--<p>Investment Month : <i class="fas fa-info-circle"></i></p>-->
+                                    <label for="investmentYears" class="font-weight-bold">
+                                        Investment Month
+                                        <i class="fas fa-info-circle text-muted ml-1" data-toggle="tooltip" title="Select number of years for your investment."></i>
+                                    </label>
+                                    <select class="form-control custom-select" id="investmentYears">
+                                        <option value="1">1 Month</option>
+                                        <option value="2">2 Months</option>
+                                        <option value="3">3 Months</option>
+                                        <option value="4">4 Months</option>
+                                        <option value="5">5 Months</option>
+                                        <option value="6">6 Months</option>
+                                        <option value="7">7 Months</option>
+                                        <option value="8">8 Months</option>
+                                        <option value="9">9 Months</option>
+                                        <option value="10">10 Months</option>
+                                        <option value="11">11 Months</option>
+                                        <option value="12" selected>12 Months</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                <div class="about_btn calc_btn index2_calc_btn float_left"
-                                    onclick="CalCommission(); return false;">
+                                <div class="about_btn calc_btn index2_calc_btn float_left">
                                     <ul>
-                                        <li>
-                                            <a href="#">calculate profit</a>
-                                        </li>
+                                        <li><a href="javascript:void(0);">Calculate Profit</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1264,7 +1290,9 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac1.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>MuntMogul is a secure, guided platform that enables individuals to invest in cryptocurrency-based plans, offering opportunities to grow wealth through strategic investment options.</p>
+                                        <p>MuntMogul is a secure, guided platform that enables individuals to invest in
+                                            cryptocurrency-based plans, offering opportunities to grow wealth through
+                                            strategic investment options.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1286,7 +1314,9 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac2.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>To begin, create an account on our platform, complete your profile verification, deposit funds, and choose an investment plan that aligns with your financial goals.</p>
+                                        <p>To begin, create an account on our platform, complete your profile
+                                            verification, deposit funds, and choose an investment plan that aligns with
+                                            your financial goals.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1309,7 +1339,9 @@ MuntMogul
                                     <!--<div class="card_img"><img src="images/ac3.jpg" alt="img">
                                     </div>-->
                                     <div class="card_cntnt">
-                                        <p>Yes, we prioritize the security of your investments by utilizing advanced encryption and security protocols to protect your assets and personal information.</p>
+                                        <p>Yes, we prioritize the security of your investments by utilizing advanced
+                                            encryption and security protocols to protect your assets and personal
+                                            information.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1332,7 +1364,8 @@ MuntMogul
                                     <!--<div class="card_img"><img src="images/ac1.jpg" alt="img">
                                     </div>-->
                                     <div class="card_cntnt">
-                                        <p>MuntMogul maintains a free and transparent structure. No Hidden Fees. No Charges.</p>
+                                        <p>MuntMogul maintains a free and transparent structure. No Hidden Fees. No
+                                            Charges.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1354,7 +1387,9 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac3.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>We adhere to strict Anti-Money Laundering (AML) and Know Your Customer (KYC) protocols, ensuring all transactions comply with relevant financial regulations</p>
+                                        <p>We adhere to strict Anti-Money Laundering (AML) and Know Your Customer (KYC)
+                                            protocols, ensuring all transactions comply with relevant financial
+                                            regulations</p>
                                     </div>
                                 </div>
                             </div>
@@ -1374,7 +1409,10 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac3.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>Investors are responsible for complying with their local tax regulations. MuntMogul provides necessary documentation to assist with tax reporting on request, but we recommend consulting with a tax professional for personalized advice</p>
+                                        <p>Investors are responsible for complying with their local tax regulations.
+                                            MuntMogul provides necessary documentation to assist with tax reporting on
+                                            request, but we recommend consulting with a tax professional for
+                                            personalized advice</p>
                                     </div>
                                 </div>
                             </div>
@@ -1403,10 +1441,18 @@ MuntMogul
                                     <div class="card_cntnt">
                                         <p>We offer various plans, including:</p>
                                         <ul>
-                                            <li data-animation="animated bounceInLeft"><i class="flaticon-check-box"></i> Silver Plan: Up to 20% return over 30 days; minimum deposit of $2,000.</li>
-                                            <li data-animation="animated bounceInLeft"><i class="flaticon-check-box"></i> Bronze Plan: Up to 28% return over 30 days; minimum deposit of $5,001.</li>
-                                            <li data-animation="animated bounceInLeft"><i class="flaticon-check-box"></i> Copper Plan: Up to 37% return over 30 days; minimum deposit of $15,001.</li>
-                                            <li data-animation="animated bounceInLeft"><i class="flaticon-check-box"></i> Gold Plan: Up to 52% return over 30 days; minimum deposit of $50,001.</li>
+                                            <li data-animation="animated bounceInLeft"><i
+                                                    class="flaticon-check-box"></i> Silver Plan: Up to 20% return over
+                                                30 days; minimum deposit of $2,000.</li>
+                                            <li data-animation="animated bounceInLeft"><i
+                                                    class="flaticon-check-box"></i> Bronze Plan: Up to 28% return over
+                                                30 days; minimum deposit of $5,001.</li>
+                                            <li data-animation="animated bounceInLeft"><i
+                                                    class="flaticon-check-box"></i> Copper Plan: Up to 37% return over
+                                                30 days; minimum deposit of $15,001.</li>
+                                            <li data-animation="animated bounceInLeft"><i
+                                                    class="flaticon-check-box"></i> Gold Plan: Up to 52% return over 30
+                                                days; minimum deposit of $50,001.</li>
                                         </ul>
                                         <p>Each plan offers compounding options to maximize your returns.</p>
                                     </div>
@@ -1430,7 +1476,9 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac2.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>Returns are based on the specific plan chosen and the amount invested. Detailed information is provided within each plan's description on our platform. Use Our <strong>“INVESTMENT CALCULATOR”</strong></p>
+                                        <p>Returns are based on the specific plan chosen and the amount invested.
+                                            Detailed information is provided within each plan's description on our
+                                            platform. Use Our <strong>“INVESTMENT CALCULATOR”</strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -1452,7 +1500,8 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac2.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>Our dedicated support team is available 24/7 to assist you with any inquiries or issues. You can reach us via email at support@muntmogul.com</p>
+                                        <p>Our dedicated support team is available 24/7 to assist you with any inquiries
+                                            or issues. You can reach us via email at support@muntmogul.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -1474,7 +1523,8 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"> <img src="images/ac2.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>Yes, MuntMogul serves clients worldwide, offering investment opportunities and support to investors across the globe.</p>
+                                        <p>Yes, MuntMogul serves clients worldwide, offering investment opportunities
+                                            and support to investors across the globe.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1496,7 +1546,9 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac3.jpg" alt="img"> </div>-->
                                     <div class="card_cntnt">
-                                        <p>You can monitor your investment performance in real-time through your personalized dashboard on our platform, which provides detailed insights into your portfolio.</p>
+                                        <p>You can monitor your investment performance in real-time through your
+                                            personalized dashboard on our platform, which provides detailed insights
+                                            into your portfolio.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1518,7 +1570,9 @@ MuntMogul
                                 <div class="card-body">
                                     <!--<div class="card_img"><img src="images/ac2.jpg" alt="img"></div>-->
                                     <div class="card_cntnt">
-                                        <p>To withdraw earnings, submit a withdrawal request through your dashboard. Our team processes withdrawals promptly, adhering to the timelines specified in your investment plan.</p>
+                                        <p>To withdraw earnings, submit a withdrawal request through your dashboard. Our
+                                            team processes withdrawals promptly, adhering to the timelines specified in
+                                            your investment plan.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1716,8 +1770,10 @@ MuntMogul
                     <div class="wrapper_second_useful wrapper_second_useful_2">
                         <h4>Contact us</h4>
                         <ul>
-                            <li><a href='mailto:support@muntmogul.com'><i class="flaticon-mail"></i>support@muntmogul.com</a></li>
-                            <li><a href='mailto:support@muntmogulpartners.com'><i class="flaticon-mail"></i>support@muntmogulpartners.com</a></li>
+                            <li><a href='mailto:support@muntmogul.com'><i
+                                        class="flaticon-mail"></i>support@muntmogul.com</a></li>
+                            <li><a href='mailto:support@muntmogulpartners.com'><i
+                                        class="flaticon-mail"></i>support@muntmogulpartners.com</a></li>
                             <li><a><i class="flaticon-language"></i>www.muntmogul.com</a></li>
                             <li><a><i class="flaticon-language"></i>www.muntmogulpartners.com</a></li>
                         </ul>
