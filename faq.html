@@ -970,7 +970,7 @@ Author: 7evenspirits
                             <div class="ft_about_icon float_left">
                                 <i class="flaticon-money-bag"></i>
                                 <div class="ft_abt_text_wrapper">
-                                    <p class="timer" id="ttdeposit">12720</p>
+                                    <p id="ttdeposit">12720</p>
                                     <h4>total deposited</h4>
                                 </div>
                             </div>
@@ -1004,11 +1004,11 @@ Author: 7evenspirits
                         <h4>Contact us</h4>
                         <ul>
                             <li><a href='mailto:support@muntmogul.com'><i
-                                        class="flaticon-mail"></i>support@muntmogul.com</a></li>
+                                        class="flaticon-mail"></i>partners@muntmogul.com</a></li>
                             <li><a href='mailto:support@muntmogulpartners.com'><i
-                                        class="flaticon-mail"></i>support@muntmogulpartners.com</a></li>
+                                        class="flaticon-mail"></i>support@muntmogul.com</a></li>
                             <li><a><i class="flaticon-language"></i>www.muntmogul.com</a></li>
-                            <li><a><i class="flaticon-language"></i>www.muntmogulpartners.com</a></li>
+                            <li><a><i class="flaticon-language"></i>partners.muntmogul.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1041,8 +1041,33 @@ Author: 7evenspirits
     <script src="js/owl.carousel.js"></script>
     <script src="js/calculator.js"></script>
     <script src="js/custom.js"></script>
-    <script src="js/countall.js"></script>
     <!-- custom js-->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = {
+                ttmembers: 36,
+                ttdeposit: 12720
+            };
+
+            Object.entries(counters).forEach(([id, fallback]) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+
+                let stored = localStorage.getItem(`counter_${id}`);
+                let value = parseInt(stored);
+
+                if (isNaN(value)) {
+                    // Force reset to fallback
+                    console.warn(`⚠️ Resetting invalid localStorage for ${id}`);
+                    value = fallback;
+                    localStorage.setItem(`counter_${id}`, value);
+                }
+
+                el.innerText = value.toLocaleString();
+            });
+        });
+    </script>
 
 </body>
 
