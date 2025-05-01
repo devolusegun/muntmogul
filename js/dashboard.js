@@ -66,3 +66,4 @@ function fetchDepositsAndPayouts() {
         })
         .catch(error => console.error("Error fetching deposits & payouts:", error));
 }
+
