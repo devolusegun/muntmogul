@@ -1,16 +1,28 @@
 <?php
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 require 'config/config.php';
+
+// Ensure `.env` loads first
+require_once __DIR__ . '/load_env.php';
+loadEnv(__DIR__ . '/.env');
+
+require 'src/Exception.php';
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+// Fetch SMTP credentials from .env
+$smtp_host = getenv('SMTP_HOST') ?: $_ENV['SMTP_HOST'];
+$smtp_user = getenv('SMTP_USER') ?: $_ENV['SMTP_USER'];
+$smtp_pass = getenv('SMTP_PASS') ?: $_ENV['SMTP_PASS'];
+$smtp_port = getenv('SMTP_PORT') ?: $_ENV['SMTP_PORT'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verified_email'])) {
     $userEmail = $_POST['verified_email'];
-
+    
     // Fetch user first name (you may already have it from earlier)
     $stmt = $pdo->prepare("SELECT first_name FROM crypticusers WHERE email = ?");
     $stmt->execute([$userEmail]);
@@ -20,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verified_email'])) {
     // Send follow-up email
     $mail = new PHPMailer(true);
     try {
+        $mail->CharSet = 'UTF-8';
+        
         $mail->isSMTP();
         $mail->Host       = $smtp_host;
         $mail->SMTPAuth   = true;
@@ -35,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verified_email'])) {
         $mail->Subject = "You're Verified — Here's What’s Next at MuntMogul ✅";
 
         $mail->Body = "
-            <p>Hi $first_name,</p>
+            <p>Hi $first_name,</p><br>
             
-            <p>Welcome once again to <strong>MuntMogul</strong> — you’ve successfully verified your email, and you’re just a few simple steps away from starting your investment journey.</p>
+            <p>Welcome once again to <strong>MuntMogul</strong> — you’ve successfully verified your email, and you’re just a few simple steps away from starting your investment journey.</p><br>
 
             <p>Here’s what to do next:</p>
             <hr/>
@@ -60,16 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verified_email'])) {
         ";
 
         $mail->send();
-
+        
         $_SESSION['message'] = "🎉 You're verified! Next steps have been sent to your Email.";
 
         // Redirect after email is sent
-        header("Location: login.php");
+        header("Location: login");
         exit;
     } catch (Exception $e) {
-        error_log("Follow-up email error: " . $mail->ErrorInfo);
+        error_log("Follow-up email error: " . $mail->ErrorInfo, 3, __DIR__ . '/logs/email_errors.log');
+        //die("Mailer Error: " . $mail->ErrorInfo);
         // Optional: Show an error message or allow login anyway
-        header("Location: login.php");
+        header("Location: login");
         exit;
     }
 }
@@ -92,7 +107,7 @@ if (isset($_GET['code'])) {
     } else {
         $verificationMessage = "❌ Invalid or expired verification link!";
         $buttonText = "Return to Homepage";
-        $buttonLink = "index.php";
+        $buttonLink = "index.html";
     }
 }
 ?>
@@ -153,8 +168,7 @@ if (isset($_GET['code'])) {
 </head>
 
 <body>
-    
-    <div class="verification-container">
+<div class="verification-container">
         <h2>Email Verification</h2>
         <p class="message"><?php echo $verificationMessage; ?></p>
         <?php if (!empty($user['email'])): ?>

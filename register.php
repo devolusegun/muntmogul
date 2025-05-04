@@ -14,9 +14,8 @@ require 'src/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 
 // Fetch SMTP credentials from .env
 $smtp_host = getenv('SMTP_HOST') ?: $_ENV['SMTP_HOST'];
@@ -63,6 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Send verification email
             $mail = new PHPMailer(true);
             try {
+                $mail->CharSet = 'UTF-8';
+                
                 $mail->isSMTP();
                 $mail->Host       = $smtp_host;
                 $mail->SMTPAuth   = true;
@@ -75,18 +76,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->addAddress($email, $first_name);
             
                 $mail->isHTML(true);
-                $mail->Subject = "Verify Your Email - Welcome to MuntMogul";
+                $mail->Subject = "Verify Your Email – Welcome to MuntMogul";
             
-                $verificationLink = "https://www.7evenspirits.us/verify?code=$verification_code";
+                $verificationLink = "https://www.muntmogul.com/verify?code=$verification_code";
             
                 $mail->Body = "
-                    <p>Hi $first_name,</p>
-                    <p>We’re excited to have you on board at <strong>MuntMogul</strong> — where your path to smarter, secure crypto investing begins.</p>
+                    <p>Hi $first_name,</p><br>
+                    <p>We are excited to have you on board at <strong>MuntMogul</strong> — where your path to smarter, secure crypto investing begins.</p><br>
                     <p>To activate your account and access your investor dashboard, please verify your email by clicking the link below:</p>
-                    <p>👉 <a href='$verificationLink' target='_blank'>Verify Email</a></p>
-                    <p>If you didn’t sign up or believe this was a mistake, you can safely ignore this message.</p>
+                    <p>👉 <a href='$verificationLink' target='_blank'>Verify Email</a></p><br/>
+                    <p>If you did not sign up or believe this was a mistake, you can safely ignore this message.</p>
                     <p>Welcome again — we look forward to supporting your investment journey.</p>
-                    <p>Stay sharp, stay secure.<br><strong>The MuntMogul Team</strong></p>
+                    <p>Stay sharp, stay secure.<br><br><strong>The MuntMogul Team</strong></p>
                 ";
             
                 $mail->send();
@@ -124,6 +125,7 @@ exit;*/
     <meta name="keywords" content="MuntMogul" />
     <meta name="author" content="7evenSpirits" />
     <meta name="MobileOptimized" content="320" />
+    <meta charset="utf-8">
     <!--Template style -->
     <link rel="stylesheet" type="text/css" href="css/animate.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -447,7 +449,7 @@ exit;*/
                                 </li>                   
                             </ul>
                         </li> -->    
-                        <li><a class="gc_main_navigation"><i class="flaticon-phone-contact"></i>(+91) 123 123 4567</a></li>
+                        <li><a class="gc_main_navigation"><i class="flaticon-phone-contact"></i> hello@muntmogul.com</a></li>
                     </ul>
                 </div>
                 <!-- mainmenu end -->
@@ -506,8 +508,8 @@ exit;*/
                             <div class="sv_heading_wraper heading_wrapper_dark dark_heading hwd">
 
                                 <h3> Register To Enter</h3>
-                                <?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
-                                <?php if ($success) echo "<p style='color:green;'>$success</p>"; ?>
+                                <?php if ($error) echo "<br><p style='color:red;'>$error</p>"; ?>
+                                <?php if ($success) echo "<br><p style='color:green;'>$success</p>"; ?>
 
                             </div>
                             <form method="POST" action="register">
