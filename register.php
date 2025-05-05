@@ -449,7 +449,7 @@ exit;*/
                                 </li>                   
                             </ul>
                         </li> -->    
-                        <li><a class="gc_main_navigation"><i class="flaticon-phone-contact"></i> hello@muntmogul.com</a></li>
+                        <li><a href="index.html"class="gc_main_navigation"><i class="fa fa-home"></i> Home</a></li>
                     </ul>
                 </div>
                 <!-- mainmenu end -->

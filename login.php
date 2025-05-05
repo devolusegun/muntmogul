@@ -348,7 +348,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </li>   
                             </ul>
                         </li>-->   
-                        <li><a  class="gc_main_navigation"><i class="flaticon-phone-contact"></i> (+91) 123 123 4567</a></li> 
+                        <li><a  class="gc_main_navigation" href="index.html"><i class="fa fa-home"></i> Home</a></li> 
                     </ul>
                 </div>
                 <!-- mainmenu end -->
@@ -406,7 +406,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="login_form_wrapper">
                             <div class="sv_heading_wraper heading_wrapper_dark dark_heading hwd"><h3>Login to Enter</h3></div>
-                            
                             <?php if (isset($_SESSION['message'])): ?>
                                 <div class="alert alert-success text-center">
                                     <?php
